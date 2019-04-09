@@ -23,7 +23,7 @@ class GalleryImagesOperations(object):
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
     :param deserializer: An object model deserializer.
-    :ivar api_version: Client API version. Constant value: "2018-09-15".
+    :ivar api_version: Client API version. Constant value: "2232-01-02".
     """
 
     models = models
@@ -33,7 +33,7 @@ class GalleryImagesOperations(object):
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
-        self.api_version = "2018-09-15"
+        self.api_version = "2232-01-02"
 
         self.config = config
 
