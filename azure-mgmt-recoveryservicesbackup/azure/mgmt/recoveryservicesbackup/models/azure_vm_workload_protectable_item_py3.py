@@ -16,7 +16,9 @@ class AzureVmWorkloadProtectableItem(WorkloadProtectableItem):
     """Azure VM workload-specific protectable item.
 
     You probably want to use the sub-classes and not this class directly. Known
-    sub-classes are: AzureVmWorkloadSAPHanaDatabaseProtectableItem,
+    sub-classes are: AzureVmWorkloadSAPAseDatabaseProtectableItem,
+    AzureVmWorkloadSAPAseSystemProtectableItem,
+    AzureVmWorkloadSAPHanaDatabaseProtectableItem,
     AzureVmWorkloadSAPHanaSystemProtectableItem,
     AzureVmWorkloadSQLAvailabilityGroupProtectableItem,
     AzureVmWorkloadSQLDatabaseProtectableItem,
@@ -24,7 +26,7 @@ class AzureVmWorkloadProtectableItem(WorkloadProtectableItem):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param backup_management_type: Type of backup managemenent to backup an
+    :param backup_management_type: Type of backup management to backup an
      item.
     :type backup_management_type: str
     :param workload_type: Type of workload for the backup management
@@ -50,11 +52,13 @@ class AzureVmWorkloadProtectableItem(WorkloadProtectableItem):
     :param is_auto_protectable: Indicates if protectable item is
      auto-protectable
     :type is_auto_protectable: bool
-    :param subinquireditemcount: For instance or AG, indicates number of DB's
+    :param is_auto_protected: Indicates if protectable item is auto-protected
+    :type is_auto_protected: bool
+    :param subinquireditemcount: For instance or AG, indicates number of DBs
      present
     :type subinquireditemcount: int
     :param subprotectableitemcount: For instance or AG, indicates number of
-     DB's to be protected
+     DBs to be protected
     :type subprotectableitemcount: int
     :param prebackupvalidation: Pre-backup validation for protectable objects
     :type prebackupvalidation:
@@ -75,21 +79,23 @@ class AzureVmWorkloadProtectableItem(WorkloadProtectableItem):
         'parent_unique_name': {'key': 'parentUniqueName', 'type': 'str'},
         'server_name': {'key': 'serverName', 'type': 'str'},
         'is_auto_protectable': {'key': 'isAutoProtectable', 'type': 'bool'},
+        'is_auto_protected': {'key': 'isAutoProtected', 'type': 'bool'},
         'subinquireditemcount': {'key': 'subinquireditemcount', 'type': 'int'},
         'subprotectableitemcount': {'key': 'subprotectableitemcount', 'type': 'int'},
         'prebackupvalidation': {'key': 'prebackupvalidation', 'type': 'PreBackupValidation'},
     }
 
     _subtype_map = {
-        'protectable_item_type': {'SAPHanaDatabase': 'AzureVmWorkloadSAPHanaDatabaseProtectableItem', 'SAPHanaSystem': 'AzureVmWorkloadSAPHanaSystemProtectableItem', 'SQLAvailabilityGroupContainer': 'AzureVmWorkloadSQLAvailabilityGroupProtectableItem', 'SQLDataBase': 'AzureVmWorkloadSQLDatabaseProtectableItem', 'SQLInstance': 'AzureVmWorkloadSQLInstanceProtectableItem'}
+        'protectable_item_type': {'SAPAseDatabase': 'AzureVmWorkloadSAPAseDatabaseProtectableItem', 'SAPAseSystem': 'AzureVmWorkloadSAPAseSystemProtectableItem', 'SAPHanaDatabase': 'AzureVmWorkloadSAPHanaDatabaseProtectableItem', 'SAPHanaSystem': 'AzureVmWorkloadSAPHanaSystemProtectableItem', 'SQLAvailabilityGroupContainer': 'AzureVmWorkloadSQLAvailabilityGroupProtectableItem', 'SQLDataBase': 'AzureVmWorkloadSQLDatabaseProtectableItem', 'SQLInstance': 'AzureVmWorkloadSQLInstanceProtectableItem'}
     }
 
-    def __init__(self, *, backup_management_type: str=None, workload_type: str=None, friendly_name: str=None, protection_state=None, parent_name: str=None, parent_unique_name: str=None, server_name: str=None, is_auto_protectable: bool=None, subinquireditemcount: int=None, subprotectableitemcount: int=None, prebackupvalidation=None, **kwargs) -> None:
+    def __init__(self, *, backup_management_type: str=None, workload_type: str=None, friendly_name: str=None, protection_state=None, parent_name: str=None, parent_unique_name: str=None, server_name: str=None, is_auto_protectable: bool=None, is_auto_protected: bool=None, subinquireditemcount: int=None, subprotectableitemcount: int=None, prebackupvalidation=None, **kwargs) -> None:
         super(AzureVmWorkloadProtectableItem, self).__init__(backup_management_type=backup_management_type, workload_type=workload_type, friendly_name=friendly_name, protection_state=protection_state, **kwargs)
         self.parent_name = parent_name
         self.parent_unique_name = parent_unique_name
         self.server_name = server_name
         self.is_auto_protectable = is_auto_protectable
+        self.is_auto_protected = is_auto_protected
         self.subinquireditemcount = subinquireditemcount
         self.subprotectableitemcount = subprotectableitemcount
         self.prebackupvalidation = prebackupvalidation

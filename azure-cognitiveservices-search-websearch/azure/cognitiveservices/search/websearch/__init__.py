@@ -9,10 +9,10 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .web_search_api import WebSearchAPI
+from .web_search_client import WebSearchClient
 from .version import VERSION
 
-__all__ = ['WebSearchAPI']
+__all__ = ['WebSearchClient']
 
 __version__ = VERSION
 

@@ -18,7 +18,7 @@ class AzureVmWorkloadSQLAvailabilityGroupProtectableItem(AzureVmWorkloadProtecta
 
     All required parameters must be populated in order to send to Azure.
 
-    :param backup_management_type: Type of backup managemenent to backup an
+    :param backup_management_type: Type of backup management to backup an
      item.
     :type backup_management_type: str
     :param workload_type: Type of workload for the backup management
@@ -44,11 +44,13 @@ class AzureVmWorkloadSQLAvailabilityGroupProtectableItem(AzureVmWorkloadProtecta
     :param is_auto_protectable: Indicates if protectable item is
      auto-protectable
     :type is_auto_protectable: bool
-    :param subinquireditemcount: For instance or AG, indicates number of DB's
+    :param is_auto_protected: Indicates if protectable item is auto-protected
+    :type is_auto_protected: bool
+    :param subinquireditemcount: For instance or AG, indicates number of DBs
      present
     :type subinquireditemcount: int
     :param subprotectableitemcount: For instance or AG, indicates number of
-     DB's to be protected
+     DBs to be protected
     :type subprotectableitemcount: int
     :param prebackupvalidation: Pre-backup validation for protectable objects
     :type prebackupvalidation:
@@ -69,6 +71,7 @@ class AzureVmWorkloadSQLAvailabilityGroupProtectableItem(AzureVmWorkloadProtecta
         'parent_unique_name': {'key': 'parentUniqueName', 'type': 'str'},
         'server_name': {'key': 'serverName', 'type': 'str'},
         'is_auto_protectable': {'key': 'isAutoProtectable', 'type': 'bool'},
+        'is_auto_protected': {'key': 'isAutoProtected', 'type': 'bool'},
         'subinquireditemcount': {'key': 'subinquireditemcount', 'type': 'int'},
         'subprotectableitemcount': {'key': 'subprotectableitemcount', 'type': 'int'},
         'prebackupvalidation': {'key': 'prebackupvalidation', 'type': 'PreBackupValidation'},

@@ -55,7 +55,7 @@ except (SyntaxError, ImportError):
     from .videos_module import VideosModule
     from .video_details import VideoDetails
     from .response_base import ResponseBase
-from .video_search_api_enums import (
+from .video_search_client_enums import (
     VideoQueryScenario,
     ErrorCode,
     ErrorSubCode,

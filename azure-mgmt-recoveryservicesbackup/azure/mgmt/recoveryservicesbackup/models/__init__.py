@@ -16,6 +16,9 @@ try:
     from .schedule_policy_py3 import SchedulePolicy
     from .retention_policy_py3 import RetentionPolicy
     from .azure_file_share_protection_policy_py3 import AzureFileShareProtectionPolicy
+    from .restore_file_specs_py3 import RestoreFileSpecs
+    from .target_afs_restore_info_py3 import TargetAFSRestoreInfo
+    from .azure_file_share_restore_request_py3 import AzureFileShareRestoreRequest
     from .azure_iaa_sclassic_compute_vm_protected_item_py3 import AzureIaaSClassicComputeVMProtectedItem
     from .azure_iaa_scompute_vm_protected_item_py3 import AzureIaaSComputeVMProtectedItem
     from .azure_iaa_svm_error_info_py3 import AzureIaaSVMErrorInfo
@@ -43,6 +46,7 @@ try:
     from .settings_py3 import Settings
     from .sub_protection_policy_py3 import SubProtectionPolicy
     from .azure_vm_workload_protection_policy_py3 import AzureVmWorkloadProtectionPolicy
+    from .azure_vm_workload_sap_ase_database_protected_item_py3 import AzureVmWorkloadSAPAseDatabaseProtectedItem
     from .azure_vm_workload_sap_hana_database_protected_item_py3 import AzureVmWorkloadSAPHanaDatabaseProtectedItem
     from .azure_vm_workload_sql_database_protected_item_py3 import AzureVmWorkloadSQLDatabaseProtectedItem
     from .azure_workload_auto_protection_intent_py3 import AzureWorkloadAutoProtectionIntent
@@ -50,7 +54,15 @@ try:
     from .azure_workload_job_task_details_py3 import AzureWorkloadJobTaskDetails
     from .azure_workload_job_extended_info_py3 import AzureWorkloadJobExtendedInfo
     from .azure_workload_job_py3 import AzureWorkloadJob
+    from .azure_workload_point_in_time_restore_request_py3 import AzureWorkloadPointInTimeRestoreRequest
+    from .target_restore_info_py3 import TargetRestoreInfo
+    from .azure_workload_restore_request_py3 import AzureWorkloadRestoreRequest
+    from .azure_workload_sap_hana_point_in_time_restore_request_py3 import AzureWorkloadSAPHanaPointInTimeRestoreRequest
+    from .azure_workload_sap_hana_restore_request_py3 import AzureWorkloadSAPHanaRestoreRequest
     from .azure_workload_sql_auto_protection_intent_py3 import AzureWorkloadSQLAutoProtectionIntent
+    from .azure_workload_sql_point_in_time_restore_request_py3 import AzureWorkloadSQLPointInTimeRestoreRequest
+    from .sql_data_directory_mapping_py3 import SQLDataDirectoryMapping
+    from .azure_workload_sql_restore_request_py3 import AzureWorkloadSQLRestoreRequest
     from .name_info_py3 import NameInfo
     from .backup_management_usage_py3 import BackupManagementUsage
     from .backup_status_request_py3 import BackupStatusRequest
@@ -66,10 +78,12 @@ try:
     from .dpm_job_py3 import DpmJob
     from .dpm_protected_item_extended_info_py3 import DPMProtectedItemExtendedInfo
     from .dpm_protected_item_py3 import DPMProtectedItem
+    from .encryption_details_py3 import EncryptionDetails
     from .export_jobs_operation_result_info_py3 import ExportJobsOperationResultInfo
     from .feature_support_request_py3 import FeatureSupportRequest
     from .generic_protected_item_py3 import GenericProtectedItem
     from .generic_protection_policy_py3 import GenericProtectionPolicy
+    from .iaas_vm_restore_request_py3 import IaasVMRestoreRequest
     from .job_py3 import Job
     from .job_query_object_py3 import JobQueryObject
     from .job_resource_py3 import JobResource
@@ -97,23 +111,26 @@ try:
     from .protected_item_query_object_py3 import ProtectedItemQueryObject
     from .protected_item_resource_py3 import ProtectedItemResource
     from .protection_intent_py3 import ProtectionIntent
+    from .protection_intent_query_object_py3 import ProtectionIntentQueryObject
     from .protection_intent_resource_py3 import ProtectionIntentResource
     from .protection_policy_py3 import ProtectionPolicy
     from .protection_policy_query_object_py3 import ProtectionPolicyQueryObject
     from .protection_policy_resource_py3 import ProtectionPolicyResource
     from .resource_py3 import Resource
     from .resource_list_py3 import ResourceList
+    from .restore_request_py3 import RestoreRequest
     from .simple_retention_policy_py3 import SimpleRetentionPolicy
     from .simple_schedule_policy_py3 import SimpleSchedulePolicy
-    from .dpm_container_extended_info_py3 import DPMContainerExtendedInfo
+    from .validate_iaas_vm_restore_operation_request_py3 import ValidateIaasVMRestoreOperationRequest
+    from .validate_operation_request_py3 import ValidateOperationRequest
+    from .validate_operation_response_py3 import ValidateOperationResponse
+    from .validate_operations_response_py3 import ValidateOperationsResponse
+    from .validate_restore_operation_request_py3 import ValidateRestoreOperationRequest
     from .azure_backup_server_container_py3 import AzureBackupServerContainer
     from .azure_backup_server_engine_py3 import AzureBackupServerEngine
     from .azure_file_share_backup_request_py3 import AzureFileShareBackupRequest
     from .azure_file_share_protectable_item_py3 import AzureFileShareProtectableItem
     from .azure_file_share_recovery_point_py3 import AzureFileShareRecoveryPoint
-    from .restore_file_specs_py3 import RestoreFileSpecs
-    from .target_afs_restore_info_py3 import TargetAFSRestoreInfo
-    from .azure_file_share_restore_request_py3 import AzureFileShareRestoreRequest
     from .azure_iaa_sclassic_compute_vm_container_py3 import AzureIaaSClassicComputeVMContainer
     from .azure_iaa_sclassic_compute_vm_protectable_item_py3 import AzureIaaSClassicComputeVMProtectableItem
     from .azure_iaa_scompute_vm_container_py3 import AzureIaaSComputeVMContainer
@@ -127,6 +144,10 @@ try:
     from .azure_vm_workload_item_py3 import AzureVmWorkloadItem
     from .pre_backup_validation_py3 import PreBackupValidation
     from .azure_vm_workload_protectable_item_py3 import AzureVmWorkloadProtectableItem
+    from .azure_vm_workload_sap_ase_database_protectable_item_py3 import AzureVmWorkloadSAPAseDatabaseProtectableItem
+    from .azure_vm_workload_sap_ase_database_workload_item_py3 import AzureVmWorkloadSAPAseDatabaseWorkloadItem
+    from .azure_vm_workload_sap_ase_system_protectable_item_py3 import AzureVmWorkloadSAPAseSystemProtectableItem
+    from .azure_vm_workload_sap_ase_system_workload_item_py3 import AzureVmWorkloadSAPAseSystemWorkloadItem
     from .azure_vm_workload_sap_hana_database_protectable_item_py3 import AzureVmWorkloadSAPHanaDatabaseProtectableItem
     from .azure_vm_workload_sap_hana_database_workload_item_py3 import AzureVmWorkloadSAPHanaDatabaseWorkloadItem
     from .azure_vm_workload_sap_hana_system_protectable_item_py3 import AzureVmWorkloadSAPHanaSystemProtectableItem
@@ -144,20 +165,14 @@ try:
     from .distributed_nodes_info_py3 import DistributedNodesInfo
     from .azure_workload_container_extended_info_py3 import AzureWorkloadContainerExtendedInfo
     from .azure_workload_container_py3 import AzureWorkloadContainer
-    from .azure_workload_recovery_point_py3 import AzureWorkloadRecoveryPoint
-    from .azure_workload_restore_request_py3 import AzureWorkloadRestoreRequest
     from .point_in_time_range_py3 import PointInTimeRange
+    from .azure_workload_point_in_time_recovery_point_py3 import AzureWorkloadPointInTimeRecoveryPoint
+    from .azure_workload_recovery_point_py3 import AzureWorkloadRecoveryPoint
     from .azure_workload_sap_hana_point_in_time_recovery_point_py3 import AzureWorkloadSAPHanaPointInTimeRecoveryPoint
-    from .azure_workload_sap_hana_point_in_time_restore_request_py3 import AzureWorkloadSAPHanaPointInTimeRestoreRequest
     from .azure_workload_sap_hana_recovery_point_py3 import AzureWorkloadSAPHanaRecoveryPoint
-    from .target_restore_info_py3 import TargetRestoreInfo
-    from .azure_workload_sap_hana_restore_request_py3 import AzureWorkloadSAPHanaRestoreRequest
     from .azure_workload_sql_point_in_time_recovery_point_py3 import AzureWorkloadSQLPointInTimeRecoveryPoint
-    from .azure_workload_sql_point_in_time_restore_request_py3 import AzureWorkloadSQLPointInTimeRestoreRequest
     from .azure_workload_sql_recovery_point_extended_info_py3 import AzureWorkloadSQLRecoveryPointExtendedInfo
     from .azure_workload_sql_recovery_point_py3 import AzureWorkloadSQLRecoveryPoint
-    from .sql_data_directory_mapping_py3 import SQLDataDirectoryMapping
-    from .azure_workload_sql_restore_request_py3 import AzureWorkloadSQLRestoreRequest
     from .backup_engine_extended_info_py3 import BackupEngineExtendedInfo
     from .backup_engine_base_py3 import BackupEngineBase
     from .backup_engine_base_resource_py3 import BackupEngineBaseResource
@@ -179,8 +194,8 @@ try:
     from .client_script_for_connect_py3 import ClientScriptForConnect
     from .container_identity_info_py3 import ContainerIdentityInfo
     from .dpm_backup_engine_py3 import DpmBackupEngine
+    from .dpm_container_extended_info_py3 import DPMContainerExtendedInfo
     from .dpm_container_py3 import DpmContainer
-    from .encryption_details_py3 import EncryptionDetails
     from .generic_container_extended_info_py3 import GenericContainerExtendedInfo
     from .generic_container_py3 import GenericContainer
     from .generic_recovery_point_py3 import GenericRecoveryPoint
@@ -193,7 +208,6 @@ try:
     from .key_and_secret_details_py3 import KeyAndSecretDetails
     from .recovery_point_tier_information_py3 import RecoveryPointTierInformation
     from .iaas_vm_recovery_point_py3 import IaasVMRecoveryPoint
-    from .iaas_vm_restore_request_py3 import IaasVMRestoreRequest
     from .ilr_request_py3 import ILRRequest
     from .ilr_request_resource_py3 import ILRRequestResource
     from .instant_item_recovery_target_py3 import InstantItemRecoveryTarget
@@ -212,7 +226,6 @@ try:
     from .protection_container_resource_py3 import ProtectionContainerResource
     from .recovery_point_py3 import RecoveryPoint
     from .recovery_point_resource_py3 import RecoveryPointResource
-    from .restore_request_py3 import RestoreRequest
     from .restore_request_resource_py3 import RestoreRequestResource
     from .token_information_py3 import TokenInformation
     from .workload_item_py3 import WorkloadItem
@@ -231,6 +244,9 @@ except (SyntaxError, ImportError):
     from .schedule_policy import SchedulePolicy
     from .retention_policy import RetentionPolicy
     from .azure_file_share_protection_policy import AzureFileShareProtectionPolicy
+    from .restore_file_specs import RestoreFileSpecs
+    from .target_afs_restore_info import TargetAFSRestoreInfo
+    from .azure_file_share_restore_request import AzureFileShareRestoreRequest
     from .azure_iaa_sclassic_compute_vm_protected_item import AzureIaaSClassicComputeVMProtectedItem
     from .azure_iaa_scompute_vm_protected_item import AzureIaaSComputeVMProtectedItem
     from .azure_iaa_svm_error_info import AzureIaaSVMErrorInfo
@@ -258,6 +274,7 @@ except (SyntaxError, ImportError):
     from .settings import Settings
     from .sub_protection_policy import SubProtectionPolicy
     from .azure_vm_workload_protection_policy import AzureVmWorkloadProtectionPolicy
+    from .azure_vm_workload_sap_ase_database_protected_item import AzureVmWorkloadSAPAseDatabaseProtectedItem
     from .azure_vm_workload_sap_hana_database_protected_item import AzureVmWorkloadSAPHanaDatabaseProtectedItem
     from .azure_vm_workload_sql_database_protected_item import AzureVmWorkloadSQLDatabaseProtectedItem
     from .azure_workload_auto_protection_intent import AzureWorkloadAutoProtectionIntent
@@ -265,7 +282,15 @@ except (SyntaxError, ImportError):
     from .azure_workload_job_task_details import AzureWorkloadJobTaskDetails
     from .azure_workload_job_extended_info import AzureWorkloadJobExtendedInfo
     from .azure_workload_job import AzureWorkloadJob
+    from .azure_workload_point_in_time_restore_request import AzureWorkloadPointInTimeRestoreRequest
+    from .target_restore_info import TargetRestoreInfo
+    from .azure_workload_restore_request import AzureWorkloadRestoreRequest
+    from .azure_workload_sap_hana_point_in_time_restore_request import AzureWorkloadSAPHanaPointInTimeRestoreRequest
+    from .azure_workload_sap_hana_restore_request import AzureWorkloadSAPHanaRestoreRequest
     from .azure_workload_sql_auto_protection_intent import AzureWorkloadSQLAutoProtectionIntent
+    from .azure_workload_sql_point_in_time_restore_request import AzureWorkloadSQLPointInTimeRestoreRequest
+    from .sql_data_directory_mapping import SQLDataDirectoryMapping
+    from .azure_workload_sql_restore_request import AzureWorkloadSQLRestoreRequest
     from .name_info import NameInfo
     from .backup_management_usage import BackupManagementUsage
     from .backup_status_request import BackupStatusRequest
@@ -281,10 +306,12 @@ except (SyntaxError, ImportError):
     from .dpm_job import DpmJob
     from .dpm_protected_item_extended_info import DPMProtectedItemExtendedInfo
     from .dpm_protected_item import DPMProtectedItem
+    from .encryption_details import EncryptionDetails
     from .export_jobs_operation_result_info import ExportJobsOperationResultInfo
     from .feature_support_request import FeatureSupportRequest
     from .generic_protected_item import GenericProtectedItem
     from .generic_protection_policy import GenericProtectionPolicy
+    from .iaas_vm_restore_request import IaasVMRestoreRequest
     from .job import Job
     from .job_query_object import JobQueryObject
     from .job_resource import JobResource
@@ -312,23 +339,26 @@ except (SyntaxError, ImportError):
     from .protected_item_query_object import ProtectedItemQueryObject
     from .protected_item_resource import ProtectedItemResource
     from .protection_intent import ProtectionIntent
+    from .protection_intent_query_object import ProtectionIntentQueryObject
     from .protection_intent_resource import ProtectionIntentResource
     from .protection_policy import ProtectionPolicy
     from .protection_policy_query_object import ProtectionPolicyQueryObject
     from .protection_policy_resource import ProtectionPolicyResource
     from .resource import Resource
     from .resource_list import ResourceList
+    from .restore_request import RestoreRequest
     from .simple_retention_policy import SimpleRetentionPolicy
     from .simple_schedule_policy import SimpleSchedulePolicy
-    from .dpm_container_extended_info import DPMContainerExtendedInfo
+    from .validate_iaas_vm_restore_operation_request import ValidateIaasVMRestoreOperationRequest
+    from .validate_operation_request import ValidateOperationRequest
+    from .validate_operation_response import ValidateOperationResponse
+    from .validate_operations_response import ValidateOperationsResponse
+    from .validate_restore_operation_request import ValidateRestoreOperationRequest
     from .azure_backup_server_container import AzureBackupServerContainer
     from .azure_backup_server_engine import AzureBackupServerEngine
     from .azure_file_share_backup_request import AzureFileShareBackupRequest
     from .azure_file_share_protectable_item import AzureFileShareProtectableItem
     from .azure_file_share_recovery_point import AzureFileShareRecoveryPoint
-    from .restore_file_specs import RestoreFileSpecs
-    from .target_afs_restore_info import TargetAFSRestoreInfo
-    from .azure_file_share_restore_request import AzureFileShareRestoreRequest
     from .azure_iaa_sclassic_compute_vm_container import AzureIaaSClassicComputeVMContainer
     from .azure_iaa_sclassic_compute_vm_protectable_item import AzureIaaSClassicComputeVMProtectableItem
     from .azure_iaa_scompute_vm_container import AzureIaaSComputeVMContainer
@@ -342,6 +372,10 @@ except (SyntaxError, ImportError):
     from .azure_vm_workload_item import AzureVmWorkloadItem
     from .pre_backup_validation import PreBackupValidation
     from .azure_vm_workload_protectable_item import AzureVmWorkloadProtectableItem
+    from .azure_vm_workload_sap_ase_database_protectable_item import AzureVmWorkloadSAPAseDatabaseProtectableItem
+    from .azure_vm_workload_sap_ase_database_workload_item import AzureVmWorkloadSAPAseDatabaseWorkloadItem
+    from .azure_vm_workload_sap_ase_system_protectable_item import AzureVmWorkloadSAPAseSystemProtectableItem
+    from .azure_vm_workload_sap_ase_system_workload_item import AzureVmWorkloadSAPAseSystemWorkloadItem
     from .azure_vm_workload_sap_hana_database_protectable_item import AzureVmWorkloadSAPHanaDatabaseProtectableItem
     from .azure_vm_workload_sap_hana_database_workload_item import AzureVmWorkloadSAPHanaDatabaseWorkloadItem
     from .azure_vm_workload_sap_hana_system_protectable_item import AzureVmWorkloadSAPHanaSystemProtectableItem
@@ -359,20 +393,14 @@ except (SyntaxError, ImportError):
     from .distributed_nodes_info import DistributedNodesInfo
     from .azure_workload_container_extended_info import AzureWorkloadContainerExtendedInfo
     from .azure_workload_container import AzureWorkloadContainer
-    from .azure_workload_recovery_point import AzureWorkloadRecoveryPoint
-    from .azure_workload_restore_request import AzureWorkloadRestoreRequest
     from .point_in_time_range import PointInTimeRange
+    from .azure_workload_point_in_time_recovery_point import AzureWorkloadPointInTimeRecoveryPoint
+    from .azure_workload_recovery_point import AzureWorkloadRecoveryPoint
     from .azure_workload_sap_hana_point_in_time_recovery_point import AzureWorkloadSAPHanaPointInTimeRecoveryPoint
-    from .azure_workload_sap_hana_point_in_time_restore_request import AzureWorkloadSAPHanaPointInTimeRestoreRequest
     from .azure_workload_sap_hana_recovery_point import AzureWorkloadSAPHanaRecoveryPoint
-    from .target_restore_info import TargetRestoreInfo
-    from .azure_workload_sap_hana_restore_request import AzureWorkloadSAPHanaRestoreRequest
     from .azure_workload_sql_point_in_time_recovery_point import AzureWorkloadSQLPointInTimeRecoveryPoint
-    from .azure_workload_sql_point_in_time_restore_request import AzureWorkloadSQLPointInTimeRestoreRequest
     from .azure_workload_sql_recovery_point_extended_info import AzureWorkloadSQLRecoveryPointExtendedInfo
     from .azure_workload_sql_recovery_point import AzureWorkloadSQLRecoveryPoint
-    from .sql_data_directory_mapping import SQLDataDirectoryMapping
-    from .azure_workload_sql_restore_request import AzureWorkloadSQLRestoreRequest
     from .backup_engine_extended_info import BackupEngineExtendedInfo
     from .backup_engine_base import BackupEngineBase
     from .backup_engine_base_resource import BackupEngineBaseResource
@@ -394,8 +422,8 @@ except (SyntaxError, ImportError):
     from .client_script_for_connect import ClientScriptForConnect
     from .container_identity_info import ContainerIdentityInfo
     from .dpm_backup_engine import DpmBackupEngine
+    from .dpm_container_extended_info import DPMContainerExtendedInfo
     from .dpm_container import DpmContainer
-    from .encryption_details import EncryptionDetails
     from .generic_container_extended_info import GenericContainerExtendedInfo
     from .generic_container import GenericContainer
     from .generic_recovery_point import GenericRecoveryPoint
@@ -408,7 +436,6 @@ except (SyntaxError, ImportError):
     from .key_and_secret_details import KeyAndSecretDetails
     from .recovery_point_tier_information import RecoveryPointTierInformation
     from .iaas_vm_recovery_point import IaasVMRecoveryPoint
-    from .iaas_vm_restore_request import IaasVMRestoreRequest
     from .ilr_request import ILRRequest
     from .ilr_request_resource import ILRRequestResource
     from .instant_item_recovery_target import InstantItemRecoveryTarget
@@ -427,7 +454,6 @@ except (SyntaxError, ImportError):
     from .protection_container_resource import ProtectionContainerResource
     from .recovery_point import RecoveryPoint
     from .recovery_point_resource import RecoveryPointResource
-    from .restore_request import RestoreRequest
     from .restore_request_resource import RestoreRequestResource
     from .token_information import TokenInformation
     from .workload_item import WorkloadItem
@@ -442,6 +468,7 @@ except (SyntaxError, ImportError):
 from .job_resource_paged import JobResourcePaged
 from .protection_policy_resource_paged import ProtectionPolicyResourcePaged
 from .protected_item_resource_paged import ProtectedItemResourcePaged
+from .protection_intent_resource_paged import ProtectionIntentResourcePaged
 from .backup_management_usage_paged import BackupManagementUsagePaged
 from .backup_engine_base_resource_paged import BackupEngineBaseResourcePaged
 from .protectable_container_resource_paged import ProtectableContainerResourcePaged
@@ -453,12 +480,19 @@ from .client_discovery_value_for_single_api_paged import ClientDiscoveryValueFor
 from .recovery_services_backup_client_enums import (
     ProtectionState,
     HealthStatus,
+    WorkloadType,
+    RecoveryType,
+    CopyOptions,
+    RestoreRequestType,
     JobSupportedAction,
     ProtectedItemState,
     SupportStatus,
     LastBackupStatus,
     ProtectedItemHealthStatus,
+    PolicyType,
+    OverwriteOptions,
     WorkloadItemType,
+    SQLDataDirectoryType,
     UsagesUnit,
     DataSourceType,
     ProtectionStatus,
@@ -473,21 +507,17 @@ from .recovery_services_backup_client_enums import (
     WeekOfMonth,
     MonthOfYear,
     MabServerType,
-    WorkloadType,
     HttpStatusCode,
     ValidationStatus,
     CreateMode,
     HealthState,
+    IntentItemType,
     ScheduleRunType,
     AzureFileShareType,
-    RecoveryType,
-    CopyOptions,
-    RestoreRequestType,
     InquiryStatus,
-    SQLDataDirectoryType,
     BackupType,
+    OperationType,
     RestorePointType,
-    OverwriteOptions,
     StorageType,
     StorageTypeState,
     EnhancedSecurityState,
@@ -506,6 +536,9 @@ __all__ = [
     'SchedulePolicy',
     'RetentionPolicy',
     'AzureFileShareProtectionPolicy',
+    'RestoreFileSpecs',
+    'TargetAFSRestoreInfo',
+    'AzureFileShareRestoreRequest',
     'AzureIaaSClassicComputeVMProtectedItem',
     'AzureIaaSComputeVMProtectedItem',
     'AzureIaaSVMErrorInfo',
@@ -533,6 +566,7 @@ __all__ = [
     'Settings',
     'SubProtectionPolicy',
     'AzureVmWorkloadProtectionPolicy',
+    'AzureVmWorkloadSAPAseDatabaseProtectedItem',
     'AzureVmWorkloadSAPHanaDatabaseProtectedItem',
     'AzureVmWorkloadSQLDatabaseProtectedItem',
     'AzureWorkloadAutoProtectionIntent',
@@ -540,7 +574,15 @@ __all__ = [
     'AzureWorkloadJobTaskDetails',
     'AzureWorkloadJobExtendedInfo',
     'AzureWorkloadJob',
+    'AzureWorkloadPointInTimeRestoreRequest',
+    'TargetRestoreInfo',
+    'AzureWorkloadRestoreRequest',
+    'AzureWorkloadSAPHanaPointInTimeRestoreRequest',
+    'AzureWorkloadSAPHanaRestoreRequest',
     'AzureWorkloadSQLAutoProtectionIntent',
+    'AzureWorkloadSQLPointInTimeRestoreRequest',
+    'SQLDataDirectoryMapping',
+    'AzureWorkloadSQLRestoreRequest',
     'NameInfo',
     'BackupManagementUsage',
     'BackupStatusRequest',
@@ -556,10 +598,12 @@ __all__ = [
     'DpmJob',
     'DPMProtectedItemExtendedInfo',
     'DPMProtectedItem',
+    'EncryptionDetails',
     'ExportJobsOperationResultInfo',
     'FeatureSupportRequest',
     'GenericProtectedItem',
     'GenericProtectionPolicy',
+    'IaasVMRestoreRequest',
     'Job',
     'JobQueryObject',
     'JobResource',
@@ -587,23 +631,26 @@ __all__ = [
     'ProtectedItemQueryObject',
     'ProtectedItemResource',
     'ProtectionIntent',
+    'ProtectionIntentQueryObject',
     'ProtectionIntentResource',
     'ProtectionPolicy',
     'ProtectionPolicyQueryObject',
     'ProtectionPolicyResource',
     'Resource',
     'ResourceList',
+    'RestoreRequest',
     'SimpleRetentionPolicy',
     'SimpleSchedulePolicy',
-    'DPMContainerExtendedInfo',
+    'ValidateIaasVMRestoreOperationRequest',
+    'ValidateOperationRequest',
+    'ValidateOperationResponse',
+    'ValidateOperationsResponse',
+    'ValidateRestoreOperationRequest',
     'AzureBackupServerContainer',
     'AzureBackupServerEngine',
     'AzureFileShareBackupRequest',
     'AzureFileShareProtectableItem',
     'AzureFileShareRecoveryPoint',
-    'RestoreFileSpecs',
-    'TargetAFSRestoreInfo',
-    'AzureFileShareRestoreRequest',
     'AzureIaaSClassicComputeVMContainer',
     'AzureIaaSClassicComputeVMProtectableItem',
     'AzureIaaSComputeVMContainer',
@@ -617,6 +664,10 @@ __all__ = [
     'AzureVmWorkloadItem',
     'PreBackupValidation',
     'AzureVmWorkloadProtectableItem',
+    'AzureVmWorkloadSAPAseDatabaseProtectableItem',
+    'AzureVmWorkloadSAPAseDatabaseWorkloadItem',
+    'AzureVmWorkloadSAPAseSystemProtectableItem',
+    'AzureVmWorkloadSAPAseSystemWorkloadItem',
     'AzureVmWorkloadSAPHanaDatabaseProtectableItem',
     'AzureVmWorkloadSAPHanaDatabaseWorkloadItem',
     'AzureVmWorkloadSAPHanaSystemProtectableItem',
@@ -634,20 +685,14 @@ __all__ = [
     'DistributedNodesInfo',
     'AzureWorkloadContainerExtendedInfo',
     'AzureWorkloadContainer',
-    'AzureWorkloadRecoveryPoint',
-    'AzureWorkloadRestoreRequest',
     'PointInTimeRange',
+    'AzureWorkloadPointInTimeRecoveryPoint',
+    'AzureWorkloadRecoveryPoint',
     'AzureWorkloadSAPHanaPointInTimeRecoveryPoint',
-    'AzureWorkloadSAPHanaPointInTimeRestoreRequest',
     'AzureWorkloadSAPHanaRecoveryPoint',
-    'TargetRestoreInfo',
-    'AzureWorkloadSAPHanaRestoreRequest',
     'AzureWorkloadSQLPointInTimeRecoveryPoint',
-    'AzureWorkloadSQLPointInTimeRestoreRequest',
     'AzureWorkloadSQLRecoveryPointExtendedInfo',
     'AzureWorkloadSQLRecoveryPoint',
-    'SQLDataDirectoryMapping',
-    'AzureWorkloadSQLRestoreRequest',
     'BackupEngineExtendedInfo',
     'BackupEngineBase',
     'BackupEngineBaseResource',
@@ -669,8 +714,8 @@ __all__ = [
     'ClientScriptForConnect',
     'ContainerIdentityInfo',
     'DpmBackupEngine',
+    'DPMContainerExtendedInfo',
     'DpmContainer',
-    'EncryptionDetails',
     'GenericContainerExtendedInfo',
     'GenericContainer',
     'GenericRecoveryPoint',
@@ -683,7 +728,6 @@ __all__ = [
     'KeyAndSecretDetails',
     'RecoveryPointTierInformation',
     'IaasVMRecoveryPoint',
-    'IaasVMRestoreRequest',
     'ILRRequest',
     'ILRRequestResource',
     'InstantItemRecoveryTarget',
@@ -702,7 +746,6 @@ __all__ = [
     'ProtectionContainerResource',
     'RecoveryPoint',
     'RecoveryPointResource',
-    'RestoreRequest',
     'RestoreRequestResource',
     'TokenInformation',
     'WorkloadItem',
@@ -717,6 +760,7 @@ __all__ = [
     'JobResourcePaged',
     'ProtectionPolicyResourcePaged',
     'ProtectedItemResourcePaged',
+    'ProtectionIntentResourcePaged',
     'BackupManagementUsagePaged',
     'BackupEngineBaseResourcePaged',
     'ProtectableContainerResourcePaged',
@@ -727,12 +771,19 @@ __all__ = [
     'ClientDiscoveryValueForSingleApiPaged',
     'ProtectionState',
     'HealthStatus',
+    'WorkloadType',
+    'RecoveryType',
+    'CopyOptions',
+    'RestoreRequestType',
     'JobSupportedAction',
     'ProtectedItemState',
     'SupportStatus',
     'LastBackupStatus',
     'ProtectedItemHealthStatus',
+    'PolicyType',
+    'OverwriteOptions',
     'WorkloadItemType',
+    'SQLDataDirectoryType',
     'UsagesUnit',
     'DataSourceType',
     'ProtectionStatus',
@@ -747,21 +798,17 @@ __all__ = [
     'WeekOfMonth',
     'MonthOfYear',
     'MabServerType',
-    'WorkloadType',
     'HttpStatusCode',
     'ValidationStatus',
     'CreateMode',
     'HealthState',
+    'IntentItemType',
     'ScheduleRunType',
     'AzureFileShareType',
-    'RecoveryType',
-    'CopyOptions',
-    'RestoreRequestType',
     'InquiryStatus',
-    'SQLDataDirectoryType',
     'BackupType',
+    'OperationType',
     'RestorePointType',
-    'OverwriteOptions',
     'StorageType',
     'StorageTypeState',
     'EnhancedSecurityState',

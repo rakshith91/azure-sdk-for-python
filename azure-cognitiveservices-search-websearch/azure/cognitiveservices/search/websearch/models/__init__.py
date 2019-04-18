@@ -81,7 +81,7 @@ except (SyntaxError, ImportError):
     from .media_object import MediaObject
     from .article import Article
     from .structured_value import StructuredValue
-from .web_search_api_enums import (
+from .web_search_client_enums import (
     AnswerType,
     ErrorCode,
     ErrorSubCode,

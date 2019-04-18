@@ -21,24 +21,29 @@ class CustomSearchClientConfiguration(Configuration):
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
+    :param endpoint: Supported Cognitive Services endpoints (protocol and
+     hostname, for example: "https://westus.api.cognitive.microsoft.com",
+     "https://api.cognitive.microsoft.com").
+    :type endpoint: str
     :param credentials: Subscription credentials which uniquely identify
      client subscription.
     :type credentials: None
-    :param str base_url: Service URL
     """
 
     def __init__(
-            self, credentials, base_url=None):
+            self, endpoint, credentials):
 
+        if endpoint is None:
+            raise ValueError("Parameter 'endpoint' must not be None.")
         if credentials is None:
             raise ValueError("Parameter 'credentials' must not be None.")
-        if not base_url:
-            base_url = 'https://api.cognitive.microsoft.com/bingcustomsearch/v7.0'
+        base_url = '{Endpoint}/bingcustomsearch/v7.0'
 
         super(CustomSearchClientConfiguration, self).__init__(base_url)
 
         self.add_user_agent('azure-cognitiveservices-search-customsearch/{}'.format(VERSION))
 
+        self.endpoint = endpoint
         self.credentials = credentials
 
 
@@ -51,16 +56,19 @@ class CustomSearchClient(SDKClient):
     :ivar custom_instance: CustomInstance operations
     :vartype custom_instance: azure.cognitiveservices.search.customsearch.operations.CustomInstanceOperations
 
+    :param endpoint: Supported Cognitive Services endpoints (protocol and
+     hostname, for example: "https://westus.api.cognitive.microsoft.com",
+     "https://api.cognitive.microsoft.com").
+    :type endpoint: str
     :param credentials: Subscription credentials which uniquely identify
      client subscription.
     :type credentials: None
-    :param str base_url: Service URL
     """
 
     def __init__(
-            self, credentials, base_url=None):
+            self, endpoint, credentials):
 
-        self.config = CustomSearchClientConfiguration(credentials, base_url)
+        self.config = CustomSearchClientConfiguration(endpoint, credentials)
         super(CustomSearchClient, self).__init__(self.config.credentials, self.config)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
