@@ -10,534 +10,496 @@
 # --------------------------------------------------------------------------
 
 try:
-    from .week_details_py3 import WeekDetails
-    from .day_details_py3 import DayDetails
-    from .hour_details_py3 import HourDetails
-    from .notification_settings_py3 import NotificationSettings
-    from .schedule_py3 import Schedule
-    from .applicable_schedule_py3 import ApplicableSchedule
-    from .week_details_fragment_py3 import WeekDetailsFragment
-    from .day_details_fragment_py3 import DayDetailsFragment
-    from .hour_details_fragment_py3 import HourDetailsFragment
-    from .notification_settings_fragment_py3 import NotificationSettingsFragment
-    from .schedule_fragment_py3 import ScheduleFragment
-    from .applicable_schedule_fragment_py3 import ApplicableScheduleFragment
-    from .artifact_parameter_properties_py3 import ArtifactParameterProperties
-    from .artifact_install_properties_py3 import ArtifactInstallProperties
-    from .apply_artifacts_request_py3 import ApplyArtifactsRequest
-    from .parameters_value_file_info_py3 import ParametersValueFileInfo
-    from .arm_template_py3 import ArmTemplate
-    from .arm_template_info_py3 import ArmTemplateInfo
-    from .arm_template_parameter_properties_py3 import ArmTemplateParameterProperties
-    from .arm_template_parameter_properties_fragment_py3 import ArmTemplateParameterPropertiesFragment
-    from .artifact_py3 import Artifact
-    from .artifact_deployment_status_properties_py3 import ArtifactDeploymentStatusProperties
-    from .artifact_deployment_status_properties_fragment_py3 import ArtifactDeploymentStatusPropertiesFragment
-    from .artifact_parameter_properties_fragment_py3 import ArtifactParameterPropertiesFragment
-    from .artifact_install_properties_fragment_py3 import ArtifactInstallPropertiesFragment
-    from .artifact_source_py3 import ArtifactSource
-    from .artifact_source_fragment_py3 import ArtifactSourceFragment
-    from .attach_disk_properties_py3 import AttachDiskProperties
-    from .attach_new_data_disk_options_py3 import AttachNewDataDiskOptions
-    from .attach_new_data_disk_options_fragment_py3 import AttachNewDataDiskOptionsFragment
-    from .bulk_creation_parameters_py3 import BulkCreationParameters
-    from .bulk_creation_parameters_fragment_py3 import BulkCreationParametersFragment
-    from .compute_data_disk_py3 import ComputeDataDisk
-    from .compute_data_disk_fragment_py3 import ComputeDataDiskFragment
-    from .compute_vm_instance_view_status_py3 import ComputeVmInstanceViewStatus
-    from .compute_vm_instance_view_status_fragment_py3 import ComputeVmInstanceViewStatusFragment
-    from .compute_vm_properties_py3 import ComputeVmProperties
-    from .compute_vm_properties_fragment_py3 import ComputeVmPropertiesFragment
-    from .percentage_cost_threshold_properties_py3 import PercentageCostThresholdProperties
-    from .cost_threshold_properties_py3 import CostThresholdProperties
-    from .windows_os_info_py3 import WindowsOsInfo
-    from .linux_os_info_py3 import LinuxOsInfo
-    from .custom_image_properties_from_vm_py3 import CustomImagePropertiesFromVm
-    from .custom_image_properties_custom_py3 import CustomImagePropertiesCustom
-    from .data_disk_storage_type_info_py3 import DataDiskStorageTypeInfo
-    from .custom_image_properties_from_plan_py3 import CustomImagePropertiesFromPlan
-    from .custom_image_py3 import CustomImage
-    from .windows_os_info_fragment_py3 import WindowsOsInfoFragment
-    from .linux_os_info_fragment_py3 import LinuxOsInfoFragment
-    from .custom_image_properties_from_vm_fragment_py3 import CustomImagePropertiesFromVmFragment
-    from .custom_image_properties_custom_fragment_py3 import CustomImagePropertiesCustomFragment
-    from .data_disk_storage_type_info_fragment_py3 import DataDiskStorageTypeInfoFragment
-    from .custom_image_properties_from_plan_fragment_py3 import CustomImagePropertiesFromPlanFragment
-    from .custom_image_fragment_py3 import CustomImageFragment
-    from .data_disk_properties_py3 import DataDiskProperties
-    from .data_disk_properties_fragment_py3 import DataDiskPropertiesFragment
-    from .detach_data_disk_properties_py3 import DetachDataDiskProperties
-    from .detach_disk_properties_py3 import DetachDiskProperties
-    from .disk_py3 import Disk
-    from .disk_fragment_py3 import DiskFragment
-    from .environment_deployment_properties_py3 import EnvironmentDeploymentProperties
-    from .dtl_environment_py3 import DtlEnvironment
-    from .environment_deployment_properties_fragment_py3 import EnvironmentDeploymentPropertiesFragment
-    from .dtl_environment_fragment_py3 import DtlEnvironmentFragment
-    from .evaluate_policies_properties_py3 import EvaluatePoliciesProperties
-    from .evaluate_policies_request_py3 import EvaluatePoliciesRequest
-    from .policy_violation_py3 import PolicyViolation
-    from .policy_set_result_py3 import PolicySetResult
-    from .evaluate_policies_response_py3 import EvaluatePoliciesResponse
-    from .event_py3 import Event
-    from .event_fragment_py3 import EventFragment
-    from .export_resource_usage_parameters_py3 import ExportResourceUsageParameters
-    from .external_subnet_py3 import ExternalSubnet
-    from .external_subnet_fragment_py3 import ExternalSubnetFragment
-    from .gallery_image_reference_py3 import GalleryImageReference
-    from .inbound_nat_rule_py3 import InboundNatRule
-    from .shared_public_ip_address_configuration_py3 import SharedPublicIpAddressConfiguration
-    from .network_interface_properties_py3 import NetworkInterfaceProperties
-    from .schedule_creation_parameter_py3 import ScheduleCreationParameter
-    from .lab_virtual_machine_creation_parameter_py3 import LabVirtualMachineCreationParameter
-    from .formula_properties_from_vm_py3 import FormulaPropertiesFromVm
-    from .formula_py3 import Formula
-    from .gallery_image_reference_fragment_py3 import GalleryImageReferenceFragment
-    from .inbound_nat_rule_fragment_py3 import InboundNatRuleFragment
-    from .shared_public_ip_address_configuration_fragment_py3 import SharedPublicIpAddressConfigurationFragment
-    from .network_interface_properties_fragment_py3 import NetworkInterfacePropertiesFragment
-    from .schedule_creation_parameter_fragment_py3 import ScheduleCreationParameterFragment
-    from .lab_virtual_machine_creation_parameter_fragment_py3 import LabVirtualMachineCreationParameterFragment
-    from .formula_properties_from_vm_fragment_py3 import FormulaPropertiesFromVmFragment
-    from .formula_fragment_py3 import FormulaFragment
-    from .gallery_image_py3 import GalleryImage
-    from .parameter_info_py3 import ParameterInfo
-    from .generate_arm_template_request_py3 import GenerateArmTemplateRequest
-    from .generate_upload_uri_parameter_py3 import GenerateUploadUriParameter
-    from .generate_upload_uri_response_py3 import GenerateUploadUriResponse
-    from .identity_properties_py3 import IdentityProperties
-    from .import_lab_virtual_machine_request_py3 import ImportLabVirtualMachineRequest
-    from .lab_announcement_properties_py3 import LabAnnouncementProperties
-    from .lab_support_properties_py3 import LabSupportProperties
-    from .lab_py3 import Lab
-    from .lab_announcement_properties_fragment_py3 import LabAnnouncementPropertiesFragment
-    from .target_cost_properties_py3 import TargetCostProperties
-    from .lab_cost_summary_properties_py3 import LabCostSummaryProperties
-    from .lab_cost_details_properties_py3 import LabCostDetailsProperties
-    from .lab_resource_cost_properties_py3 import LabResourceCostProperties
-    from .lab_cost_py3 import LabCost
-    from .lab_support_properties_fragment_py3 import LabSupportPropertiesFragment
-    from .lab_fragment_py3 import LabFragment
-    from .lab_vhd_py3 import LabVhd
-    from .lab_virtual_machine_py3 import LabVirtualMachine
-    from .lab_virtual_machine_fragment_py3 import LabVirtualMachineFragment
-    from .notification_channel_py3 import NotificationChannel
-    from .notification_channel_fragment_py3 import NotificationChannelFragment
-    from .notify_parameters_py3 import NotifyParameters
-    from .operation_error_py3 import OperationError
-    from .operation_metadata_display_py3 import OperationMetadataDisplay
-    from .operation_metadata_py3 import OperationMetadata
-    from .operation_result_py3 import OperationResult
-    from .policy_py3 import Policy
-    from .policy_fragment_py3 import PolicyFragment
-    from .port_py3 import Port
-    from .port_fragment_py3 import PortFragment
-    from .rdp_connection_py3 import RdpConnection
-    from .resize_lab_virtual_machine_properties_py3 import ResizeLabVirtualMachineProperties
-    from .resource_py3 import Resource
-    from .retarget_schedule_properties_py3 import RetargetScheduleProperties
-    from .secret_py3 import Secret
-    from .secret_fragment_py3 import SecretFragment
-    from .service_fabric_py3 import ServiceFabric
-    from .service_fabric_fragment_py3 import ServiceFabricFragment
-    from .service_runner_py3 import ServiceRunner
-    from .shutdown_notification_content_py3 import ShutdownNotificationContent
-    from .subnet_py3 import Subnet
-    from .subnet_fragment_py3 import SubnetFragment
-    from .subnet_shared_public_ip_address_configuration_py3 import SubnetSharedPublicIpAddressConfiguration
-    from .subnet_override_py3 import SubnetOverride
-    from .subnet_shared_public_ip_address_configuration_fragment_py3 import SubnetSharedPublicIpAddressConfigurationFragment
-    from .subnet_override_fragment_py3 import SubnetOverrideFragment
-    from .update_resource_py3 import UpdateResource
-    from .user_identity_py3 import UserIdentity
-    from .user_secret_store_py3 import UserSecretStore
-    from .user_py3 import User
-    from .user_identity_fragment_py3 import UserIdentityFragment
-    from .user_secret_store_fragment_py3 import UserSecretStoreFragment
-    from .user_fragment_py3 import UserFragment
-    from .virtual_network_py3 import VirtualNetwork
-    from .virtual_network_fragment_py3 import VirtualNetworkFragment
+    from .tax_area_py3 import TaxArea
+    from .payment_method_py3 import PaymentMethod
+    from .customer_financial_detail_py3 import CustomerFinancialDetail
+    from .picture_py3 import Picture
+    from .account_py3 import Account
+    from .dimension_value_py3 import DimensionValue
+    from .dimension_py3 import Dimension
+    from .default_dimensions_py3 import DefaultDimensions
+    from .currency_py3 import Currency
+    from .payment_term_py3 import PaymentTerm
+    from .shipment_method_py3 import ShipmentMethod
+    from .postaladdresstype_py3 import Postaladdresstype
+    from .item_category_py3 import ItemCategory
+    from .itemunitofmeasureconversiontype_py3 import Itemunitofmeasureconversiontype
+    from .unitofmeasuretype_py3 import Unitofmeasuretype
+    from .item_py3 import Item
+    from .documentlineobjectdetailstype_py3 import Documentlineobjectdetailstype
+    from .sales_quote_line_py3 import SalesQuoteLine
+    from .pdf_document_py3 import PdfDocument
+    from .customer_py3 import Customer
+    from .sales_quote_py3 import SalesQuote
+    from .cash_flow_statement_py3 import CashFlowStatement
+    from .sales_order_line_py3 import SalesOrderLine
+    from .sales_order_py3 import SalesOrder
+    from .attachments_py3 import Attachments
+    from .dimension_line_py3 import DimensionLine
+    from .sales_invoice_line_py3 import SalesInvoiceLine
+    from .sales_credit_memo_line_py3 import SalesCreditMemoLine
+    from .sales_credit_memo_py3 import SalesCreditMemo
+    from .vendor_purchase_py3 import VendorPurchase
+    from .income_statement_py3 import IncomeStatement
+    from .dimensiontype_py3 import Dimensiontype
+    from .general_ledger_entry_py3 import GeneralLedgerEntry
+    from .customer_sale_py3 import CustomerSale
+    from .country_region_py3 import CountryRegion
+    from .purchase_invoice_line_py3 import PurchaseInvoiceLine
+    from .vendor_py3 import Vendor
+    from .journal_line_py3 import JournalLine
+    from .journal_py3 import Journal
+    from .retained_earnings_statement_py3 import RetainedEarningsStatement
+    from .purchase_invoice_py3 import PurchaseInvoice
+    from .time_registration_entry_py3 import TimeRegistrationEntry
+    from .customer_payment_py3 import CustomerPayment
+    from .trial_balance_py3 import TrialBalance
+    from .aged_accounts_payable_py3 import AgedAccountsPayable
+    from .customer_payment_journal_py3 import CustomerPaymentJournal
+    from .sales_invoice_py3 import SalesInvoice
+    from .general_ledger_entry_attachments_py3 import GeneralLedgerEntryAttachments
+    from .unit_of_measure_py3 import UnitOfMeasure
+    from .company_information_py3 import CompanyInformation
+    from .tax_group_py3 import TaxGroup
+    from .employee_py3 import Employee
+    from .aged_accounts_receivable_py3 import AgedAccountsReceivable
+    from .balance_sheet_py3 import BalanceSheet
+    from .company_py3 import Company
+    from .get_companies_ok_response_py3 import GetCompaniesOKResponse
+    from .get_items_ok_response_py3 import GetItemsOKResponse
+    from .body_py3 import Body
+    from .get_picture_for_item_ok_response_py3 import GetPictureForItemOKResponse
+    from .body_model_py3 import BodyModel
+    from .get_default_dimensions_for_item_ok_response_py3 import GetDefaultDimensionsForItemOKResponse
+    from .body_model_model_py3 import BodyModelModel
+    from .get_picture_ok_response_py3 import GetPictureOKResponse
+    from .get_default_dimensions_ok_response_py3 import GetDefaultDimensionsOKResponse
+    from .get_customers_ok_response_py3 import GetCustomersOKResponse
+    from .body_model_model_model_py3 import BodyModelModelModel
+    from .get_customer_financial_details_for_customer_ok_response_py3 import GetCustomerFinancialDetailsForCustomerOKResponse
+    from .get_picture_for_customer_ok_response_py3 import GetPictureForCustomerOKResponse
+    from .get_default_dimensions_for_customer_ok_response_py3 import GetDefaultDimensionsForCustomerOKResponse
+    from .get_customer_financial_details_ok_response_py3 import GetCustomerFinancialDetailsOKResponse
+    from .get_vendors_ok_response_py3 import GetVendorsOKResponse
+    from .body_model_model_model_model_py3 import BodyModelModelModelModel
+    from .get_picture_for_vendor_ok_response_py3 import GetPictureForVendorOKResponse
+    from .get_default_dimensions_for_vendor_ok_response_py3 import GetDefaultDimensionsForVendorOKResponse
+    from .get_company_information_ok_response_py3 import GetCompanyInformationOKResponse
+    from .body_model_model_model_model_model_py3 import BodyModelModelModelModelModel
+    from .get_sales_invoices_ok_response_py3 import GetSalesInvoicesOKResponse
+    from .body_model_model_model_model_model_model_py3 import BodyModelModelModelModelModelModel
+    from .get_sales_invoice_lines_for_sales_invoice_ok_response_py3 import GetSalesInvoiceLinesForSalesInvoiceOKResponse
+    from .body_model_model_model_model_model_model_model_py3 import BodyModelModelModelModelModelModelModel
+    from .get_pdf_document_for_sales_invoice_ok_response_py3 import GetPdfDocumentForSalesInvoiceOKResponse
+    from .get_sales_invoice_lines_ok_response_py3 import GetSalesInvoiceLinesOKResponse
+    from .get_pdf_document_ok_response_py3 import GetPdfDocumentOKResponse
+    from .get_customer_payment_journals_ok_response_py3 import GetCustomerPaymentJournalsOKResponse
+    from .body_model_model_model_model_model_model_model_model_py3 import BodyModelModelModelModelModelModelModelModel
+    from .get_customer_payments_for_customer_payment_journal_ok_response_py3 import GetCustomerPaymentsForCustomerPaymentJournalOKResponse
+    from .body_model_model_model_model_model_model_model_model_model_py3 import BodyModelModelModelModelModelModelModelModelModel
+    from .get_customer_payments_ok_response_py3 import GetCustomerPaymentsOKResponse
+    from .get_accounts_ok_response_py3 import GetAccountsOKResponse
+    from .get_tax_groups_ok_response_py3 import GetTaxGroupsOKResponse
+    from .body_model_model_model_model_model_model_model_model_model_model_py3 import BodyModelModelModelModelModelModelModelModelModelModel
+    from .get_journals_ok_response_py3 import GetJournalsOKResponse
+    from .body_model_model_model_model_model_model_model_model_model_model_model_py3 import BodyModelModelModelModelModelModelModelModelModelModelModel
+    from .get_journal_lines_for_journal_ok_response_py3 import GetJournalLinesForJournalOKResponse
+    from .body_model_model_model_model_model_model_model_model_model_model_model_model_py3 import BodyModelModelModelModelModelModelModelModelModelModelModelModel
+    from .get_attachments_for_journal_line_for_journal_ok_response_py3 import GetAttachmentsForJournalLineForJournalOKResponse
+    from .body_model_model_model_model_model_model_model_model_model_model_model_model_model_py3 import BodyModelModelModelModelModelModelModelModelModelModelModelModelModel
+    from .get_journal_lines_ok_response_py3 import GetJournalLinesOKResponse
+    from .get_attachments_for_journal_line_ok_response_py3 import GetAttachmentsForJournalLineOKResponse
+    from .get_attachments_ok_response_py3 import GetAttachmentsOKResponse
+    from .get_employees_ok_response_py3 import GetEmployeesOKResponse
+    from .body_model_model_model_model_model_model_model_model_model_model_model_model_model_model_py3 import BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModel
+    from .get_picture_for_employee_ok_response_py3 import GetPictureForEmployeeOKResponse
+    from .get_default_dimensions_for_employee_ok_response_py3 import GetDefaultDimensionsForEmployeeOKResponse
+    from .get_time_registration_entries_for_employee_ok_response_py3 import GetTimeRegistrationEntriesForEmployeeOKResponse
+    from .body_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_py3 import BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel
+    from .get_time_registration_entries_ok_response_py3 import GetTimeRegistrationEntriesOKResponse
+    from .get_general_ledger_entries_ok_response_py3 import GetGeneralLedgerEntriesOKResponse
+    from .get_currencies_ok_response_py3 import GetCurrenciesOKResponse
+    from .body_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_py3 import BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel
+    from .get_payment_methods_ok_response_py3 import GetPaymentMethodsOKResponse
+    from .body_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_py3 import BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel
+    from .get_dimensions_ok_response_py3 import GetDimensionsOKResponse
+    from .get_dimension_values_for_dimension_ok_response_py3 import GetDimensionValuesForDimensionOKResponse
+    from .get_dimension_values_ok_response_py3 import GetDimensionValuesOKResponse
+    from .get_dimension_lines_ok_response_py3 import GetDimensionLinesOKResponse
+    from .body_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_py3 import BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel
+    from .get_payment_terms_ok_response_py3 import GetPaymentTermsOKResponse
+    from .body_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_py3 import BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel
+    from .get_shipment_methods_ok_response_py3 import GetShipmentMethodsOKResponse
+    from .body_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_py3 import BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel
+    from .get_item_categories_ok_response_py3 import GetItemCategoriesOKResponse
+    from .body_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_py3 import BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel
+    from .get_cash_flow_statement_ok_response_py3 import GetCashFlowStatementOKResponse
+    from .get_countries_regions_ok_response_py3 import GetCountriesRegionsOKResponse
+    from .body_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_py3 import BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel
+    from .get_sales_orders_ok_response_py3 import GetSalesOrdersOKResponse
+    from .body_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_py3 import BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel
+    from .get_sales_order_lines_for_sales_order_ok_response_py3 import GetSalesOrderLinesForSalesOrderOKResponse
+    from .body_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_py3 import BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel
+    from .get_sales_order_lines_ok_response_py3 import GetSalesOrderLinesOKResponse
+    from .get_retained_earnings_statement_ok_response_py3 import GetRetainedEarningsStatementOKResponse
+    from .get_units_of_measure_ok_response_py3 import GetUnitsOfMeasureOKResponse
+    from .body_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_py3 import BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel
+    from .get_aged_accounts_receivable_ok_response_py3 import GetAgedAccountsReceivableOKResponse
+    from .get_aged_accounts_payable_ok_response_py3 import GetAgedAccountsPayableOKResponse
+    from .get_balance_sheet_ok_response_py3 import GetBalanceSheetOKResponse
+    from .get_trial_balance_ok_response_py3 import GetTrialBalanceOKResponse
+    from .get_income_statement_ok_response_py3 import GetIncomeStatementOKResponse
+    from .get_tax_areas_ok_response_py3 import GetTaxAreasOKResponse
+    from .body_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_py3 import BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel
+    from .get_sales_quotes_ok_response_py3 import GetSalesQuotesOKResponse
+    from .body_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_py3 import BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel
+    from .get_sales_quote_lines_for_sales_quote_ok_response_py3 import GetSalesQuoteLinesForSalesQuoteOKResponse
+    from .body_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_py3 import BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel
+    from .get_pdf_document_for_sales_quote_ok_response_py3 import GetPdfDocumentForSalesQuoteOKResponse
+    from .get_sales_quote_lines_ok_response_py3 import GetSalesQuoteLinesOKResponse
+    from .get_sales_credit_memos_ok_response_py3 import GetSalesCreditMemosOKResponse
+    from .body_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_py3 import BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel
+    from .get_sales_credit_memo_lines_for_sales_credit_memo_ok_response_py3 import GetSalesCreditMemoLinesForSalesCreditMemoOKResponse
+    from .body_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_py3 import BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel
+    from .get_pdf_document_for_sales_credit_memo_ok_response_py3 import GetPdfDocumentForSalesCreditMemoOKResponse
+    from .get_sales_credit_memo_lines_ok_response_py3 import GetSalesCreditMemoLinesOKResponse
+    from .get_general_ledger_entry_attachments_ok_response_py3 import GetGeneralLedgerEntryAttachmentsOKResponse
+    from .body_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_py3 import BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel
+    from .get_purchase_invoices_ok_response_py3 import GetPurchaseInvoicesOKResponse
+    from .body_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_py3 import BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel
+    from .get_purchase_invoice_lines_for_purchase_invoice_ok_response_py3 import GetPurchaseInvoiceLinesForPurchaseInvoiceOKResponse
+    from .body_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_py3 import BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel
+    from .get_pdf_document_for_purchase_invoice_ok_response_py3 import GetPdfDocumentForPurchaseInvoiceOKResponse
+    from .get_purchase_invoice_lines_ok_response_py3 import GetPurchaseInvoiceLinesOKResponse
+    from .get_customer_sales_ok_response_py3 import GetCustomerSalesOKResponse
+    from .get_vendor_purchases_ok_response_py3 import GetVendorPurchasesOKResponse
 except (SyntaxError, ImportError):
-    from .week_details import WeekDetails
-    from .day_details import DayDetails
-    from .hour_details import HourDetails
-    from .notification_settings import NotificationSettings
-    from .schedule import Schedule
-    from .applicable_schedule import ApplicableSchedule
-    from .week_details_fragment import WeekDetailsFragment
-    from .day_details_fragment import DayDetailsFragment
-    from .hour_details_fragment import HourDetailsFragment
-    from .notification_settings_fragment import NotificationSettingsFragment
-    from .schedule_fragment import ScheduleFragment
-    from .applicable_schedule_fragment import ApplicableScheduleFragment
-    from .artifact_parameter_properties import ArtifactParameterProperties
-    from .artifact_install_properties import ArtifactInstallProperties
-    from .apply_artifacts_request import ApplyArtifactsRequest
-    from .parameters_value_file_info import ParametersValueFileInfo
-    from .arm_template import ArmTemplate
-    from .arm_template_info import ArmTemplateInfo
-    from .arm_template_parameter_properties import ArmTemplateParameterProperties
-    from .arm_template_parameter_properties_fragment import ArmTemplateParameterPropertiesFragment
-    from .artifact import Artifact
-    from .artifact_deployment_status_properties import ArtifactDeploymentStatusProperties
-    from .artifact_deployment_status_properties_fragment import ArtifactDeploymentStatusPropertiesFragment
-    from .artifact_parameter_properties_fragment import ArtifactParameterPropertiesFragment
-    from .artifact_install_properties_fragment import ArtifactInstallPropertiesFragment
-    from .artifact_source import ArtifactSource
-    from .artifact_source_fragment import ArtifactSourceFragment
-    from .attach_disk_properties import AttachDiskProperties
-    from .attach_new_data_disk_options import AttachNewDataDiskOptions
-    from .attach_new_data_disk_options_fragment import AttachNewDataDiskOptionsFragment
-    from .bulk_creation_parameters import BulkCreationParameters
-    from .bulk_creation_parameters_fragment import BulkCreationParametersFragment
-    from .compute_data_disk import ComputeDataDisk
-    from .compute_data_disk_fragment import ComputeDataDiskFragment
-    from .compute_vm_instance_view_status import ComputeVmInstanceViewStatus
-    from .compute_vm_instance_view_status_fragment import ComputeVmInstanceViewStatusFragment
-    from .compute_vm_properties import ComputeVmProperties
-    from .compute_vm_properties_fragment import ComputeVmPropertiesFragment
-    from .percentage_cost_threshold_properties import PercentageCostThresholdProperties
-    from .cost_threshold_properties import CostThresholdProperties
-    from .windows_os_info import WindowsOsInfo
-    from .linux_os_info import LinuxOsInfo
-    from .custom_image_properties_from_vm import CustomImagePropertiesFromVm
-    from .custom_image_properties_custom import CustomImagePropertiesCustom
-    from .data_disk_storage_type_info import DataDiskStorageTypeInfo
-    from .custom_image_properties_from_plan import CustomImagePropertiesFromPlan
-    from .custom_image import CustomImage
-    from .windows_os_info_fragment import WindowsOsInfoFragment
-    from .linux_os_info_fragment import LinuxOsInfoFragment
-    from .custom_image_properties_from_vm_fragment import CustomImagePropertiesFromVmFragment
-    from .custom_image_properties_custom_fragment import CustomImagePropertiesCustomFragment
-    from .data_disk_storage_type_info_fragment import DataDiskStorageTypeInfoFragment
-    from .custom_image_properties_from_plan_fragment import CustomImagePropertiesFromPlanFragment
-    from .custom_image_fragment import CustomImageFragment
-    from .data_disk_properties import DataDiskProperties
-    from .data_disk_properties_fragment import DataDiskPropertiesFragment
-    from .detach_data_disk_properties import DetachDataDiskProperties
-    from .detach_disk_properties import DetachDiskProperties
-    from .disk import Disk
-    from .disk_fragment import DiskFragment
-    from .environment_deployment_properties import EnvironmentDeploymentProperties
-    from .dtl_environment import DtlEnvironment
-    from .environment_deployment_properties_fragment import EnvironmentDeploymentPropertiesFragment
-    from .dtl_environment_fragment import DtlEnvironmentFragment
-    from .evaluate_policies_properties import EvaluatePoliciesProperties
-    from .evaluate_policies_request import EvaluatePoliciesRequest
-    from .policy_violation import PolicyViolation
-    from .policy_set_result import PolicySetResult
-    from .evaluate_policies_response import EvaluatePoliciesResponse
-    from .event import Event
-    from .event_fragment import EventFragment
-    from .export_resource_usage_parameters import ExportResourceUsageParameters
-    from .external_subnet import ExternalSubnet
-    from .external_subnet_fragment import ExternalSubnetFragment
-    from .gallery_image_reference import GalleryImageReference
-    from .inbound_nat_rule import InboundNatRule
-    from .shared_public_ip_address_configuration import SharedPublicIpAddressConfiguration
-    from .network_interface_properties import NetworkInterfaceProperties
-    from .schedule_creation_parameter import ScheduleCreationParameter
-    from .lab_virtual_machine_creation_parameter import LabVirtualMachineCreationParameter
-    from .formula_properties_from_vm import FormulaPropertiesFromVm
-    from .formula import Formula
-    from .gallery_image_reference_fragment import GalleryImageReferenceFragment
-    from .inbound_nat_rule_fragment import InboundNatRuleFragment
-    from .shared_public_ip_address_configuration_fragment import SharedPublicIpAddressConfigurationFragment
-    from .network_interface_properties_fragment import NetworkInterfacePropertiesFragment
-    from .schedule_creation_parameter_fragment import ScheduleCreationParameterFragment
-    from .lab_virtual_machine_creation_parameter_fragment import LabVirtualMachineCreationParameterFragment
-    from .formula_properties_from_vm_fragment import FormulaPropertiesFromVmFragment
-    from .formula_fragment import FormulaFragment
-    from .gallery_image import GalleryImage
-    from .parameter_info import ParameterInfo
-    from .generate_arm_template_request import GenerateArmTemplateRequest
-    from .generate_upload_uri_parameter import GenerateUploadUriParameter
-    from .generate_upload_uri_response import GenerateUploadUriResponse
-    from .identity_properties import IdentityProperties
-    from .import_lab_virtual_machine_request import ImportLabVirtualMachineRequest
-    from .lab_announcement_properties import LabAnnouncementProperties
-    from .lab_support_properties import LabSupportProperties
-    from .lab import Lab
-    from .lab_announcement_properties_fragment import LabAnnouncementPropertiesFragment
-    from .target_cost_properties import TargetCostProperties
-    from .lab_cost_summary_properties import LabCostSummaryProperties
-    from .lab_cost_details_properties import LabCostDetailsProperties
-    from .lab_resource_cost_properties import LabResourceCostProperties
-    from .lab_cost import LabCost
-    from .lab_support_properties_fragment import LabSupportPropertiesFragment
-    from .lab_fragment import LabFragment
-    from .lab_vhd import LabVhd
-    from .lab_virtual_machine import LabVirtualMachine
-    from .lab_virtual_machine_fragment import LabVirtualMachineFragment
-    from .notification_channel import NotificationChannel
-    from .notification_channel_fragment import NotificationChannelFragment
-    from .notify_parameters import NotifyParameters
-    from .operation_error import OperationError
-    from .operation_metadata_display import OperationMetadataDisplay
-    from .operation_metadata import OperationMetadata
-    from .operation_result import OperationResult
-    from .policy import Policy
-    from .policy_fragment import PolicyFragment
-    from .port import Port
-    from .port_fragment import PortFragment
-    from .rdp_connection import RdpConnection
-    from .resize_lab_virtual_machine_properties import ResizeLabVirtualMachineProperties
-    from .resource import Resource
-    from .retarget_schedule_properties import RetargetScheduleProperties
-    from .secret import Secret
-    from .secret_fragment import SecretFragment
-    from .service_fabric import ServiceFabric
-    from .service_fabric_fragment import ServiceFabricFragment
-    from .service_runner import ServiceRunner
-    from .shutdown_notification_content import ShutdownNotificationContent
-    from .subnet import Subnet
-    from .subnet_fragment import SubnetFragment
-    from .subnet_shared_public_ip_address_configuration import SubnetSharedPublicIpAddressConfiguration
-    from .subnet_override import SubnetOverride
-    from .subnet_shared_public_ip_address_configuration_fragment import SubnetSharedPublicIpAddressConfigurationFragment
-    from .subnet_override_fragment import SubnetOverrideFragment
-    from .update_resource import UpdateResource
-    from .user_identity import UserIdentity
-    from .user_secret_store import UserSecretStore
-    from .user import User
-    from .user_identity_fragment import UserIdentityFragment
-    from .user_secret_store_fragment import UserSecretStoreFragment
-    from .user_fragment import UserFragment
-    from .virtual_network import VirtualNetwork
-    from .virtual_network_fragment import VirtualNetworkFragment
-from .operation_metadata_paged import OperationMetadataPaged
-from .lab_paged import LabPaged
-from .lab_vhd_paged import LabVhdPaged
-from .schedule_paged import SchedulePaged
-from .artifact_source_paged import ArtifactSourcePaged
-from .arm_template_paged import ArmTemplatePaged
-from .artifact_paged import ArtifactPaged
-from .custom_image_paged import CustomImagePaged
-from .formula_paged import FormulaPaged
-from .gallery_image_paged import GalleryImagePaged
-from .notification_channel_paged import NotificationChannelPaged
-from .policy_paged import PolicyPaged
-from .service_runner_paged import ServiceRunnerPaged
-from .user_paged import UserPaged
-from .disk_paged import DiskPaged
-from .dtl_environment_paged import DtlEnvironmentPaged
-from .secret_paged import SecretPaged
-from .service_fabric_paged import ServiceFabricPaged
-from .lab_virtual_machine_paged import LabVirtualMachinePaged
-from .virtual_network_paged import VirtualNetworkPaged
-from .dev_test_labs_client_enums import (
-    EnableStatus,
-    SourceControlType,
-    StorageType,
-    CostThresholdStatus,
-    WindowsOsState,
-    LinuxOsState,
-    CustomImageOsType,
-    HostCachingOptions,
-    NotificationChannelEventType,
-    TransportProtocol,
-    VirtualMachineCreationSource,
-    FileUploadOptions,
-    PremiumDataDisk,
-    EnvironmentPermission,
-    TargetCostStatus,
-    ReportingCycleType,
-    CostType,
-    HttpStatusCode,
-    PolicyStatus,
-    PolicyFactName,
-    PolicyEvaluatorType,
-    UsagePermissionType,
-)
+    from .tax_area import TaxArea
+    from .payment_method import PaymentMethod
+    from .customer_financial_detail import CustomerFinancialDetail
+    from .picture import Picture
+    from .account import Account
+    from .dimension_value import DimensionValue
+    from .dimension import Dimension
+    from .default_dimensions import DefaultDimensions
+    from .currency import Currency
+    from .payment_term import PaymentTerm
+    from .shipment_method import ShipmentMethod
+    from .postaladdresstype import Postaladdresstype
+    from .item_category import ItemCategory
+    from .itemunitofmeasureconversiontype import Itemunitofmeasureconversiontype
+    from .unitofmeasuretype import Unitofmeasuretype
+    from .item import Item
+    from .documentlineobjectdetailstype import Documentlineobjectdetailstype
+    from .sales_quote_line import SalesQuoteLine
+    from .pdf_document import PdfDocument
+    from .customer import Customer
+    from .sales_quote import SalesQuote
+    from .cash_flow_statement import CashFlowStatement
+    from .sales_order_line import SalesOrderLine
+    from .sales_order import SalesOrder
+    from .attachments import Attachments
+    from .dimension_line import DimensionLine
+    from .sales_invoice_line import SalesInvoiceLine
+    from .sales_credit_memo_line import SalesCreditMemoLine
+    from .sales_credit_memo import SalesCreditMemo
+    from .vendor_purchase import VendorPurchase
+    from .income_statement import IncomeStatement
+    from .dimensiontype import Dimensiontype
+    from .general_ledger_entry import GeneralLedgerEntry
+    from .customer_sale import CustomerSale
+    from .country_region import CountryRegion
+    from .purchase_invoice_line import PurchaseInvoiceLine
+    from .vendor import Vendor
+    from .journal_line import JournalLine
+    from .journal import Journal
+    from .retained_earnings_statement import RetainedEarningsStatement
+    from .purchase_invoice import PurchaseInvoice
+    from .time_registration_entry import TimeRegistrationEntry
+    from .customer_payment import CustomerPayment
+    from .trial_balance import TrialBalance
+    from .aged_accounts_payable import AgedAccountsPayable
+    from .customer_payment_journal import CustomerPaymentJournal
+    from .sales_invoice import SalesInvoice
+    from .general_ledger_entry_attachments import GeneralLedgerEntryAttachments
+    from .unit_of_measure import UnitOfMeasure
+    from .company_information import CompanyInformation
+    from .tax_group import TaxGroup
+    from .employee import Employee
+    from .aged_accounts_receivable import AgedAccountsReceivable
+    from .balance_sheet import BalanceSheet
+    from .company import Company
+    from .get_companies_ok_response import GetCompaniesOKResponse
+    from .get_items_ok_response import GetItemsOKResponse
+    from .body import Body
+    from .get_picture_for_item_ok_response import GetPictureForItemOKResponse
+    from .body_model import BodyModel
+    from .get_default_dimensions_for_item_ok_response import GetDefaultDimensionsForItemOKResponse
+    from .body_model_model import BodyModelModel
+    from .get_picture_ok_response import GetPictureOKResponse
+    from .get_default_dimensions_ok_response import GetDefaultDimensionsOKResponse
+    from .get_customers_ok_response import GetCustomersOKResponse
+    from .body_model_model_model import BodyModelModelModel
+    from .get_customer_financial_details_for_customer_ok_response import GetCustomerFinancialDetailsForCustomerOKResponse
+    from .get_picture_for_customer_ok_response import GetPictureForCustomerOKResponse
+    from .get_default_dimensions_for_customer_ok_response import GetDefaultDimensionsForCustomerOKResponse
+    from .get_customer_financial_details_ok_response import GetCustomerFinancialDetailsOKResponse
+    from .get_vendors_ok_response import GetVendorsOKResponse
+    from .body_model_model_model_model import BodyModelModelModelModel
+    from .get_picture_for_vendor_ok_response import GetPictureForVendorOKResponse
+    from .get_default_dimensions_for_vendor_ok_response import GetDefaultDimensionsForVendorOKResponse
+    from .get_company_information_ok_response import GetCompanyInformationOKResponse
+    from .body_model_model_model_model_model import BodyModelModelModelModelModel
+    from .get_sales_invoices_ok_response import GetSalesInvoicesOKResponse
+    from .body_model_model_model_model_model_model import BodyModelModelModelModelModelModel
+    from .get_sales_invoice_lines_for_sales_invoice_ok_response import GetSalesInvoiceLinesForSalesInvoiceOKResponse
+    from .body_model_model_model_model_model_model_model import BodyModelModelModelModelModelModelModel
+    from .get_pdf_document_for_sales_invoice_ok_response import GetPdfDocumentForSalesInvoiceOKResponse
+    from .get_sales_invoice_lines_ok_response import GetSalesInvoiceLinesOKResponse
+    from .get_pdf_document_ok_response import GetPdfDocumentOKResponse
+    from .get_customer_payment_journals_ok_response import GetCustomerPaymentJournalsOKResponse
+    from .body_model_model_model_model_model_model_model_model import BodyModelModelModelModelModelModelModelModel
+    from .get_customer_payments_for_customer_payment_journal_ok_response import GetCustomerPaymentsForCustomerPaymentJournalOKResponse
+    from .body_model_model_model_model_model_model_model_model_model import BodyModelModelModelModelModelModelModelModelModel
+    from .get_customer_payments_ok_response import GetCustomerPaymentsOKResponse
+    from .get_accounts_ok_response import GetAccountsOKResponse
+    from .get_tax_groups_ok_response import GetTaxGroupsOKResponse
+    from .body_model_model_model_model_model_model_model_model_model_model import BodyModelModelModelModelModelModelModelModelModelModel
+    from .get_journals_ok_response import GetJournalsOKResponse
+    from .body_model_model_model_model_model_model_model_model_model_model_model import BodyModelModelModelModelModelModelModelModelModelModelModel
+    from .get_journal_lines_for_journal_ok_response import GetJournalLinesForJournalOKResponse
+    from .body_model_model_model_model_model_model_model_model_model_model_model_model import BodyModelModelModelModelModelModelModelModelModelModelModelModel
+    from .get_attachments_for_journal_line_for_journal_ok_response import GetAttachmentsForJournalLineForJournalOKResponse
+    from .body_model_model_model_model_model_model_model_model_model_model_model_model_model import BodyModelModelModelModelModelModelModelModelModelModelModelModelModel
+    from .get_journal_lines_ok_response import GetJournalLinesOKResponse
+    from .get_attachments_for_journal_line_ok_response import GetAttachmentsForJournalLineOKResponse
+    from .get_attachments_ok_response import GetAttachmentsOKResponse
+    from .get_employees_ok_response import GetEmployeesOKResponse
+    from .body_model_model_model_model_model_model_model_model_model_model_model_model_model_model import BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModel
+    from .get_picture_for_employee_ok_response import GetPictureForEmployeeOKResponse
+    from .get_default_dimensions_for_employee_ok_response import GetDefaultDimensionsForEmployeeOKResponse
+    from .get_time_registration_entries_for_employee_ok_response import GetTimeRegistrationEntriesForEmployeeOKResponse
+    from .body_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model import BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel
+    from .get_time_registration_entries_ok_response import GetTimeRegistrationEntriesOKResponse
+    from .get_general_ledger_entries_ok_response import GetGeneralLedgerEntriesOKResponse
+    from .get_currencies_ok_response import GetCurrenciesOKResponse
+    from .body_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model import BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel
+    from .get_payment_methods_ok_response import GetPaymentMethodsOKResponse
+    from .body_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model import BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel
+    from .get_dimensions_ok_response import GetDimensionsOKResponse
+    from .get_dimension_values_for_dimension_ok_response import GetDimensionValuesForDimensionOKResponse
+    from .get_dimension_values_ok_response import GetDimensionValuesOKResponse
+    from .get_dimension_lines_ok_response import GetDimensionLinesOKResponse
+    from .body_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model import BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel
+    from .get_payment_terms_ok_response import GetPaymentTermsOKResponse
+    from .body_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model import BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel
+    from .get_shipment_methods_ok_response import GetShipmentMethodsOKResponse
+    from .body_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model import BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel
+    from .get_item_categories_ok_response import GetItemCategoriesOKResponse
+    from .body_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model import BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel
+    from .get_cash_flow_statement_ok_response import GetCashFlowStatementOKResponse
+    from .get_countries_regions_ok_response import GetCountriesRegionsOKResponse
+    from .body_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model import BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel
+    from .get_sales_orders_ok_response import GetSalesOrdersOKResponse
+    from .body_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model import BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel
+    from .get_sales_order_lines_for_sales_order_ok_response import GetSalesOrderLinesForSalesOrderOKResponse
+    from .body_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model import BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel
+    from .get_sales_order_lines_ok_response import GetSalesOrderLinesOKResponse
+    from .get_retained_earnings_statement_ok_response import GetRetainedEarningsStatementOKResponse
+    from .get_units_of_measure_ok_response import GetUnitsOfMeasureOKResponse
+    from .body_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model import BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel
+    from .get_aged_accounts_receivable_ok_response import GetAgedAccountsReceivableOKResponse
+    from .get_aged_accounts_payable_ok_response import GetAgedAccountsPayableOKResponse
+    from .get_balance_sheet_ok_response import GetBalanceSheetOKResponse
+    from .get_trial_balance_ok_response import GetTrialBalanceOKResponse
+    from .get_income_statement_ok_response import GetIncomeStatementOKResponse
+    from .get_tax_areas_ok_response import GetTaxAreasOKResponse
+    from .body_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model import BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel
+    from .get_sales_quotes_ok_response import GetSalesQuotesOKResponse
+    from .body_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model import BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel
+    from .get_sales_quote_lines_for_sales_quote_ok_response import GetSalesQuoteLinesForSalesQuoteOKResponse
+    from .body_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model import BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel
+    from .get_pdf_document_for_sales_quote_ok_response import GetPdfDocumentForSalesQuoteOKResponse
+    from .get_sales_quote_lines_ok_response import GetSalesQuoteLinesOKResponse
+    from .get_sales_credit_memos_ok_response import GetSalesCreditMemosOKResponse
+    from .body_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model import BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel
+    from .get_sales_credit_memo_lines_for_sales_credit_memo_ok_response import GetSalesCreditMemoLinesForSalesCreditMemoOKResponse
+    from .body_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model import BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel
+    from .get_pdf_document_for_sales_credit_memo_ok_response import GetPdfDocumentForSalesCreditMemoOKResponse
+    from .get_sales_credit_memo_lines_ok_response import GetSalesCreditMemoLinesOKResponse
+    from .get_general_ledger_entry_attachments_ok_response import GetGeneralLedgerEntryAttachmentsOKResponse
+    from .body_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model import BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel
+    from .get_purchase_invoices_ok_response import GetPurchaseInvoicesOKResponse
+    from .body_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model import BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel
+    from .get_purchase_invoice_lines_for_purchase_invoice_ok_response import GetPurchaseInvoiceLinesForPurchaseInvoiceOKResponse
+    from .body_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model_model import BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel
+    from .get_pdf_document_for_purchase_invoice_ok_response import GetPdfDocumentForPurchaseInvoiceOKResponse
+    from .get_purchase_invoice_lines_ok_response import GetPurchaseInvoiceLinesOKResponse
+    from .get_customer_sales_ok_response import GetCustomerSalesOKResponse
+    from .get_vendor_purchases_ok_response import GetVendorPurchasesOKResponse
 
 __all__ = [
-    'WeekDetails',
-    'DayDetails',
-    'HourDetails',
-    'NotificationSettings',
-    'Schedule',
-    'ApplicableSchedule',
-    'WeekDetailsFragment',
-    'DayDetailsFragment',
-    'HourDetailsFragment',
-    'NotificationSettingsFragment',
-    'ScheduleFragment',
-    'ApplicableScheduleFragment',
-    'ArtifactParameterProperties',
-    'ArtifactInstallProperties',
-    'ApplyArtifactsRequest',
-    'ParametersValueFileInfo',
-    'ArmTemplate',
-    'ArmTemplateInfo',
-    'ArmTemplateParameterProperties',
-    'ArmTemplateParameterPropertiesFragment',
-    'Artifact',
-    'ArtifactDeploymentStatusProperties',
-    'ArtifactDeploymentStatusPropertiesFragment',
-    'ArtifactParameterPropertiesFragment',
-    'ArtifactInstallPropertiesFragment',
-    'ArtifactSource',
-    'ArtifactSourceFragment',
-    'AttachDiskProperties',
-    'AttachNewDataDiskOptions',
-    'AttachNewDataDiskOptionsFragment',
-    'BulkCreationParameters',
-    'BulkCreationParametersFragment',
-    'ComputeDataDisk',
-    'ComputeDataDiskFragment',
-    'ComputeVmInstanceViewStatus',
-    'ComputeVmInstanceViewStatusFragment',
-    'ComputeVmProperties',
-    'ComputeVmPropertiesFragment',
-    'PercentageCostThresholdProperties',
-    'CostThresholdProperties',
-    'WindowsOsInfo',
-    'LinuxOsInfo',
-    'CustomImagePropertiesFromVm',
-    'CustomImagePropertiesCustom',
-    'DataDiskStorageTypeInfo',
-    'CustomImagePropertiesFromPlan',
-    'CustomImage',
-    'WindowsOsInfoFragment',
-    'LinuxOsInfoFragment',
-    'CustomImagePropertiesFromVmFragment',
-    'CustomImagePropertiesCustomFragment',
-    'DataDiskStorageTypeInfoFragment',
-    'CustomImagePropertiesFromPlanFragment',
-    'CustomImageFragment',
-    'DataDiskProperties',
-    'DataDiskPropertiesFragment',
-    'DetachDataDiskProperties',
-    'DetachDiskProperties',
-    'Disk',
-    'DiskFragment',
-    'EnvironmentDeploymentProperties',
-    'DtlEnvironment',
-    'EnvironmentDeploymentPropertiesFragment',
-    'DtlEnvironmentFragment',
-    'EvaluatePoliciesProperties',
-    'EvaluatePoliciesRequest',
-    'PolicyViolation',
-    'PolicySetResult',
-    'EvaluatePoliciesResponse',
-    'Event',
-    'EventFragment',
-    'ExportResourceUsageParameters',
-    'ExternalSubnet',
-    'ExternalSubnetFragment',
-    'GalleryImageReference',
-    'InboundNatRule',
-    'SharedPublicIpAddressConfiguration',
-    'NetworkInterfaceProperties',
-    'ScheduleCreationParameter',
-    'LabVirtualMachineCreationParameter',
-    'FormulaPropertiesFromVm',
-    'Formula',
-    'GalleryImageReferenceFragment',
-    'InboundNatRuleFragment',
-    'SharedPublicIpAddressConfigurationFragment',
-    'NetworkInterfacePropertiesFragment',
-    'ScheduleCreationParameterFragment',
-    'LabVirtualMachineCreationParameterFragment',
-    'FormulaPropertiesFromVmFragment',
-    'FormulaFragment',
-    'GalleryImage',
-    'ParameterInfo',
-    'GenerateArmTemplateRequest',
-    'GenerateUploadUriParameter',
-    'GenerateUploadUriResponse',
-    'IdentityProperties',
-    'ImportLabVirtualMachineRequest',
-    'LabAnnouncementProperties',
-    'LabSupportProperties',
-    'Lab',
-    'LabAnnouncementPropertiesFragment',
-    'TargetCostProperties',
-    'LabCostSummaryProperties',
-    'LabCostDetailsProperties',
-    'LabResourceCostProperties',
-    'LabCost',
-    'LabSupportPropertiesFragment',
-    'LabFragment',
-    'LabVhd',
-    'LabVirtualMachine',
-    'LabVirtualMachineFragment',
-    'NotificationChannel',
-    'NotificationChannelFragment',
-    'NotifyParameters',
-    'OperationError',
-    'OperationMetadataDisplay',
-    'OperationMetadata',
-    'OperationResult',
-    'Policy',
-    'PolicyFragment',
-    'Port',
-    'PortFragment',
-    'RdpConnection',
-    'ResizeLabVirtualMachineProperties',
-    'Resource',
-    'RetargetScheduleProperties',
-    'Secret',
-    'SecretFragment',
-    'ServiceFabric',
-    'ServiceFabricFragment',
-    'ServiceRunner',
-    'ShutdownNotificationContent',
-    'Subnet',
-    'SubnetFragment',
-    'SubnetSharedPublicIpAddressConfiguration',
-    'SubnetOverride',
-    'SubnetSharedPublicIpAddressConfigurationFragment',
-    'SubnetOverrideFragment',
-    'UpdateResource',
-    'UserIdentity',
-    'UserSecretStore',
-    'User',
-    'UserIdentityFragment',
-    'UserSecretStoreFragment',
-    'UserFragment',
-    'VirtualNetwork',
-    'VirtualNetworkFragment',
-    'OperationMetadataPaged',
-    'LabPaged',
-    'LabVhdPaged',
-    'SchedulePaged',
-    'ArtifactSourcePaged',
-    'ArmTemplatePaged',
-    'ArtifactPaged',
-    'CustomImagePaged',
-    'FormulaPaged',
-    'GalleryImagePaged',
-    'NotificationChannelPaged',
-    'PolicyPaged',
-    'ServiceRunnerPaged',
-    'UserPaged',
-    'DiskPaged',
-    'DtlEnvironmentPaged',
-    'SecretPaged',
-    'ServiceFabricPaged',
-    'LabVirtualMachinePaged',
-    'VirtualNetworkPaged',
-    'EnableStatus',
-    'SourceControlType',
-    'StorageType',
-    'CostThresholdStatus',
-    'WindowsOsState',
-    'LinuxOsState',
-    'CustomImageOsType',
-    'HostCachingOptions',
-    'NotificationChannelEventType',
-    'TransportProtocol',
-    'VirtualMachineCreationSource',
-    'FileUploadOptions',
-    'PremiumDataDisk',
-    'EnvironmentPermission',
-    'TargetCostStatus',
-    'ReportingCycleType',
-    'CostType',
-    'HttpStatusCode',
-    'PolicyStatus',
-    'PolicyFactName',
-    'PolicyEvaluatorType',
-    'UsagePermissionType',
+    'TaxArea',
+    'PaymentMethod',
+    'CustomerFinancialDetail',
+    'Picture',
+    'Account',
+    'DimensionValue',
+    'Dimension',
+    'DefaultDimensions',
+    'Currency',
+    'PaymentTerm',
+    'ShipmentMethod',
+    'Postaladdresstype',
+    'ItemCategory',
+    'Itemunitofmeasureconversiontype',
+    'Unitofmeasuretype',
+    'Item',
+    'Documentlineobjectdetailstype',
+    'SalesQuoteLine',
+    'PdfDocument',
+    'Customer',
+    'SalesQuote',
+    'CashFlowStatement',
+    'SalesOrderLine',
+    'SalesOrder',
+    'Attachments',
+    'DimensionLine',
+    'SalesInvoiceLine',
+    'SalesCreditMemoLine',
+    'SalesCreditMemo',
+    'VendorPurchase',
+    'IncomeStatement',
+    'Dimensiontype',
+    'GeneralLedgerEntry',
+    'CustomerSale',
+    'CountryRegion',
+    'PurchaseInvoiceLine',
+    'Vendor',
+    'JournalLine',
+    'Journal',
+    'RetainedEarningsStatement',
+    'PurchaseInvoice',
+    'TimeRegistrationEntry',
+    'CustomerPayment',
+    'TrialBalance',
+    'AgedAccountsPayable',
+    'CustomerPaymentJournal',
+    'SalesInvoice',
+    'GeneralLedgerEntryAttachments',
+    'UnitOfMeasure',
+    'CompanyInformation',
+    'TaxGroup',
+    'Employee',
+    'AgedAccountsReceivable',
+    'BalanceSheet',
+    'Company',
+    'GetCompaniesOKResponse',
+    'GetItemsOKResponse',
+    'Body',
+    'GetPictureForItemOKResponse',
+    'BodyModel',
+    'GetDefaultDimensionsForItemOKResponse',
+    'BodyModelModel',
+    'GetPictureOKResponse',
+    'GetDefaultDimensionsOKResponse',
+    'GetCustomersOKResponse',
+    'BodyModelModelModel',
+    'GetCustomerFinancialDetailsForCustomerOKResponse',
+    'GetPictureForCustomerOKResponse',
+    'GetDefaultDimensionsForCustomerOKResponse',
+    'GetCustomerFinancialDetailsOKResponse',
+    'GetVendorsOKResponse',
+    'BodyModelModelModelModel',
+    'GetPictureForVendorOKResponse',
+    'GetDefaultDimensionsForVendorOKResponse',
+    'GetCompanyInformationOKResponse',
+    'BodyModelModelModelModelModel',
+    'GetSalesInvoicesOKResponse',
+    'BodyModelModelModelModelModelModel',
+    'GetSalesInvoiceLinesForSalesInvoiceOKResponse',
+    'BodyModelModelModelModelModelModelModel',
+    'GetPdfDocumentForSalesInvoiceOKResponse',
+    'GetSalesInvoiceLinesOKResponse',
+    'GetPdfDocumentOKResponse',
+    'GetCustomerPaymentJournalsOKResponse',
+    'BodyModelModelModelModelModelModelModelModel',
+    'GetCustomerPaymentsForCustomerPaymentJournalOKResponse',
+    'BodyModelModelModelModelModelModelModelModelModel',
+    'GetCustomerPaymentsOKResponse',
+    'GetAccountsOKResponse',
+    'GetTaxGroupsOKResponse',
+    'BodyModelModelModelModelModelModelModelModelModelModel',
+    'GetJournalsOKResponse',
+    'BodyModelModelModelModelModelModelModelModelModelModelModel',
+    'GetJournalLinesForJournalOKResponse',
+    'BodyModelModelModelModelModelModelModelModelModelModelModelModel',
+    'GetAttachmentsForJournalLineForJournalOKResponse',
+    'BodyModelModelModelModelModelModelModelModelModelModelModelModelModel',
+    'GetJournalLinesOKResponse',
+    'GetAttachmentsForJournalLineOKResponse',
+    'GetAttachmentsOKResponse',
+    'GetEmployeesOKResponse',
+    'BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModel',
+    'GetPictureForEmployeeOKResponse',
+    'GetDefaultDimensionsForEmployeeOKResponse',
+    'GetTimeRegistrationEntriesForEmployeeOKResponse',
+    'BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel',
+    'GetTimeRegistrationEntriesOKResponse',
+    'GetGeneralLedgerEntriesOKResponse',
+    'GetCurrenciesOKResponse',
+    'BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel',
+    'GetPaymentMethodsOKResponse',
+    'BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel',
+    'GetDimensionsOKResponse',
+    'GetDimensionValuesForDimensionOKResponse',
+    'GetDimensionValuesOKResponse',
+    'GetDimensionLinesOKResponse',
+    'BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel',
+    'GetPaymentTermsOKResponse',
+    'BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel',
+    'GetShipmentMethodsOKResponse',
+    'BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel',
+    'GetItemCategoriesOKResponse',
+    'BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel',
+    'GetCashFlowStatementOKResponse',
+    'GetCountriesRegionsOKResponse',
+    'BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel',
+    'GetSalesOrdersOKResponse',
+    'BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel',
+    'GetSalesOrderLinesForSalesOrderOKResponse',
+    'BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel',
+    'GetSalesOrderLinesOKResponse',
+    'GetRetainedEarningsStatementOKResponse',
+    'GetUnitsOfMeasureOKResponse',
+    'BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel',
+    'GetAgedAccountsReceivableOKResponse',
+    'GetAgedAccountsPayableOKResponse',
+    'GetBalanceSheetOKResponse',
+    'GetTrialBalanceOKResponse',
+    'GetIncomeStatementOKResponse',
+    'GetTaxAreasOKResponse',
+    'BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel',
+    'GetSalesQuotesOKResponse',
+    'BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel',
+    'GetSalesQuoteLinesForSalesQuoteOKResponse',
+    'BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel',
+    'GetPdfDocumentForSalesQuoteOKResponse',
+    'GetSalesQuoteLinesOKResponse',
+    'GetSalesCreditMemosOKResponse',
+    'BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel',
+    'GetSalesCreditMemoLinesForSalesCreditMemoOKResponse',
+    'BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel',
+    'GetPdfDocumentForSalesCreditMemoOKResponse',
+    'GetSalesCreditMemoLinesOKResponse',
+    'GetGeneralLedgerEntryAttachmentsOKResponse',
+    'BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel',
+    'GetPurchaseInvoicesOKResponse',
+    'BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel',
+    'GetPurchaseInvoiceLinesForPurchaseInvoiceOKResponse',
+    'BodyModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModelModel',
+    'GetPdfDocumentForPurchaseInvoiceOKResponse',
+    'GetPurchaseInvoiceLinesOKResponse',
+    'GetCustomerSalesOKResponse',
+    'GetVendorPurchasesOKResponse',
 ]

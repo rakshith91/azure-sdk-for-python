@@ -9,5 +9,20 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-VERSION = "1.0.0"
+from msrest.serialization import Model
 
+
+class GetTrialBalanceOKResponse(Model):
+    """GetTrialBalanceOKResponse.
+
+    :param value:
+    :type value: list[~azure.mgmt.devtestlabs.models.TrialBalance]
+    """
+
+    _attribute_map = {
+        'value': {'key': 'value', 'type': '[TrialBalance]'},
+    }
+
+    def __init__(self, *, value=None, **kwargs) -> None:
+        super(GetTrialBalanceOKResponse, self).__init__(**kwargs)
+        self.value = value

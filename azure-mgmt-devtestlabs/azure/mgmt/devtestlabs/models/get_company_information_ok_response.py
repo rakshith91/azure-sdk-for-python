@@ -9,10 +9,20 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .dynamics365_business_central import Dynamics365BusinessCentral
-from .version import VERSION
+from msrest.serialization import Model
 
-__all__ = ['Dynamics365BusinessCentral']
 
-__version__ = VERSION
+class GetCompanyInformationOKResponse(Model):
+    """GetCompanyInformationOKResponse.
 
+    :param value:
+    :type value: list[~azure.mgmt.devtestlabs.models.CompanyInformation]
+    """
+
+    _attribute_map = {
+        'value': {'key': 'value', 'type': '[CompanyInformation]'},
+    }
+
+    def __init__(self, **kwargs):
+        super(GetCompanyInformationOKResponse, self).__init__(**kwargs)
+        self.value = kwargs.get('value', None)

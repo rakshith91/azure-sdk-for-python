@@ -9,5 +9,20 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-VERSION = "1.0.0"
+from msrest.serialization import Model
 
+
+class GetVendorPurchasesOKResponse(Model):
+    """GetVendorPurchasesOKResponse.
+
+    :param value:
+    :type value: list[~azure.mgmt.devtestlabs.models.VendorPurchase]
+    """
+
+    _attribute_map = {
+        'value': {'key': 'value', 'type': '[VendorPurchase]'},
+    }
+
+    def __init__(self, *, value=None, **kwargs) -> None:
+        super(GetVendorPurchasesOKResponse, self).__init__(**kwargs)
+        self.value = value

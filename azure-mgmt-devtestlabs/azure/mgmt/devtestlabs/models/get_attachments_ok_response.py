@@ -9,5 +9,20 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-VERSION = "1.0.0"
+from msrest.serialization import Model
 
+
+class GetAttachmentsOKResponse(Model):
+    """GetAttachmentsOKResponse.
+
+    :param value:
+    :type value: list[~azure.mgmt.devtestlabs.models.Attachments]
+    """
+
+    _attribute_map = {
+        'value': {'key': 'value', 'type': '[Attachments]'},
+    }
+
+    def __init__(self, **kwargs):
+        super(GetAttachmentsOKResponse, self).__init__(**kwargs)
+        self.value = kwargs.get('value', None)

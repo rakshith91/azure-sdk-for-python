@@ -9,5 +9,20 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-VERSION = "1.0.0"
+from msrest.serialization import Model
 
+
+class GetSalesInvoicesOKResponse(Model):
+    """GetSalesInvoicesOKResponse.
+
+    :param value:
+    :type value: list[~azure.mgmt.devtestlabs.models.SalesInvoice]
+    """
+
+    _attribute_map = {
+        'value': {'key': 'value', 'type': '[SalesInvoice]'},
+    }
+
+    def __init__(self, *, value=None, **kwargs) -> None:
+        super(GetSalesInvoicesOKResponse, self).__init__(**kwargs)
+        self.value = value

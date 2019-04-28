@@ -9,5 +9,20 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-VERSION = "1.0.0"
+from msrest.serialization import Model
 
+
+class GetUnitsOfMeasureOKResponse(Model):
+    """GetUnitsOfMeasureOKResponse.
+
+    :param value:
+    :type value: list[~azure.mgmt.devtestlabs.models.UnitOfMeasure]
+    """
+
+    _attribute_map = {
+        'value': {'key': 'value', 'type': '[UnitOfMeasure]'},
+    }
+
+    def __init__(self, *, value=None, **kwargs) -> None:
+        super(GetUnitsOfMeasureOKResponse, self).__init__(**kwargs)
+        self.value = value

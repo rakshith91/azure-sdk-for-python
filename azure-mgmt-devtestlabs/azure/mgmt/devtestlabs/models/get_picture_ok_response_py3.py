@@ -9,5 +9,20 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-VERSION = "1.0.0"
+from msrest.serialization import Model
 
+
+class GetPictureOKResponse(Model):
+    """GetPictureOKResponse.
+
+    :param value:
+    :type value: list[~azure.mgmt.devtestlabs.models.Picture]
+    """
+
+    _attribute_map = {
+        'value': {'key': 'value', 'type': '[Picture]'},
+    }
+
+    def __init__(self, *, value=None, **kwargs) -> None:
+        super(GetPictureOKResponse, self).__init__(**kwargs)
+        self.value = value

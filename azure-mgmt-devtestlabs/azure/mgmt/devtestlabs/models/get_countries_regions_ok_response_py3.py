@@ -9,5 +9,20 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-VERSION = "1.0.0"
+from msrest.serialization import Model
 
+
+class GetCountriesRegionsOKResponse(Model):
+    """GetCountriesRegionsOKResponse.
+
+    :param value:
+    :type value: list[~azure.mgmt.devtestlabs.models.CountryRegion]
+    """
+
+    _attribute_map = {
+        'value': {'key': 'value', 'type': '[CountryRegion]'},
+    }
+
+    def __init__(self, *, value=None, **kwargs) -> None:
+        super(GetCountriesRegionsOKResponse, self).__init__(**kwargs)
+        self.value = value

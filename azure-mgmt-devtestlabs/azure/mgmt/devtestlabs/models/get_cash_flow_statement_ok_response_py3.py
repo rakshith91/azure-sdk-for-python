@@ -9,5 +9,20 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-VERSION = "1.0.0"
+from msrest.serialization import Model
 
+
+class GetCashFlowStatementOKResponse(Model):
+    """GetCashFlowStatementOKResponse.
+
+    :param value:
+    :type value: list[~azure.mgmt.devtestlabs.models.CashFlowStatement]
+    """
+
+    _attribute_map = {
+        'value': {'key': 'value', 'type': '[CashFlowStatement]'},
+    }
+
+    def __init__(self, *, value=None, **kwargs) -> None:
+        super(GetCashFlowStatementOKResponse, self).__init__(**kwargs)
+        self.value = value

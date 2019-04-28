@@ -9,10 +9,20 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .dynamics365_business_central import Dynamics365BusinessCentral
-from .version import VERSION
+from msrest.serialization import Model
 
-__all__ = ['Dynamics365BusinessCentral']
 
-__version__ = VERSION
+class GetJournalLinesForJournalOKResponse(Model):
+    """GetJournalLinesForJournalOKResponse.
 
+    :param value:
+    :type value: list[~azure.mgmt.devtestlabs.models.JournalLine]
+    """
+
+    _attribute_map = {
+        'value': {'key': 'value', 'type': '[JournalLine]'},
+    }
+
+    def __init__(self, *, value=None, **kwargs) -> None:
+        super(GetJournalLinesForJournalOKResponse, self).__init__(**kwargs)
+        self.value = value

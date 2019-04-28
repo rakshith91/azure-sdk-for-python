@@ -9,5 +9,20 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-VERSION = "1.0.0"
+from msrest.serialization import Model
 
+
+class GetBalanceSheetOKResponse(Model):
+    """GetBalanceSheetOKResponse.
+
+    :param value:
+    :type value: list[~azure.mgmt.devtestlabs.models.BalanceSheet]
+    """
+
+    _attribute_map = {
+        'value': {'key': 'value', 'type': '[BalanceSheet]'},
+    }
+
+    def __init__(self, **kwargs):
+        super(GetBalanceSheetOKResponse, self).__init__(**kwargs)
+        self.value = kwargs.get('value', None)

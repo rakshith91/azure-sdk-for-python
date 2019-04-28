@@ -9,5 +9,20 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-VERSION = "1.0.0"
+from msrest.serialization import Model
 
+
+class GetDimensionValuesOKResponse(Model):
+    """GetDimensionValuesOKResponse.
+
+    :param value:
+    :type value: list[~azure.mgmt.devtestlabs.models.DimensionValue]
+    """
+
+    _attribute_map = {
+        'value': {'key': 'value', 'type': '[DimensionValue]'},
+    }
+
+    def __init__(self, *, value=None, **kwargs) -> None:
+        super(GetDimensionValuesOKResponse, self).__init__(**kwargs)
+        self.value = value

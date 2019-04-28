@@ -9,5 +9,20 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-VERSION = "1.0.0"
+from msrest.serialization import Model
 
+
+class GetShipmentMethodsOKResponse(Model):
+    """GetShipmentMethodsOKResponse.
+
+    :param value:
+    :type value: list[~azure.mgmt.devtestlabs.models.ShipmentMethod]
+    """
+
+    _attribute_map = {
+        'value': {'key': 'value', 'type': '[ShipmentMethod]'},
+    }
+
+    def __init__(self, *, value=None, **kwargs) -> None:
+        super(GetShipmentMethodsOKResponse, self).__init__(**kwargs)
+        self.value = value

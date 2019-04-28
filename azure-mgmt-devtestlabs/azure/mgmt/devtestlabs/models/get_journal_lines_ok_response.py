@@ -9,5 +9,20 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-VERSION = "1.0.0"
+from msrest.serialization import Model
 
+
+class GetJournalLinesOKResponse(Model):
+    """GetJournalLinesOKResponse.
+
+    :param value:
+    :type value: list[~azure.mgmt.devtestlabs.models.JournalLine]
+    """
+
+    _attribute_map = {
+        'value': {'key': 'value', 'type': '[JournalLine]'},
+    }
+
+    def __init__(self, **kwargs):
+        super(GetJournalLinesOKResponse, self).__init__(**kwargs)
+        self.value = kwargs.get('value', None)

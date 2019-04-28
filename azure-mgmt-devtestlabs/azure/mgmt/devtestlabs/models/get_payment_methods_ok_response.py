@@ -9,5 +9,20 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-VERSION = "1.0.0"
+from msrest.serialization import Model
 
+
+class GetPaymentMethodsOKResponse(Model):
+    """GetPaymentMethodsOKResponse.
+
+    :param value:
+    :type value: list[~azure.mgmt.devtestlabs.models.PaymentMethod]
+    """
+
+    _attribute_map = {
+        'value': {'key': 'value', 'type': '[PaymentMethod]'},
+    }
+
+    def __init__(self, **kwargs):
+        super(GetPaymentMethodsOKResponse, self).__init__(**kwargs)
+        self.value = kwargs.get('value', None)
