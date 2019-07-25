@@ -16,6 +16,8 @@ from queuetestcase import (
     record,
 )
 
+from devtools_testutils import StorageAccountPreparer
+
 # ------------------------------------------------------------------------------
 SERVICES = {
     QueueServiceClient: 'queue',
@@ -27,6 +29,7 @@ _CONNECTION_ENDPOINTS = {'queue': 'QueueEndpoint'}
 _CONNECTION_ENDPOINTS_SECONDARY = {'queue': 'QueueSecondaryEndpoint'}
 
 class StorageQueueClientTest(QueueTestCase):
+    '''
     def setUp(self):
         super(StorageQueueClientTest, self).setUp()
         self.account_name = self.settings.STORAGE_ACCOUNT_NAME
@@ -34,7 +37,7 @@ class StorageQueueClientTest(QueueTestCase):
         self.sas_token = '?sv=2015-04-05&st=2015-04-29T22%3A18%3A26Z&se=2015-04-30T02%3A23%3A26Z&sr=b&sp=rw&sip=168.1.5.60-168.1.5.70&spr=https&sig=Z%2FRHIX5Xcg0Mq2rqI3OlWTjEg2tYkboXr1P9ZUXDtkk%3D'
         self.token_credential = self.generate_oauth_token()
         self.connection_string = self.settings.CONNECTION_STRING
-
+    '''
     # --Helpers-----------------------------------------------------------------
     def validate_standard_account_endpoints(self, service, url_type):
         self.assertIsNotNone(service)
@@ -44,6 +47,7 @@ class StorageQueueClientTest(QueueTestCase):
         self.assertTrue('{}-secondary.{}.core.windows.net'.format(self.account_name, url_type) in service.secondary_endpoint)
 
     # --Direct Parameters Test Cases --------------------------------------------
+    @StorageAccountPreparer()
     def test_create_service_with_key(self):
         # Arrange
 
@@ -56,6 +60,7 @@ class StorageQueueClientTest(QueueTestCase):
             self.validate_standard_account_endpoints(service, url)
             self.assertEqual(service.scheme, 'https')
 
+    @StorageAccountPreparer()
     def test_create_service_with_connection_string(self):
 
         for service_type in SERVICES.items():
@@ -67,6 +72,7 @@ class StorageQueueClientTest(QueueTestCase):
             self.validate_standard_account_endpoints(service, service_type[1])
             self.assertEqual(service.scheme, 'https')
 
+    @StorageAccountPreparer()
     def test_create_service_with_sas(self):
         # Arrange
 
@@ -81,6 +87,7 @@ class StorageQueueClientTest(QueueTestCase):
             self.assertTrue(service.url.endswith(self.sas_token))
             self.assertIsNone(service.credential)
 
+    @StorageAccountPreparer()
     def test_create_service_with_token(self):
         for service_type in SERVICES:
             # Act
@@ -94,6 +101,7 @@ class StorageQueueClientTest(QueueTestCase):
             self.assertFalse(hasattr(service.credential, 'account_key'))
             self.assertTrue(hasattr(service.credential, 'get_token'))
 
+    @StorageAccountPreparer()
     def test_create_service_with_token_and_http(self):
         for service_type in SERVICES:
             # Act
@@ -101,6 +109,7 @@ class StorageQueueClientTest(QueueTestCase):
                 url = self._get_queue_url().replace('https', 'http')
                 service_type(url, credential=self.token_credential, queue='foo')
 
+    @StorageAccountPreparer()
     def test_create_service_china(self):
         # Arrange
 
@@ -119,6 +128,7 @@ class StorageQueueClientTest(QueueTestCase):
             self.assertTrue(service.secondary_endpoint.startswith(
                 'https://{}-secondary.{}.core.chinacloudapi.cn'.format(self.account_name, service_type[1])))
 
+    @StorageAccountPreparer()
     def test_create_service_protocol(self):
         # Arrange
 
@@ -132,6 +142,7 @@ class StorageQueueClientTest(QueueTestCase):
             self.validate_standard_account_endpoints(service, service_type[1])
             self.assertEqual(service.scheme, 'http')
 
+    @StorageAccountPreparer()
     def test_create_service_empty_key(self):
         # Arrange
         QUEUE_SERVICES = [QueueServiceClient, QueueClient]
@@ -144,6 +155,7 @@ class StorageQueueClientTest(QueueTestCase):
             self.assertEqual(
                 str(e.exception), "You need to provide either a SAS token or an account key to authenticate.")
 
+    @StorageAccountPreparer()
     def test_create_service_missing_arguments(self):
         # Arrange
 
@@ -154,6 +166,7 @@ class StorageQueueClientTest(QueueTestCase):
 
                 # Assert
 
+    @StorageAccountPreparer()
     def test_create_service_with_socket_timeout(self):
         # Arrange
 
@@ -172,6 +185,7 @@ class StorageQueueClientTest(QueueTestCase):
 
     # --Connection String Test Cases --------------------------------------------
 
+    @StorageAccountPreparer()
     def test_create_service_with_connection_string_key(self):
         # Arrange
         conn_string = 'AccountName={};AccountKey={};'.format(self.account_name, self.account_key)
@@ -184,6 +198,7 @@ class StorageQueueClientTest(QueueTestCase):
             self.validate_standard_account_endpoints(service, service_type[1])
             self.assertEqual(service.scheme, 'https')
 
+    @StorageAccountPreparer()
     def test_create_service_with_connection_string_sas(self):
         # Arrange
         conn_string = 'AccountName={};SharedAccessSignature={};'.format(self.account_name, self.sas_token)
@@ -198,6 +213,7 @@ class StorageQueueClientTest(QueueTestCase):
             self.assertTrue(service.url.endswith(self.sas_token))
             self.assertIsNone(service.credential)
 
+    @StorageAccountPreparer()
     def test_create_service_with_connection_string_endpoint_protocol(self):
         # Arrange
         conn_string = 'AccountName={};AccountKey={};DefaultEndpointsProtocol=http;EndpointSuffix=core.chinacloudapi.cn;'.format(
@@ -219,6 +235,7 @@ class StorageQueueClientTest(QueueTestCase):
                     'http://{}-secondary.{}.core.chinacloudapi.cn'.format(self.account_name, service_type[1])))
             self.assertEqual(service.scheme, 'http')
 
+    @StorageAccountPreparer()
     def test_create_service_with_connection_string_emulated(self):
         # Arrange
         for service_type in SERVICES.items():
@@ -228,6 +245,7 @@ class StorageQueueClientTest(QueueTestCase):
             with self.assertRaises(ValueError):
                 service = service_type[0].from_connection_string(conn_string, queue="foo")
 
+    @StorageAccountPreparer()
     def test_create_service_with_connection_string_custom_domain(self):
         # Arrange
         for service_type in SERVICES.items():
@@ -244,6 +262,7 @@ class StorageQueueClientTest(QueueTestCase):
             self.assertTrue(service.primary_endpoint.startswith('https://www.mydomain.com/'))
             self.assertTrue(service.secondary_endpoint.startswith('https://' + self.account_name + '-secondary.queue.core.windows.net'))
 
+    @StorageAccountPreparer()
     def test_create_service_with_connection_string_custom_domain_trailing_slash(self):
         # Arrange
         for service_type in SERVICES.items():
@@ -260,7 +279,7 @@ class StorageQueueClientTest(QueueTestCase):
             self.assertTrue(service.primary_endpoint.startswith('https://www.mydomain.com/'))
             self.assertTrue(service.secondary_endpoint.startswith('https://' + self.account_name + '-secondary.queue.core.windows.net'))
 
-
+    @StorageAccountPreparer()
     def test_create_service_with_connection_string_custom_domain_secondary_override(self):
         # Arrange
         for service_type in SERVICES.items():
@@ -278,7 +297,7 @@ class StorageQueueClientTest(QueueTestCase):
             self.assertTrue(service.primary_endpoint.startswith('https://www.mydomain.com/'))
             self.assertTrue(service.secondary_endpoint.startswith('https://www-sec.mydomain.com/'))
 
-
+    @StorageAccountPreparer()
     def test_create_service_with_connection_string_fails_if_secondary_without_primary(self):
         for service_type in SERVICES.items():
             # Arrange
@@ -292,6 +311,7 @@ class StorageQueueClientTest(QueueTestCase):
             with self.assertRaises(ValueError):
                 service = service_type[0].from_connection_string(conn_string, queue="foo")
 
+    @StorageAccountPreparer()
     def test_create_service_with_connection_string_succeeds_if_secondary_with_primary(self):
         for service_type in SERVICES.items():
             # Arrange
@@ -312,6 +332,7 @@ class StorageQueueClientTest(QueueTestCase):
             self.assertTrue(service.secondary_endpoint.startswith('https://www-sec.mydomain.com/'))
 
     @record
+    @StorageAccountPreparer()
     def test_request_callback_signed_header(self):
         # Arrange
         service = QueueServiceClient(self._get_queue_url(), credential=self.account_key)
@@ -329,6 +350,7 @@ class StorageQueueClientTest(QueueTestCase):
             service.delete_queue(name)
 
     @record
+    @StorageAccountPreparer()
     def test_response_callback(self):
         # Arrange
         service = QueueServiceClient(self._get_queue_url(), credential=self.account_key)
@@ -345,6 +367,7 @@ class StorageQueueClientTest(QueueTestCase):
         self.assertTrue(exists)
 
     @record
+    @StorageAccountPreparer()
     def test_user_agent_default(self):
         service = QueueServiceClient(self._get_queue_url(), credential=self.account_key)
 
@@ -359,6 +382,7 @@ class StorageQueueClientTest(QueueTestCase):
         service.get_service_properties(raw_response_hook=callback)
 
     @record
+    @StorageAccountPreparer()
     def test_user_agent_custom(self):
         custom_app = "TestApp/v1.0"
         service = QueueServiceClient(
@@ -385,6 +409,7 @@ class StorageQueueClientTest(QueueTestCase):
         service.get_service_properties(raw_response_hook=callback, user_agent="TestApp/v2.0")
 
     @record
+    @StorageAccountPreparer()
     def test_user_agent_append(self):
         service = QueueServiceClient(self._get_queue_url(), credential=self.account_key)
 

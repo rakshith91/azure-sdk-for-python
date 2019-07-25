@@ -36,6 +36,8 @@ from queuetestcase import (
     LogCaptured,
 )
 
+from devtools_testutils import StorageAccountPreparer
+
 # ------------------------------------------------------------------------------
 TEST_QUEUE_PREFIX = 'pythonqueue'
 
@@ -44,6 +46,7 @@ TEST_QUEUE_PREFIX = 'pythonqueue'
 
 
 class StorageQueueTest(QueueTestCase):
+    '''
     def setUp(self):
         super(StorageQueueTest, self).setUp()
 
@@ -60,7 +63,7 @@ class StorageQueueTest(QueueTestCase):
                 except:
                     pass
         return super(StorageQueueTest, self).tearDown()
-
+    
     # --Helpers-----------------------------------------------------------------
     def _get_queue_reference(self, prefix=TEST_QUEUE_PREFIX):
         queue_name = self.get_resource_name(prefix)
@@ -72,21 +75,24 @@ class StorageQueueTest(QueueTestCase):
         queue = self._get_queue_reference(prefix)
         created = queue.create_queue()
         return queue
+    '''
 
     # --Test cases for queues ----------------------------------------------
     @record
-    def test_create_queue(self):
+    @StorageAccountPreparer()
+    def test_create_queue(self, queue_service_client, queue_client):
         # Action
-        queue_client = self._get_queue_reference()
+        #queue_client = self._get_queue_reference()
         created = queue_client.create_queue()
 
         # Asserts
         self.assertTrue(created)
 
     @record
-    def test_create_queue_fail_on_exist(self):
+    @StorageAccountPreparer()
+    def test_create_queue_fail_on_exist(self, queue_service_client, queue_client):
         # Action
-        queue_client = self._get_queue_reference()
+        #queue_client = self._get_queue_reference()
         created = queue_client.create_queue()
         with self.assertRaises(ResourceExistsError):
             queue_client.create_queue()
@@ -95,9 +101,10 @@ class StorageQueueTest(QueueTestCase):
         self.assertTrue(created)
 
     @record
-    def test_create_queue_fail_on_exist_different_metadata(self):
+    @StorageAccountPreparer()
+    def test_create_queue_fail_on_exist_different_metadata(self, queue_service_client, queue_client):
         # Action
-        queue_client = self._get_queue_reference()
+        #queue_client = self._get_queue_reference()
         created = queue_client.create_queue()
         with self.assertRaises(ResourceExistsError):
             queue_client.create_queue(metadata={"val": "value"})
@@ -106,9 +113,10 @@ class StorageQueueTest(QueueTestCase):
         self.assertTrue(created)
 
     @record
-    def test_create_queue_with_options(self):
+    @StorageAccountPreparer()
+    def test_create_queue_with_options(self, queue_service_client, queue_client):
         # Action
-        queue_client = self._get_queue_reference()
+        #queue_client = self._get_queue_reference()
         queue_client.create_queue(
             metadata={'val1': 'test', 'val2': 'blah'})
         props = queue_client.get_queue_properties()
@@ -120,18 +128,18 @@ class StorageQueueTest(QueueTestCase):
         self.assertEqual('blah', props.metadata['val2'])
 
     @record
-    def test_delete_non_existing_queue(self):
+    @StorageAccountPreparer()
+    def test_delete_non_existing_queue(self, queue_service_client, queue_client):
         # Action
-        queue_client = self._get_queue_reference()
 
         # Asserts
         with self.assertRaises(ResourceNotFoundError):
             queue_client.delete_queue()
 
     @record
-    def test_delete_existing_queue_fail_not_exist(self):
+    @StorageAccountPreparer()
+    def test_delete_existing_queue_fail_not_exist(self, queue_service_client, queue_client):
         # Action
-        queue_client = self._get_queue_reference()
 
         created = queue_client.create_queue()
         deleted = queue_client.delete_queue()
@@ -140,15 +148,17 @@ class StorageQueueTest(QueueTestCase):
         self.assertIsNone(deleted)
 
     @record
-    def test_list_queues(self):
+    @StorageAccountPreparer()
+    def test_list_queues(self, queue_service_client, queue_client):
         # Action
-        queues = list(self.qsc.list_queues())
+        queues = list(queue_service_client.list_queues())
 
         # Asserts
         self.assertIsNotNone(queues)
         self.assertTrue(len(self.test_queues) <= len(queues))
 
     @record
+    @StorageAccountPreparer()
     def test_list_queues_with_options(self):
         # Arrange
         prefix = 'listqueue'
@@ -180,6 +190,7 @@ class StorageQueueTest(QueueTestCase):
         self.assertNotEqual('', queues2[0].name)
 
     @record
+    @StorageAccountPreparer()
     def test_list_queues_with_metadata(self):
         # Action
         queue = self._create_queue()
@@ -198,6 +209,7 @@ class StorageQueueTest(QueueTestCase):
         self.assertEqual(listed_queue.metadata['val1'], 'test')
 
     @record
+    @StorageAccountPreparer()
     def test_set_queue_metadata(self):
         # Action
         metadata = {'hello': 'world', 'number': '43'}
@@ -210,6 +222,7 @@ class StorageQueueTest(QueueTestCase):
         self.assertDictEqual(metadata_from_response, metadata)
 
     @record
+    @StorageAccountPreparer()
     def test_get_queue_metadata_message_count(self):
         # Action
         queue_client = self._create_queue()
@@ -221,6 +234,7 @@ class StorageQueueTest(QueueTestCase):
         self.assertEqual(0, len(props.metadata))
 
     @record
+    @StorageAccountPreparer()
     def test_queue_exists(self):
         # Arrange
         queue = self._create_queue()
@@ -232,6 +246,7 @@ class StorageQueueTest(QueueTestCase):
         self.assertTrue(exists)
 
     @record
+    @StorageAccountPreparer()
     def test_queue_not_exists(self):
         # Arrange
         queue = self.qsc.get_queue_client(self.get_resource_name('missing'))
@@ -242,6 +257,7 @@ class StorageQueueTest(QueueTestCase):
         # Assert
 
     @record
+    @StorageAccountPreparer()
     def test_put_message(self):
         # Action.  No exception means pass. No asserts needed.
         queue_client = self._create_queue()
@@ -259,6 +275,7 @@ class StorageQueueTest(QueueTestCase):
         self.assertEqual(u'message4', message.content)
 
     @record
+    @StorageAccountPreparer()
     def test_put_message_large_time_to_live(self):
         # Arrange
         queue_client = self._create_queue()
@@ -274,6 +291,7 @@ class StorageQueueTest(QueueTestCase):
             messages[0].insertion_time + timedelta(seconds=1024 * 1024 * 1024 - 3600))
 
     @record
+    @StorageAccountPreparer()
     def test_put_message_infinite_time_to_live(self):
         # Arrange
         queue_client = self._create_queue()
@@ -286,6 +304,7 @@ class StorageQueueTest(QueueTestCase):
         self.assertEqual(messages[0].expiration_time.year, date.max.year)
 
     @record
+    @StorageAccountPreparer()
     def test_get_messages(self):
         # Action
         queue_client = self._create_queue()
@@ -308,6 +327,7 @@ class StorageQueueTest(QueueTestCase):
         self.assertIsInstance(message.time_next_visible, datetime)
 
     @record
+    @StorageAccountPreparer()
     def test_get_messages_with_options(self):
         # Action
         queue_client = self._create_queue()
@@ -333,6 +353,7 @@ class StorageQueueTest(QueueTestCase):
             self.assertNotEqual('', message.time_next_visible)
 
     @record
+    @StorageAccountPreparer()
     def test_peek_messages(self):
         # Action
         queue_client = self._create_queue()
@@ -356,6 +377,7 @@ class StorageQueueTest(QueueTestCase):
         self.assertIsNone(message.time_next_visible)
 
     @record
+    @StorageAccountPreparer()
     def test_peek_messages_with_options(self):
         # Action
         queue_client = self._create_queue()
@@ -379,6 +401,7 @@ class StorageQueueTest(QueueTestCase):
             self.assertIsNone(message.time_next_visible)
 
     @record
+    @StorageAccountPreparer()
     def test_clear_messages(self):
         # Action
         queue_client = self._create_queue()
@@ -394,6 +417,7 @@ class StorageQueueTest(QueueTestCase):
         self.assertEqual(0, len(result))
 
     @record
+    @StorageAccountPreparer()
     def test_delete_message(self):
         # Action
         queue_client = self._create_queue()
@@ -412,6 +436,7 @@ class StorageQueueTest(QueueTestCase):
         assert len(messages) == 3
 
     @record
+    @StorageAccountPreparer()
     def test_update_message(self):
         # Action
         queue_client = self._create_queue()
@@ -444,6 +469,7 @@ class StorageQueueTest(QueueTestCase):
         self.assertIsNotNone(message.time_next_visible)
 
     @record
+    @StorageAccountPreparer()
     def test_update_message_content(self):
         # Action
         queue_client = self._create_queue()
@@ -477,6 +503,7 @@ class StorageQueueTest(QueueTestCase):
         self.assertIsNotNone(message.expiration_time)
         self.assertIsNotNone(message.time_next_visible)
 
+    @StorageAccountPreparer()
     def test_account_sas(self):
         # SAS URL is calculated from storage key, so this test runs live only
         if TestMode.need_recording_file(self.test_mode):
@@ -509,6 +536,7 @@ class StorageQueueTest(QueueTestCase):
         self.assertEqual(u'message1', message.content)
 
     @record
+    @StorageAccountPreparer()
     def test_token_credential(self):
         pytest.skip("")
         token_credential = self.generate_oauth_token()
@@ -529,6 +557,7 @@ class StorageQueueTest(QueueTestCase):
         queues = list(service.list_queues())
         self.assertIsNotNone(queues)
 
+    @StorageAccountPreparer()
     def test_sas_read(self):
         # SAS URL is calculated from storage key, so this test runs live only
         if TestMode.need_recording_file(self.test_mode):
@@ -558,6 +587,7 @@ class StorageQueueTest(QueueTestCase):
         self.assertNotEqual('', message.id)
         self.assertEqual(u'message1', message.content)
 
+    @StorageAccountPreparer()
     def test_sas_add(self):
         # SAS URL is calculated from storage key, so this test runs live only
         if TestMode.need_recording_file(self.test_mode):
@@ -581,6 +611,7 @@ class StorageQueueTest(QueueTestCase):
         result = next(queue_client.receive_messages())
         self.assertEqual(u'addedmessage', result.content)
 
+    @StorageAccountPreparer()
     def test_sas_update(self):
         # SAS URL is calculated from storage key, so this test runs live only
         if TestMode.need_recording_file(self.test_mode):
@@ -612,6 +643,7 @@ class StorageQueueTest(QueueTestCase):
         result = next(messages)
         self.assertEqual(u'updatedmessage1', result.content)
 
+    @StorageAccountPreparer()
     def test_sas_process(self):
         # SAS URL is calculated from storage key, so this test runs live only
         if TestMode.need_recording_file(self.test_mode):
@@ -637,6 +669,7 @@ class StorageQueueTest(QueueTestCase):
         self.assertNotEqual('', message.id)
         self.assertEqual(u'message1', message.content)
 
+    @StorageAccountPreparer()
     def test_sas_signed_identifier(self):
         # SAS URL is calculated from storage key, so this test runs live only
         if TestMode.need_recording_file(self.test_mode):
@@ -675,6 +708,7 @@ class StorageQueueTest(QueueTestCase):
         self.assertEqual(u'message1', message.content)
 
     @record
+    @StorageAccountPreparer()
     def test_get_queue_acl(self):
         # Arrange
         queue_client = self._create_queue()
@@ -687,6 +721,7 @@ class StorageQueueTest(QueueTestCase):
         self.assertEqual(len(acl), 0)
 
     @record
+    @StorageAccountPreparer()
     def test_get_queue_acl_iter(self):
         # Arrange
         queue_client = self._create_queue()
@@ -701,6 +736,7 @@ class StorageQueueTest(QueueTestCase):
         self.assertEqual(len(acl), 0)
 
     @record
+    @StorageAccountPreparer()
     def test_get_queue_acl_with_non_existing_queue(self):
         # Arrange
         queue_client = self._get_queue_reference()
@@ -712,6 +748,7 @@ class StorageQueueTest(QueueTestCase):
             # Assert
 
     @record
+    @StorageAccountPreparer()
     def test_set_queue_acl(self):
         # Arrange
         queue_client = self._create_queue()
@@ -725,6 +762,7 @@ class StorageQueueTest(QueueTestCase):
         self.assertIsNotNone(acl)
 
     @record
+    @StorageAccountPreparer()
     def test_set_queue_acl_with_empty_signed_identifiers(self):
         # Arrange
         queue_client = self._create_queue()
@@ -738,6 +776,7 @@ class StorageQueueTest(QueueTestCase):
         self.assertEqual(len(acl), 0)
 
     @record
+    @StorageAccountPreparer()
     def test_set_queue_acl_with_empty_signed_identifier(self):
         # Arrange
         queue_client = self._create_queue()
@@ -755,6 +794,7 @@ class StorageQueueTest(QueueTestCase):
         self.assertIsNone(acl['empty'].start)
 
     @record
+    @StorageAccountPreparer()
     def test_set_queue_acl_with_signed_identifiers(self):
         # Arrange
         queue_client = self._create_queue()
@@ -775,6 +815,7 @@ class StorageQueueTest(QueueTestCase):
         self.assertTrue('testid' in acl)
 
     @record
+    @StorageAccountPreparer()
     def test_set_queue_acl_too_many_ids(self):
         # Arrange
         queue_client = self._create_queue()
@@ -789,6 +830,7 @@ class StorageQueueTest(QueueTestCase):
             queue_client.set_queue_access_policy(identifiers)
 
     @record
+    @StorageAccountPreparer()
     def test_set_queue_acl_with_non_existing_queue(self):
         # Arrange
         queue_client = self._get_queue_reference()
@@ -800,6 +842,7 @@ class StorageQueueTest(QueueTestCase):
             # Assert
 
     @record
+    @StorageAccountPreparer()
     def test_unicode_create_queue_unicode_name(self):
         # Action
         queue_name = u'啊齄丂狛狜'
@@ -812,6 +855,7 @@ class StorageQueueTest(QueueTestCase):
             # Asserts
 
     @record
+    @StorageAccountPreparer()
     def test_unicode_get_messages_unicode_data(self):
         # Action
         queue_client = self._create_queue()
@@ -829,6 +873,7 @@ class StorageQueueTest(QueueTestCase):
         self.assertIsInstance(message.time_next_visible, datetime)
 
     @record
+    @StorageAccountPreparer()
     def test_unicode_update_message_unicode_data(self):
         # Action
         queue_client = self._create_queue()

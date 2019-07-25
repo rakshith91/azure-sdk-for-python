@@ -36,6 +36,8 @@ try:
 except ImportError:
     settings = None
 
+from devtools_testutils import AzureMgmtTestCase
+
 
 LOGGING_FORMAT = '%(asctime)s %(name)-20s %(levelname)-5s %(message)s'
 
@@ -70,35 +72,17 @@ class FakeTokenCredential(object):
         return self.token
 
 
-class QueueTestCase(unittest.TestCase):
+class QueueTestCase(AzureMgmtTestCase):
 
     def setUp(self):
-        self.working_folder = os.path.dirname(__file__)
+        self.account_name = settings.STORAGE_ACCOUNT_NAME
+        self.account_key = settings.STORAGE_ACCOUNT_KEY
+        self.test_mode = settings.TEST_MODE
+        super(QueueTestCase, self).setUp()
 
-        self.settings = settings
-        self.fake_settings = fake_settings
-
-        if settings is None:
-            self.test_mode = TestMode.playback
-        else:
-            self.test_mode = self.settings.TEST_MODE.lower() or TestMode.playback
-
-        if self.test_mode == TestMode.playback:
-            self.settings = self.fake_settings
-
-        # example of qualified test name:
-        # test_mgmt_network.test_public_ip_addresses
-        _, filename = os.path.split(inspect.getsourcefile(type(self)))
-        name, _ = os.path.splitext(filename)
-        self.qualified_test_name = '{0}.{1}'.format(
-            name,
-            self._testMethodName,
-        )
-
-        self.logger = logging.getLogger('azure.storage')
-        # enable logging if desired
-        self.configure_logging()
-
+    def tearDown(self):
+        super(QueueTestCase, self).tearDown()
+    '''
     def configure_logging(self):
         self.enable_logging() if self.settings.ENABLE_LOGGING else self.disable_logging()
 
@@ -122,6 +106,9 @@ class QueueTestCase(unittest.TestCase):
     def is_playback(self):
         return self.test_mode == TestMode.playback
 
+    def is_live(self):
+        return self.test_mode == TestMode.run_live_no_record
+
     def get_resource_name(self, prefix=''):
         # Append a suffix to the name, based on the fully qualified test name
         # We use a checksum of the test name so that each test gets different
@@ -136,7 +123,7 @@ class QueueTestCase(unittest.TestCase):
             if name.endswith('L'):
                 name = name[:-1]
             return name
-
+    '''
     def get_random_bytes(self, size):
         if self.test_mode.lower() == TestMode.run_live_no_record.lower():
             rand = random.Random()
@@ -160,7 +147,7 @@ class QueueTestCase(unittest.TestCase):
             text = text + u' ' + words[index]
 
         return text
-
+    '''
     @staticmethod
     def _set_test_proxy(service, settings):
         if settings.USE_PROXY:
@@ -191,12 +178,6 @@ class QueueTestCase(unittest.TestCase):
 
     def _get_account_url(self):
         return "{}://{}.blob.core.windows.net".format(
-            self.settings.PROTOCOL,
-            self.settings.STORAGE_ACCOUNT_NAME
-        )
-
-    def _get_queue_url(self):
-        return "{}://{}.queue.core.windows.net".format(
             self.settings.PROTOCOL,
             self.settings.STORAGE_ACCOUNT_NAME
         )
@@ -279,6 +260,12 @@ class QueueTestCase(unittest.TestCase):
             print("REMOTE_STORAGE_ACCOUNT_NAME and REMOTE_STORAGE_ACCOUNT_KEY not set in test settings file.")
         self._set_test_proxy(service, settings)
         return service
+    '''
+    def _get_queue_url(self):
+        return "{}://{}.queue.core.windows.net".format(
+            settings.PROTOCOL,
+            settings.STORAGE_ACCOUNT_NAME
+        )
 
     def assertNamedItemInContainer(self, container, item_name, msg=None):
         def _is_string(obj):
