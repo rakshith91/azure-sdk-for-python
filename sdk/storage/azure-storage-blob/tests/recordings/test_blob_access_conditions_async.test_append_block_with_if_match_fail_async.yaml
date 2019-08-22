@@ -148,4 +148,156 @@ interactions:
         - /utcontainerac9c1f02/blob1
         - comp=appendblock
         - ''
+- request:
+    body: null
+    headers:
+      User-Agent:
+      - azsdk-python-storage-blob/12.0.0b2 Python/3.7.3 (Windows-10-10.0.17763-SP0)
+      content-type:
+      - application/xml; charset=utf-8
+      x-ms-client-request-id:
+      - 2604744c-c531-11e9-8661-2816a845e8c6
+      x-ms-date:
+      - Thu, 22 Aug 2019 23:04:09 GMT
+      x-ms-version:
+      - '2019-02-02'
+    method: PUT
+    uri: https://blobstoragename.blob.core.windows.net/utcontainerac9c1f02?restype=container
+  response:
+    body:
+      string: ''
+    headers:
+      ? !!python/object/new:multidict._istr.istr
+      - Content-Length
+      : '0'
+      ? !!python/object/new:multidict._istr.istr
+      - Date
+      : Thu, 22 Aug 2019 23:04:09 GMT
+      ? !!python/object/new:multidict._istr.istr
+      - Etag
+      : '"0x8D727550A412655"'
+      ? !!python/object/new:multidict._istr.istr
+      - Last-Modified
+      : Thu, 22 Aug 2019 23:04:09 GMT
+      ? !!python/object/new:multidict._istr.istr
+      - Server
+      : Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+      x-ms-client-request-id: 2604744c-c531-11e9-8661-2816a845e8c6
+      x-ms-request-id: f8614d55-401e-0042-7b3d-594f14000000
+      x-ms-version: '2019-02-02'
+    status:
+      code: 201
+      message: Created
+    url: !!python/object/new:yarl.URL
+      state: !!python/tuple
+      - !!python/object/new:urllib.parse.SplitResult
+        - https
+        - amqptest.blob.core.windows.net
+        - /utcontainerac9c1f02
+        - restype=container
+        - ''
+- request:
+    body: null
+    headers:
+      Content-Length:
+      - '0'
+      User-Agent:
+      - azsdk-python-storage-blob/12.0.0b2 Python/3.7.3 (Windows-10-10.0.17763-SP0)
+      content-type:
+      - application/xml; charset=utf-8
+      x-ms-blob-type:
+      - AppendBlob
+      x-ms-client-request-id:
+      - 261cf388-c531-11e9-a853-2816a845e8c6
+      x-ms-date:
+      - Thu, 22 Aug 2019 23:04:09 GMT
+      x-ms-version:
+      - '2019-02-02'
+    method: PUT
+    uri: https://blobstoragename.blob.core.windows.net/utcontainerac9c1f02/blob1
+  response:
+    body:
+      string: ''
+    headers:
+      ? !!python/object/new:multidict._istr.istr
+      - Content-Length
+      : '0'
+      ? !!python/object/new:multidict._istr.istr
+      - Date
+      : Thu, 22 Aug 2019 23:04:09 GMT
+      ? !!python/object/new:multidict._istr.istr
+      - Etag
+      : '"0x8D727550A49F54D"'
+      ? !!python/object/new:multidict._istr.istr
+      - Last-Modified
+      : Thu, 22 Aug 2019 23:04:09 GMT
+      ? !!python/object/new:multidict._istr.istr
+      - Server
+      : Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+      x-ms-client-request-id: 261cf388-c531-11e9-a853-2816a845e8c6
+      x-ms-request-id: f8614d6f-401e-0042-113d-594f14000000
+      x-ms-request-server-encrypted: 'true'
+      x-ms-version: '2019-02-02'
+    status:
+      code: 201
+      message: Created
+    url: !!python/object/new:yarl.URL
+      state: !!python/tuple
+      - !!python/object/new:urllib.parse.SplitResult
+        - https
+        - amqptest.blob.core.windows.net
+        - /utcontainerac9c1f02/blob1
+        - ''
+        - ''
+- request:
+    body: block 0
+    headers:
+      Content-Length:
+      - '7'
+      Content-Type:
+      - application/octet-stream
+      If-Match:
+      - '0x111111111111111'
+      User-Agent:
+      - azsdk-python-storage-blob/12.0.0b2 Python/3.7.3 (Windows-10-10.0.17763-SP0)
+      x-ms-client-request-id:
+      - 262309de-c531-11e9-887b-2816a845e8c6
+      x-ms-date:
+      - Thu, 22 Aug 2019 23:04:09 GMT
+      x-ms-version:
+      - '2019-02-02'
+    method: PUT
+    uri: https://blobstoragename.blob.core.windows.net/utcontainerac9c1f02/blob1?comp=appendblock
+  response:
+    body:
+      string: "\uFEFF<?xml version=\"1.0\" encoding=\"utf-8\"?><Error><Code>OutOfRangeInput</Code><Message>One
+        of the request inputs is out of range.\nRequestId:f8614d88-401e-0042-273d-594f14000000\nTime:2019-08-22T23:04:09.5390780Z</Message></Error>"
+    headers:
+      ? !!python/object/new:multidict._istr.istr
+      - Content-Length
+      : '226'
+      ? !!python/object/new:multidict._istr.istr
+      - Content-Type
+      : application/xml
+      ? !!python/object/new:multidict._istr.istr
+      - Date
+      : Thu, 22 Aug 2019 23:04:09 GMT
+      ? !!python/object/new:multidict._istr.istr
+      - Server
+      : Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+      x-ms-client-request-id: 262309de-c531-11e9-887b-2816a845e8c6
+      x-ms-error-code: OutOfRangeInput
+      x-ms-request-id: f8614d88-401e-0042-273d-594f14000000
+      x-ms-version: '2019-02-02'
+    status:
+      code: 400
+      message: One of the request inputs is out of range.
+    url: !!python/object/new:yarl.URL
+      state: !!python/tuple
+      - !!python/object/new:urllib.parse.SplitResult
+        - https
+        - amqptest.blob.core.windows.net
+        - /utcontainerac9c1f02/blob1
+        - comp=appendblock
+        - ''
 version: 1

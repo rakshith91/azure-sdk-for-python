@@ -819,4 +819,208 @@ interactions:
     status:
       code: 200
       message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      User-Agent:
+      - azsdk-python-storage-blob/12.0.0b2 Python/3.7.3 (Windows-10-10.0.17763-SP0)
+      content-type:
+      - application/xml; charset=utf-8
+      x-ms-client-request-id:
+      - b6c41bde-c531-11e9-8961-2816a845e8c6
+      x-ms-copy-source:
+      - http://www.gutenberg.org/files/59466/59466-0.txt
+      x-ms-date:
+      - Thu, 22 Aug 2019 23:08:12 GMT
+      x-ms-version:
+      - '2019-02-02'
+    method: PUT
+    uri: https://blobstoragename.blob.core.windows.net/utcontainer8f8b16f6/59466-0.txt
+  response:
+    body:
+      string: ''
+    headers:
+      Content-Length:
+      - '0'
+      Date:
+      - Thu, 22 Aug 2019 23:08:11 GMT
+      ETag:
+      - '"0x8D727559B33C86D"'
+      Last-Modified:
+      - Thu, 22 Aug 2019 23:08:12 GMT
+      Server:
+      - Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+      x-ms-client-request-id:
+      - b6c41bde-c531-11e9-8961-2816a845e8c6
+      x-ms-copy-id:
+      - 99e4a7d8-88f7-4865-85e2-fb9f6fd7643a
+      x-ms-copy-status:
+      - pending
+      x-ms-request-id:
+      - 47abfbe7-f01e-009c-063e-591fbd000000
+      x-ms-version:
+      - '2019-02-02'
+    status:
+      code: 202
+      message: Accepted
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - azsdk-python-storage-blob/12.0.0b2 Python/3.7.3 (Windows-10-10.0.17763-SP0)
+      content-type:
+      - application/xml; charset=utf-8
+      x-ms-client-request-id:
+      - b70d62be-c531-11e9-8cb9-2816a845e8c6
+      x-ms-date:
+      - Thu, 22 Aug 2019 23:08:12 GMT
+      x-ms-version:
+      - '2019-02-02'
+    method: HEAD
+    uri: https://blobstoragename.blob.core.windows.net/utcontainer8f8b16f6/59466-0.txt
+  response:
+    body:
+      string: ''
+    headers:
+      Accept-Ranges:
+      - bytes
+      Content-Length:
+      - '0'
+      Content-Type:
+      - text/plain; charset=UTF-8
+      Date:
+      - Thu, 22 Aug 2019 23:08:12 GMT
+      ETag:
+      - '"0x8D727559B33C86D"'
+      Last-Modified:
+      - Thu, 22 Aug 2019 23:08:12 GMT
+      Server:
+      - Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+      Vary:
+      - Origin
+      x-ms-access-tier:
+      - Hot
+      x-ms-access-tier-inferred:
+      - 'true'
+      x-ms-blob-type:
+      - BlockBlob
+      x-ms-client-request-id:
+      - b70d62be-c531-11e9-8cb9-2816a845e8c6
+      x-ms-copy-id:
+      - 99e4a7d8-88f7-4865-85e2-fb9f6fd7643a
+      x-ms-copy-progress:
+      - 0/439274
+      x-ms-copy-source:
+      - http://www.gutenberg.org/files/59466/59466-0.txt
+      x-ms-copy-status:
+      - pending
+      x-ms-creation-time:
+      - Thu, 22 Aug 2019 23:08:12 GMT
+      x-ms-lease-state:
+      - available
+      x-ms-lease-status:
+      - unlocked
+      x-ms-request-id:
+      - 47abfc61-f01e-009c-6f3e-591fbd000000
+      x-ms-server-encrypted:
+      - 'true'
+      x-ms-tag-count:
+      - '0'
+      x-ms-version:
+      - '2019-02-02'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - azsdk-python-storage-blob/12.0.0b2 Python/3.7.3 (Windows-10-10.0.17763-SP0)
+      content-type:
+      - application/xml; charset=utf-8
+      x-ms-client-request-id:
+      - baad49c6-c531-11e9-afe0-2816a845e8c6
+      x-ms-date:
+      - Thu, 22 Aug 2019 23:08:18 GMT
+      x-ms-version:
+      - '2019-02-02'
+    method: HEAD
+    uri: https://blobstoragename.blob.core.windows.net/utcontainer8f8b16f6/59466-0.txt
+  response:
+    body:
+      string: ''
+    headers:
+      Accept-Ranges:
+      - bytes
+      Content-Length:
+      - '0'
+      Content-Type:
+      - text/plain; charset=UTF-8
+      Date:
+      - Thu, 22 Aug 2019 23:08:18 GMT
+      ETag:
+      - '"0x8D727559B9EABB7"'
+      Last-Modified:
+      - Thu, 22 Aug 2019 23:08:13 GMT
+      Server:
+      - Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+      Vary:
+      - Origin
+      x-ms-access-tier:
+      - Hot
+      x-ms-access-tier-inferred:
+      - 'true'
+      x-ms-blob-type:
+      - BlockBlob
+      x-ms-client-request-id:
+      - baad49c6-c531-11e9-afe0-2816a845e8c6
+      x-ms-copy-completion-time:
+      - Thu, 22 Aug 2019 23:08:13 GMT
+      x-ms-copy-id:
+      - 99e4a7d8-88f7-4865-85e2-fb9f6fd7643a
+      x-ms-copy-progress:
+      - 0/439274
+      x-ms-copy-source:
+      - http://www.gutenberg.org/files/59466/59466-0.txt
+      x-ms-copy-status:
+      - failed
+      x-ms-copy-status-description:
+      - 500 InternalServerError "Copy failed."
+      x-ms-creation-time:
+      - Thu, 22 Aug 2019 23:08:12 GMT
+      x-ms-lease-state:
+      - available
+      x-ms-lease-status:
+      - unlocked
+      x-ms-request-id:
+      - 47ac059d-f01e-009c-3c3e-591fbd000000
+      x-ms-server-encrypted:
+      - 'true'
+      x-ms-tag-count:
+      - '0'
+      x-ms-version:
+      - '2019-02-02'
+    status:
+      code: 200
+      message: OK
 version: 1

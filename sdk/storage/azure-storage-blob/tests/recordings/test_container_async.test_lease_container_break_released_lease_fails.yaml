@@ -199,4 +199,208 @@ interactions:
         - /containerc1a51bb8
         - comp=lease&restype=container
         - ''
+- request:
+    body: null
+    headers:
+      User-Agent:
+      - azsdk-python-storage-blob/12.0.0b2 Python/3.7.3 (Windows-10-10.0.17763-SP0)
+      content-type:
+      - application/xml; charset=utf-8
+      x-ms-client-request-id:
+      - fc2e07e2-c532-11e9-90ff-2816a845e8c6
+      x-ms-date:
+      - Thu, 22 Aug 2019 23:17:18 GMT
+      x-ms-version:
+      - '2019-02-02'
+    method: PUT
+    uri: https://blobstoragename.blob.core.windows.net/containerc1a51bb8?restype=container
+  response:
+    body:
+      string: ''
+    headers:
+      ? !!python/object/new:multidict._istr.istr
+      - Content-Length
+      : '0'
+      ? !!python/object/new:multidict._istr.istr
+      - Date
+      : Thu, 22 Aug 2019 23:17:17 GMT
+      ? !!python/object/new:multidict._istr.istr
+      - Etag
+      : '"0x8D72756E06CD61C"'
+      ? !!python/object/new:multidict._istr.istr
+      - Last-Modified
+      : Thu, 22 Aug 2019 23:17:18 GMT
+      ? !!python/object/new:multidict._istr.istr
+      - Server
+      : Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+      x-ms-client-request-id: fc2e07e2-c532-11e9-90ff-2816a845e8c6
+      x-ms-request-id: 48987b92-301e-00e7-583f-59740d000000
+      x-ms-version: '2019-02-02'
+    status:
+      code: 201
+      message: Created
+    url: !!python/object/new:yarl.URL
+      state: !!python/tuple
+      - !!python/object/new:urllib.parse.SplitResult
+        - https
+        - amqptest.blob.core.windows.net
+        - /containerc1a51bb8
+        - restype=container
+        - ''
+- request:
+    body: null
+    headers:
+      User-Agent:
+      - azsdk-python-storage-blob/12.0.0b2 Python/3.7.3 (Windows-10-10.0.17763-SP0)
+      content-type:
+      - application/xml; charset=utf-8
+      x-ms-client-request-id:
+      - fc47250a-c532-11e9-a5a7-2816a845e8c6
+      x-ms-date:
+      - Thu, 22 Aug 2019 23:17:18 GMT
+      x-ms-lease-action:
+      - acquire
+      x-ms-lease-duration:
+      - '-1'
+      x-ms-proposed-lease-id:
+      - d55e1c0b-0d02-4644-9a4f-e2c1ed7f9bc0
+      x-ms-version:
+      - '2019-02-02'
+    method: PUT
+    uri: https://blobstoragename.blob.core.windows.net/containerc1a51bb8?comp=lease&restype=container
+  response:
+    body:
+      string: ''
+    headers:
+      ? !!python/object/new:multidict._istr.istr
+      - Content-Length
+      : '0'
+      ? !!python/object/new:multidict._istr.istr
+      - Date
+      : Thu, 22 Aug 2019 23:17:17 GMT
+      ? !!python/object/new:multidict._istr.istr
+      - Etag
+      : '"0x8D72756E06CD61C"'
+      ? !!python/object/new:multidict._istr.istr
+      - Last-Modified
+      : Thu, 22 Aug 2019 23:17:18 GMT
+      ? !!python/object/new:multidict._istr.istr
+      - Server
+      : Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+      x-ms-client-request-id: fc47250a-c532-11e9-a5a7-2816a845e8c6
+      x-ms-lease-id: d55e1c0b-0d02-4644-9a4f-e2c1ed7f9bc0
+      x-ms-request-id: 48987ba9-301e-00e7-6c3f-59740d000000
+      x-ms-version: '2019-02-02'
+    status:
+      code: 201
+      message: Created
+    url: !!python/object/new:yarl.URL
+      state: !!python/tuple
+      - !!python/object/new:urllib.parse.SplitResult
+        - https
+        - amqptest.blob.core.windows.net
+        - /containerc1a51bb8
+        - comp=lease&restype=container
+        - ''
+- request:
+    body: null
+    headers:
+      User-Agent:
+      - azsdk-python-storage-blob/12.0.0b2 Python/3.7.3 (Windows-10-10.0.17763-SP0)
+      content-type:
+      - application/xml; charset=utf-8
+      x-ms-client-request-id:
+      - fc4ced8c-c532-11e9-a91e-2816a845e8c6
+      x-ms-date:
+      - Thu, 22 Aug 2019 23:17:18 GMT
+      x-ms-lease-action:
+      - release
+      x-ms-lease-id:
+      - d55e1c0b-0d02-4644-9a4f-e2c1ed7f9bc0
+      x-ms-version:
+      - '2019-02-02'
+    method: PUT
+    uri: https://blobstoragename.blob.core.windows.net/containerc1a51bb8?comp=lease&restype=container
+  response:
+    body:
+      string: ''
+    headers:
+      ? !!python/object/new:multidict._istr.istr
+      - Content-Length
+      : '0'
+      ? !!python/object/new:multidict._istr.istr
+      - Date
+      : Thu, 22 Aug 2019 23:17:17 GMT
+      ? !!python/object/new:multidict._istr.istr
+      - Etag
+      : '"0x8D72756E06CD61C"'
+      ? !!python/object/new:multidict._istr.istr
+      - Last-Modified
+      : Thu, 22 Aug 2019 23:17:18 GMT
+      ? !!python/object/new:multidict._istr.istr
+      - Server
+      : Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+      x-ms-client-request-id: fc4ced8c-c532-11e9-a91e-2816a845e8c6
+      x-ms-request-id: 48987bc0-301e-00e7-013f-59740d000000
+      x-ms-version: '2019-02-02'
+    status:
+      code: 200
+      message: OK
+    url: !!python/object/new:yarl.URL
+      state: !!python/tuple
+      - !!python/object/new:urllib.parse.SplitResult
+        - https
+        - amqptest.blob.core.windows.net
+        - /containerc1a51bb8
+        - comp=lease&restype=container
+        - ''
+- request:
+    body: null
+    headers:
+      User-Agent:
+      - azsdk-python-storage-blob/12.0.0b2 Python/3.7.3 (Windows-10-10.0.17763-SP0)
+      content-type:
+      - application/xml; charset=utf-8
+      x-ms-client-request-id:
+      - fc528ef0-c532-11e9-933e-2816a845e8c6
+      x-ms-date:
+      - Thu, 22 Aug 2019 23:17:18 GMT
+      x-ms-lease-action:
+      - break
+      x-ms-version:
+      - '2019-02-02'
+    method: PUT
+    uri: https://blobstoragename.blob.core.windows.net/containerc1a51bb8?comp=lease&restype=container
+  response:
+    body:
+      string: "\uFEFF<?xml version=\"1.0\" encoding=\"utf-8\"?><Error><Code>LeaseNotPresentWithLeaseOperation</Code><Message>There
+        is currently no lease on the container.\nRequestId:48987bd5-301e-00e7-153f-59740d000000\nTime:2019-08-22T23:17:18.3465300Z</Message></Error>"
+    headers:
+      ? !!python/object/new:multidict._istr.istr
+      - Content-Length
+      : '247'
+      ? !!python/object/new:multidict._istr.istr
+      - Content-Type
+      : application/xml
+      ? !!python/object/new:multidict._istr.istr
+      - Date
+      : Thu, 22 Aug 2019 23:17:17 GMT
+      ? !!python/object/new:multidict._istr.istr
+      - Server
+      : Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+      x-ms-client-request-id: fc528ef0-c532-11e9-933e-2816a845e8c6
+      x-ms-error-code: LeaseNotPresentWithLeaseOperation
+      x-ms-request-id: 48987bd5-301e-00e7-153f-59740d000000
+      x-ms-version: '2019-02-02'
+    status:
+      code: 409
+      message: There is currently no lease on the container.
+    url: !!python/object/new:yarl.URL
+      state: !!python/tuple
+      - !!python/object/new:urllib.parse.SplitResult
+        - https
+        - amqptest.blob.core.windows.net
+        - /containerc1a51bb8
+        - comp=lease&restype=container
+        - ''
 version: 1

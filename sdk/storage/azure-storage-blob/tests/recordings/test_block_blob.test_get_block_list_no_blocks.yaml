@@ -70,8 +70,8 @@ interactions:
     uri: https://remotestoragename.blob.core.windows.net/utcontainera4381254/bloba4381254?blocklisttype=all&comp=blocklist
   response:
     body:
-      string: "\uFEFF<?xml version=\"1.0\" encoding=\"utf-8\"?><BlockList><CommittedBlocks\
-        \ /><UncommittedBlocks /></BlockList>"
+      string: "\uFEFF<?xml version=\"1.0\" encoding=\"utf-8\"?><BlockList><CommittedBlocks
+        /><UncommittedBlocks /></BlockList>"
     headers:
       Content-Type:
       - application/xml
@@ -167,8 +167,8 @@ interactions:
     uri: https://storagename.blob.core.windows.net/utcontainera4381254/bloba4381254?blocklisttype=all&comp=blocklist
   response:
     body:
-      string: "\uFEFF<?xml version=\"1.0\" encoding=\"utf-8\"?><BlockList><CommittedBlocks\
-        \ /><UncommittedBlocks /></BlockList>"
+      string: "\uFEFF<?xml version=\"1.0\" encoding=\"utf-8\"?><BlockList><CommittedBlocks
+        /><UncommittedBlocks /></BlockList>"
     headers:
       Content-Type:
       - application/xml
@@ -190,6 +190,113 @@ interactions:
       - 93f4d5d4-801e-001b-71e0-224a92000000
       x-ms-version:
       - '2018-03-28'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      Content-Type:
+      - application/octet-stream
+      If-None-Match:
+      - '*'
+      User-Agent:
+      - azsdk-python-storage-blob/12.0.0b2 Python/3.7.3 (Windows-10-10.0.17763-SP0)
+      x-ms-blob-type:
+      - BlockBlob
+      x-ms-client-request-id:
+      - 8d35eafa-c531-11e9-810f-2816a845e8c6
+      x-ms-date:
+      - Thu, 22 Aug 2019 23:07:02 GMT
+      x-ms-version:
+      - '2019-02-02'
+    method: PUT
+    uri: https://blobstoragename.blob.core.windows.net/utcontainera4381254/bloba4381254
+  response:
+    body:
+      string: ''
+    headers:
+      Content-Length:
+      - '0'
+      Content-MD5:
+      - 1B2M2Y8AsgTpgAmY7PhCfg==
+      Date:
+      - Thu, 22 Aug 2019 23:07:02 GMT
+      ETag:
+      - '"0x8D7275571894E20"'
+      Last-Modified:
+      - Thu, 22 Aug 2019 23:07:02 GMT
+      Server:
+      - Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+      x-ms-client-request-id:
+      - 8d35eafa-c531-11e9-810f-2816a845e8c6
+      x-ms-content-crc64:
+      - AAAAAAAAAAA=
+      x-ms-request-id:
+      - b900575d-701e-004a-3b3e-595467000000
+      x-ms-request-server-encrypted:
+      - 'true'
+      x-ms-version:
+      - '2019-02-02'
+    status:
+      code: 201
+      message: Created
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - azsdk-python-storage-blob/12.0.0b2 Python/3.7.3 (Windows-10-10.0.17763-SP0)
+      content-type:
+      - application/xml; charset=utf-8
+      x-ms-client-request-id:
+      - 8d62e5ca-c531-11e9-b955-2816a845e8c6
+      x-ms-date:
+      - Thu, 22 Aug 2019 23:07:02 GMT
+      x-ms-version:
+      - '2019-02-02'
+    method: GET
+    uri: https://blobstoragename.blob.core.windows.net/utcontainera4381254/bloba4381254?blocklisttype=all&comp=blocklist
+  response:
+    body:
+      string: "\uFEFF<?xml version=\"1.0\" encoding=\"utf-8\"?><BlockList><CommittedBlocks
+        /><UncommittedBlocks /></BlockList>"
+    headers:
+      Content-Type:
+      - application/xml
+      Date:
+      - Thu, 22 Aug 2019 23:07:02 GMT
+      ETag:
+      - '"0x8D7275571894E20"'
+      Last-Modified:
+      - Thu, 22 Aug 2019 23:07:02 GMT
+      Server:
+      - Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Origin
+      x-ms-blob-content-length:
+      - '0'
+      x-ms-client-request-id:
+      - 8d62e5ca-c531-11e9-b955-2816a845e8c6
+      x-ms-request-id:
+      - b900577d-701e-004a-553e-595467000000
+      x-ms-version:
+      - '2019-02-02'
     status:
       code: 200
       message: OK

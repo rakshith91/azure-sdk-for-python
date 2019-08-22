@@ -102,9 +102,8 @@ interactions:
     uri: https://remotestoragename.blob.core.windows.net/utcontainer88321af4?restype=container
   response:
     body:
-      string: "\uFEFF<?xml version=\"1.0\" encoding=\"utf-8\"?><Error><Code>ContainerNotFound</Code><Message>The\
-        \ specified container does not exist.\nRequestId:8a70b982-e01e-0083-2cd7-22c4ad000000\n\
-        Time:2019-06-14T17:32:42.3711584Z</Message></Error>"
+      string: "\uFEFF<?xml version=\"1.0\" encoding=\"utf-8\"?><Error><Code>ContainerNotFound</Code><Message>The
+        specified container does not exist.\nRequestId:8a70b982-e01e-0083-2cd7-22c4ad000000\nTime:2019-06-14T17:32:42.3711584Z</Message></Error>"
     headers:
       Content-Length:
       - '225'
@@ -228,9 +227,8 @@ interactions:
     uri: https://storagename.blob.core.windows.net/utcontainer88321af4?restype=container
   response:
     body:
-      string: "\uFEFF<?xml version=\"1.0\" encoding=\"utf-8\"?><Error><Code>ContainerNotFound</Code><Message>The\
-        \ specified container does not exist.\nRequestId:72151565-301e-0020-14df-2208cc000000\n\
-        Time:2019-06-14T18:35:01.4510671Z</Message></Error>"
+      string: "\uFEFF<?xml version=\"1.0\" encoding=\"utf-8\"?><Error><Code>ContainerNotFound</Code><Message>The
+        specified container does not exist.\nRequestId:72151565-301e-0020-14df-2208cc000000\nTime:2019-06-14T18:35:01.4510671Z</Message></Error>"
     headers:
       Content-Length:
       - '225'
@@ -248,6 +246,143 @@ interactions:
       - 72151565-301e-0020-14df-2208cc000000
       x-ms-version:
       - '2018-03-28'
+    status:
+      code: 404
+      message: The specified container does not exist.
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      User-Agent:
+      - azsdk-python-storage-blob/12.0.0b2 Python/3.7.3 (Windows-10-10.0.17763-SP0)
+      content-type:
+      - application/xml; charset=utf-8
+      x-ms-client-request-id:
+      - ece41792-c530-11e9-a717-2816a845e8c6
+      x-ms-date:
+      - Thu, 22 Aug 2019 23:02:33 GMT
+      x-ms-version:
+      - '2019-02-02'
+    method: PUT
+    uri: https://blobstoragename.blob.core.windows.net/utcontainer88321af4?restype=container
+  response:
+    body:
+      string: ''
+    headers:
+      Content-Length:
+      - '0'
+      Date:
+      - Thu, 22 Aug 2019 23:02:33 GMT
+      ETag:
+      - '"0x8D72754D13E8A5E"'
+      Last-Modified:
+      - Thu, 22 Aug 2019 23:02:33 GMT
+      Server:
+      - Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+      x-ms-client-request-id:
+      - ece41792-c530-11e9-a717-2816a845e8c6
+      x-ms-request-id:
+      - 2377fec8-901e-008c-763d-59295b000000
+      x-ms-version:
+      - '2019-02-02'
+    status:
+      code: 201
+      message: Created
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      If-Modified-Since:
+      - Thu, 22 Aug 2019 22:47:33 GMT
+      User-Agent:
+      - azsdk-python-storage-blob/12.0.0b2 Python/3.7.3 (Windows-10-10.0.17763-SP0)
+      content-type:
+      - application/xml; charset=utf-8
+      x-ms-client-request-id:
+      - ed180ccc-c530-11e9-9f0c-2816a845e8c6
+      x-ms-date:
+      - Thu, 22 Aug 2019 23:02:33 GMT
+      x-ms-version:
+      - '2019-02-02'
+    method: DELETE
+    uri: https://blobstoragename.blob.core.windows.net/utcontainer88321af4?restype=container
+  response:
+    body:
+      string: ''
+    headers:
+      Content-Length:
+      - '0'
+      Date:
+      - Thu, 22 Aug 2019 23:02:33 GMT
+      Server:
+      - Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+      x-ms-client-request-id:
+      - ed180ccc-c530-11e9-9f0c-2816a845e8c6
+      x-ms-request-id:
+      - 2377fee7-901e-008c-0f3d-59295b000000
+      x-ms-version:
+      - '2019-02-02'
+    status:
+      code: 202
+      message: Accepted
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - azsdk-python-storage-blob/12.0.0b2 Python/3.7.3 (Windows-10-10.0.17763-SP0)
+      content-type:
+      - application/xml; charset=utf-8
+      x-ms-client-request-id:
+      - ed241238-c530-11e9-b893-2816a845e8c6
+      x-ms-date:
+      - Thu, 22 Aug 2019 23:02:33 GMT
+      x-ms-version:
+      - '2019-02-02'
+    method: GET
+    uri: https://blobstoragename.blob.core.windows.net/utcontainer88321af4?restype=container
+  response:
+    body:
+      string: "\uFEFF<?xml version=\"1.0\" encoding=\"utf-8\"?><Error><Code>ContainerNotFound</Code><Message>The
+        specified container does not exist.\nRequestId:2377ff06-901e-008c-273d-59295b000000\nTime:2019-08-22T23:02:33.9038533Z</Message></Error>"
+    headers:
+      Content-Length:
+      - '225'
+      Content-Type:
+      - application/xml
+      Date:
+      - Thu, 22 Aug 2019 23:02:33 GMT
+      Server:
+      - Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+      Vary:
+      - Origin
+      x-ms-client-request-id:
+      - ed241238-c530-11e9-b893-2816a845e8c6
+      x-ms-error-code:
+      - ContainerNotFound
+      x-ms-request-id:
+      - 2377ff06-901e-008c-273d-59295b000000
+      x-ms-version:
+      - '2019-02-02'
     status:
       code: 404
       message: The specified container does not exist.

@@ -167,4 +167,50 @@ interactions:
     status:
       code: 201
       message: Created
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      User-Agent:
+      - azsdk-python-storage-blob/12.0.0b2 Python/3.7.3 (Windows-10-10.0.17763-SP0)
+      content-type:
+      - application/xml; charset=utf-8
+      x-ms-client-request-id:
+      - ca371a86-c532-11e9-8794-2816a845e8c6
+      x-ms-date:
+      - Thu, 22 Aug 2019 23:15:54 GMT
+      x-ms-version:
+      - '2019-02-02'
+    method: PUT
+    uri: https://blobstoragename.blob.core.windows.net/container11d00ec6?restype=container
+  response:
+    body:
+      string: ''
+    headers:
+      Content-Length:
+      - '0'
+      Date:
+      - Thu, 22 Aug 2019 23:15:53 GMT
+      ETag:
+      - '"0x8D72756AE8C3F3E"'
+      Last-Modified:
+      - Thu, 22 Aug 2019 23:15:54 GMT
+      Server:
+      - Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+      x-ms-client-request-id:
+      - ca371a86-c532-11e9-8794-2816a845e8c6
+      x-ms-request-id:
+      - 36c5cd8f-c01e-00b6-773f-596af8000000
+      x-ms-version:
+      - '2019-02-02'
+    status:
+      code: 201
+      message: Created
 version: 1

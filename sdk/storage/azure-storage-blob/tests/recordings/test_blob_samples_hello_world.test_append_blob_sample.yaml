@@ -66,9 +66,8 @@ interactions:
     uri: https://storagename.blob.core.windows.net/myappendcontainer/myappendblob?comp=appendblock
   response:
     body:
-      string: "\uFEFF<?xml version=\"1.0\" encoding=\"utf-8\"?><Error><Code>BlobNotFound</Code><Message>The\
-        \ specified blob does not exist.\nRequestId:c80b6f33-c01e-0035-4e23-30ca55000000\n\
-        Time:2019-07-01T15:41:49.0206231Z</Message></Error>"
+      string: "\uFEFF<?xml version=\"1.0\" encoding=\"utf-8\"?><Error><Code>BlobNotFound</Code><Message>The
+        specified blob does not exist.\nRequestId:c80b6f33-c01e-0035-4e23-30ca55000000\nTime:2019-07-01T15:41:49.0206231Z</Message></Error>"
     headers:
       Content-Length:
       - '215'
@@ -322,6 +321,357 @@ interactions:
       - c80b6fc7-c01e-0035-5a23-30ca55000000
       x-ms-version:
       - '2018-03-28'
+    status:
+      code: 202
+      message: Accepted
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      User-Agent:
+      - azsdk-python-storage-blob/12.0.0b2 Python/3.7.3 (Windows-10-10.0.17763-SP0)
+      content-type:
+      - application/xml; charset=utf-8
+      x-ms-client-request-id:
+      - 69d87876-c531-11e9-af77-2816a845e8c6
+      x-ms-date:
+      - Thu, 22 Aug 2019 23:06:03 GMT
+      x-ms-version:
+      - '2019-02-02'
+    method: PUT
+    uri: https://blobstoragename.blob.core.windows.net/myappendcontainer?restype=container
+  response:
+    body:
+      string: ''
+    headers:
+      Content-Length:
+      - '0'
+      Date:
+      - Thu, 22 Aug 2019 23:06:02 GMT
+      ETag:
+      - '"0x8D727554E2929BF"'
+      Last-Modified:
+      - Thu, 22 Aug 2019 23:06:03 GMT
+      Server:
+      - Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+      x-ms-client-request-id:
+      - 69d87876-c531-11e9-af77-2816a845e8c6
+      x-ms-request-id:
+      - 6e2c5623-101e-0015-3b3e-59a699000000
+      x-ms-version:
+      - '2019-02-02'
+    status:
+      code: 201
+      message: Created
+- request:
+    body: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '55'
+      Content-Type:
+      - application/octet-stream
+      User-Agent:
+      - azsdk-python-storage-blob/12.0.0b2 Python/3.7.3 (Windows-10-10.0.17763-SP0)
+      x-ms-client-request-id:
+      - 6a03b0ee-c531-11e9-ad5e-2816a845e8c6
+      x-ms-date:
+      - Thu, 22 Aug 2019 23:06:03 GMT
+      x-ms-version:
+      - '2019-02-02'
+    method: PUT
+    uri: https://blobstoragename.blob.core.windows.net/myappendcontainer/myappendblob?comp=appendblock
+  response:
+    body:
+      string: "\uFEFF<?xml version=\"1.0\" encoding=\"utf-8\"?><Error><Code>BlobNotFound</Code><Message>The
+        specified blob does not exist.\nRequestId:6e2c5642-101e-0015-583e-59a699000000\nTime:2019-08-22T23:06:03.4079060Z</Message></Error>"
+    headers:
+      Content-Length:
+      - '215'
+      Content-Type:
+      - application/xml
+      Date:
+      - Thu, 22 Aug 2019 23:06:02 GMT
+      Server:
+      - Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+      x-ms-client-request-id:
+      - 6a03b0ee-c531-11e9-ad5e-2816a845e8c6
+      x-ms-error-code:
+      - BlobNotFound
+      x-ms-request-id:
+      - 6e2c5642-101e-0015-583e-59a699000000
+      x-ms-version:
+      - '2019-02-02'
+    status:
+      code: 404
+      message: The specified blob does not exist.
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      User-Agent:
+      - azsdk-python-storage-blob/12.0.0b2 Python/3.7.3 (Windows-10-10.0.17763-SP0)
+      content-type:
+      - application/xml; charset=utf-8
+      x-ms-blob-type:
+      - AppendBlob
+      x-ms-client-request-id:
+      - 6a0f93cc-c531-11e9-a066-2816a845e8c6
+      x-ms-date:
+      - Thu, 22 Aug 2019 23:06:03 GMT
+      x-ms-version:
+      - '2019-02-02'
+    method: PUT
+    uri: https://blobstoragename.blob.core.windows.net/myappendcontainer/myappendblob
+  response:
+    body:
+      string: ''
+    headers:
+      Content-Length:
+      - '0'
+      Date:
+      - Thu, 22 Aug 2019 23:06:03 GMT
+      ETag:
+      - '"0x8D727554E436E52"'
+      Last-Modified:
+      - Thu, 22 Aug 2019 23:06:03 GMT
+      Server:
+      - Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+      x-ms-client-request-id:
+      - 6a0f93cc-c531-11e9-a066-2816a845e8c6
+      x-ms-request-id:
+      - 6e2c565f-101e-0015-713e-59a699000000
+      x-ms-request-server-encrypted:
+      - 'true'
+      x-ms-version:
+      - '2019-02-02'
+    status:
+      code: 201
+      message: Created
+- request:
+    body: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '55'
+      Content-Type:
+      - application/octet-stream
+      User-Agent:
+      - azsdk-python-storage-blob/12.0.0b2 Python/3.7.3 (Windows-10-10.0.17763-SP0)
+      x-ms-client-request-id:
+      - 6a1ca9e2-c531-11e9-9607-2816a845e8c6
+      x-ms-date:
+      - Thu, 22 Aug 2019 23:06:03 GMT
+      x-ms-version:
+      - '2019-02-02'
+    method: PUT
+    uri: https://blobstoragename.blob.core.windows.net/myappendcontainer/myappendblob?comp=appendblock
+  response:
+    body:
+      string: ''
+    headers:
+      Content-Length:
+      - '0'
+      Date:
+      - Thu, 22 Aug 2019 23:06:03 GMT
+      ETag:
+      - '"0x8D727554E50901C"'
+      Last-Modified:
+      - Thu, 22 Aug 2019 23:06:03 GMT
+      Server:
+      - Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+      x-ms-blob-append-offset:
+      - '0'
+      x-ms-blob-committed-block-count:
+      - '1'
+      x-ms-client-request-id:
+      - 6a1ca9e2-c531-11e9-9607-2816a845e8c6
+      x-ms-content-crc64:
+      - 69CZwUFtgrU=
+      x-ms-request-id:
+      - 6e2c5676-101e-0015-073e-59a699000000
+      x-ms-request-server-encrypted:
+      - 'true'
+      x-ms-version:
+      - '2019-02-02'
+    status:
+      code: 201
+      message: Created
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - azsdk-python-storage-blob/12.0.0b2 Python/3.7.3 (Windows-10-10.0.17763-SP0)
+      content-type:
+      - application/xml; charset=utf-8
+      x-ms-client-request-id:
+      - 6a29bf7a-c531-11e9-ad12-2816a845e8c6
+      x-ms-date:
+      - Thu, 22 Aug 2019 23:06:03 GMT
+      x-ms-range:
+      - bytes=0-33554431
+      x-ms-version:
+      - '2019-02-02'
+    method: GET
+    uri: https://blobstoragename.blob.core.windows.net/myappendcontainer/myappendblob
+  response:
+    body:
+      string: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+    headers:
+      Accept-Ranges:
+      - bytes
+      Content-Length:
+      - '55'
+      Content-Range:
+      - bytes 0-54/55
+      Content-Type:
+      - application/xml; charset=utf-8
+      Date:
+      - Thu, 22 Aug 2019 23:06:03 GMT
+      ETag:
+      - '"0x8D727554E50901C"'
+      Last-Modified:
+      - Thu, 22 Aug 2019 23:06:03 GMT
+      Server:
+      - Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+      Vary:
+      - Origin
+      x-ms-blob-committed-block-count:
+      - '1'
+      x-ms-blob-type:
+      - AppendBlob
+      x-ms-client-request-id:
+      - 6a29bf7a-c531-11e9-ad12-2816a845e8c6
+      x-ms-creation-time:
+      - Thu, 22 Aug 2019 23:06:03 GMT
+      x-ms-lease-state:
+      - available
+      x-ms-lease-status:
+      - unlocked
+      x-ms-request-id:
+      - 6e2c569a-101e-0015-263e-59a699000000
+      x-ms-server-encrypted:
+      - 'true'
+      x-ms-tag-count:
+      - '0'
+      x-ms-version:
+      - '2019-02-02'
+    status:
+      code: 206
+      message: Partial Content
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      User-Agent:
+      - azsdk-python-storage-blob/12.0.0b2 Python/3.7.3 (Windows-10-10.0.17763-SP0)
+      content-type:
+      - application/xml; charset=utf-8
+      x-ms-client-request-id:
+      - 6a35c530-c531-11e9-b4fa-2816a845e8c6
+      x-ms-date:
+      - Thu, 22 Aug 2019 23:06:03 GMT
+      x-ms-version:
+      - '2019-02-02'
+    method: DELETE
+    uri: https://blobstoragename.blob.core.windows.net/myappendcontainer/myappendblob
+  response:
+    body:
+      string: ''
+    headers:
+      Content-Length:
+      - '0'
+      Date:
+      - Thu, 22 Aug 2019 23:06:03 GMT
+      Server:
+      - Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+      x-ms-client-request-id:
+      - 6a35c530-c531-11e9-b4fa-2816a845e8c6
+      x-ms-delete-type-permanent:
+      - 'true'
+      x-ms-request-id:
+      - 6e2c56b8-101e-0015-413e-59a699000000
+      x-ms-version:
+      - '2019-02-02'
+    status:
+      code: 202
+      message: Accepted
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      User-Agent:
+      - azsdk-python-storage-blob/12.0.0b2 Python/3.7.3 (Windows-10-10.0.17763-SP0)
+      content-type:
+      - application/xml; charset=utf-8
+      x-ms-client-request-id:
+      - 6a4303e6-c531-11e9-80be-2816a845e8c6
+      x-ms-date:
+      - Thu, 22 Aug 2019 23:06:03 GMT
+      x-ms-version:
+      - '2019-02-02'
+    method: DELETE
+    uri: https://blobstoragename.blob.core.windows.net/myappendcontainer?restype=container
+  response:
+    body:
+      string: ''
+    headers:
+      Content-Length:
+      - '0'
+      Date:
+      - Thu, 22 Aug 2019 23:06:03 GMT
+      Server:
+      - Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+      x-ms-client-request-id:
+      - 6a4303e6-c531-11e9-80be-2816a845e8c6
+      x-ms-request-id:
+      - 6e2c56d3-101e-0015-5a3e-59a699000000
+      x-ms-version:
+      - '2019-02-02'
     status:
       code: 202
       message: Accepted

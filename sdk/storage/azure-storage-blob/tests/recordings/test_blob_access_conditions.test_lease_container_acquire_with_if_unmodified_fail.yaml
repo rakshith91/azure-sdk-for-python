@@ -72,9 +72,8 @@ interactions:
     uri: https://remotestoragename.blob.core.windows.net/utcontainer2dcc20b2?comp=lease&restype=container
   response:
     body:
-      string: "\uFEFF<?xml version=\"1.0\" encoding=\"utf-8\"?><Error><Code>ConditionNotMet</Code><Message>The\
-        \ condition specified using HTTP conditional header(s) is not met.\nRequestId:040f319d-601e-007c-7cd7-22f935000000\n\
-        Time:2019-06-14T17:33:10.6178032Z</Message></Error>"
+      string: "\uFEFF<?xml version=\"1.0\" encoding=\"utf-8\"?><Error><Code>ConditionNotMet</Code><Message>The
+        condition specified using HTTP conditional header(s) is not met.\nRequestId:040f319d-601e-007c-7cd7-22f935000000\nTime:2019-06-14T17:33:10.6178032Z</Message></Error>"
     headers:
       Content-Length:
       - '252'
@@ -166,9 +165,8 @@ interactions:
     uri: https://storagename.blob.core.windows.net/utcontainer2dcc20b2?comp=lease&restype=container
   response:
     body:
-      string: "\uFEFF<?xml version=\"1.0\" encoding=\"utf-8\"?><Error><Code>ConditionNotMet</Code><Message>The\
-        \ condition specified using HTTP conditional header(s) is not met.\nRequestId:86247e38-701e-0005-69df-22907f000000\n\
-        Time:2019-06-14T18:35:34.5999379Z</Message></Error>"
+      string: "\uFEFF<?xml version=\"1.0\" encoding=\"utf-8\"?><Error><Code>ConditionNotMet</Code><Message>The
+        condition specified using HTTP conditional header(s) is not met.\nRequestId:86247e38-701e-0005-69df-22907f000000\nTime:2019-06-14T18:35:34.5999379Z</Message></Error>"
     headers:
       Content-Length:
       - '252'
@@ -184,6 +182,107 @@ interactions:
       - 86247e38-701e-0005-69df-22907f000000
       x-ms-version:
       - '2018-03-28'
+    status:
+      code: 412
+      message: The condition specified using HTTP conditional header(s) is not met.
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      User-Agent:
+      - azsdk-python-storage-blob/12.0.0b2 Python/3.7.3 (Windows-10-10.0.17763-SP0)
+      content-type:
+      - application/xml; charset=utf-8
+      x-ms-client-request-id:
+      - 023c8186-c531-11e9-ad0b-2816a845e8c6
+      x-ms-date:
+      - Thu, 22 Aug 2019 23:03:09 GMT
+      x-ms-version:
+      - '2019-02-02'
+    method: PUT
+    uri: https://blobstoragename.blob.core.windows.net/utcontainer2dcc20b2?restype=container
+  response:
+    body:
+      string: ''
+    headers:
+      Content-Length:
+      - '0'
+      Date:
+      - Thu, 22 Aug 2019 23:03:09 GMT
+      ETag:
+      - '"0x8D72754E68C231F"'
+      Last-Modified:
+      - Thu, 22 Aug 2019 23:03:09 GMT
+      Server:
+      - Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+      x-ms-client-request-id:
+      - 023c8186-c531-11e9-ad0b-2816a845e8c6
+      x-ms-request-id:
+      - f0365cbd-f01e-0079-673d-590d4a000000
+      x-ms-version:
+      - '2019-02-02'
+    status:
+      code: 201
+      message: Created
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      If-Unmodified-Since:
+      - Thu, 22 Aug 2019 22:48:09 GMT
+      User-Agent:
+      - azsdk-python-storage-blob/12.0.0b2 Python/3.7.3 (Windows-10-10.0.17763-SP0)
+      content-type:
+      - application/xml; charset=utf-8
+      x-ms-client-request-id:
+      - 02659862-c531-11e9-b02b-2816a845e8c6
+      x-ms-date:
+      - Thu, 22 Aug 2019 23:03:09 GMT
+      x-ms-lease-action:
+      - acquire
+      x-ms-lease-duration:
+      - '-1'
+      x-ms-proposed-lease-id:
+      - 6676efa5-7b8c-4781-b5f7-fbe3a0817ad7
+      x-ms-version:
+      - '2019-02-02'
+    method: PUT
+    uri: https://blobstoragename.blob.core.windows.net/utcontainer2dcc20b2?comp=lease&restype=container
+  response:
+    body:
+      string: "\uFEFF<?xml version=\"1.0\" encoding=\"utf-8\"?><Error><Code>ConditionNotMet</Code><Message>The
+        condition specified using HTTP conditional header(s) is not met.\nRequestId:f0365ce0-f01e-0079-033d-590d4a000000\nTime:2019-08-22T23:03:09.5624887Z</Message></Error>"
+    headers:
+      Content-Length:
+      - '252'
+      Content-Type:
+      - application/xml
+      Date:
+      - Thu, 22 Aug 2019 23:03:09 GMT
+      Server:
+      - Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+      x-ms-client-request-id:
+      - 02659862-c531-11e9-b02b-2816a845e8c6
+      x-ms-error-code:
+      - ConditionNotMet
+      x-ms-request-id:
+      - f0365ce0-f01e-0079-033d-590d4a000000
+      x-ms-version:
+      - '2019-02-02'
     status:
       code: 412
       message: The condition specified using HTTP conditional header(s) is not met.

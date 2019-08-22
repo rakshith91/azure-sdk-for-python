@@ -71,8 +71,8 @@ interactions:
     uri: https://oauthstoragename.blob.core.windows.net/?restype=service&comp=properties
   response:
     body:
-      string: "\uFEFF<?xml version=\"1.0\" encoding=\"utf-8\"?><StorageServiceProperties><Logging><Version>1.0</Version><Read>false</Read><Write>false</Write><Delete>false</Delete><RetentionPolicy><Enabled>false</Enabled></RetentionPolicy></Logging><HourMetrics><Version>1.0</Version><Enabled>true</Enabled><IncludeAPIs>true</IncludeAPIs><RetentionPolicy><Enabled>true</Enabled><Days>7</Days></RetentionPolicy></HourMetrics><MinuteMetrics><Version>1.0</Version><Enabled>false</Enabled><RetentionPolicy><Enabled>false</Enabled></RetentionPolicy></MinuteMetrics><Cors\
-        \ /><DeleteRetentionPolicy><Enabled>false</Enabled></DeleteRetentionPolicy><StaticWebsite><Enabled>false</Enabled></StaticWebsite></StorageServiceProperties>"
+      string: "\uFEFF<?xml version=\"1.0\" encoding=\"utf-8\"?><StorageServiceProperties><Logging><Version>1.0</Version><Read>false</Read><Write>false</Write><Delete>false</Delete><RetentionPolicy><Enabled>false</Enabled></RetentionPolicy></Logging><HourMetrics><Version>1.0</Version><Enabled>true</Enabled><IncludeAPIs>true</IncludeAPIs><RetentionPolicy><Enabled>true</Enabled><Days>7</Days></RetentionPolicy></HourMetrics><MinuteMetrics><Version>1.0</Version><Enabled>false</Enabled><RetentionPolicy><Enabled>false</Enabled></RetentionPolicy></MinuteMetrics><Cors
+        /><DeleteRetentionPolicy><Enabled>false</Enabled></DeleteRetentionPolicy><StaticWebsite><Enabled>false</Enabled></StaticWebsite></StorageServiceProperties>"
     headers:
       Content-Type:
       - application/xml
@@ -89,4 +89,59 @@ interactions:
     status:
       code: 200
       message: OK
+- request:
+    body: client_id=68390a19-a897-236b-b453-488abf67b4fc&client_secret=3Ujhg7pzkOeE7flc6Z187ugf5%2FcJnszGPjAiXmcwhaY%3D&grant_type=client_credentials&scope=https%3A%2F%2Fstorage.azure.com%2F.default
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '188'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - python-requests/2.21.0
+    method: POST
+    uri: https://login.microsoftonline.com/32f988bf-54f1-15af-36ab-2d7cd364db47/oauth2/v2.0/token
+  response:
+    body:
+      string: '{"error":"invalid_request","error_description":"AADSTS90002: Tenant
+        ''32f988bf-54f1-15af-36ab-2d7cd364db47'' not found. This may happen if there
+        are no active subscriptions for the tenant. Check with your subscription administrator.\r\nTrace
+        ID: a040e04d-7432-40dc-ba26-d6ad9ccc8d00\r\nCorrelation ID: 3276851d-ca19-4c8f-be28-1a2e12343278\r\nTimestamp:
+        2019-08-22 23:05:53Z","error_codes":[90002],"timestamp":"2019-08-22 23:05:53Z","trace_id":"a040e04d-7432-40dc-ba26-d6ad9ccc8d00","correlation_id":"3276851d-ca19-4c8f-be28-1a2e12343278","error_uri":"https://login.microsoftonline.com/error?code=90002"}'
+    headers:
+      Cache-Control:
+      - no-cache, no-store
+      Content-Length:
+      - '601'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Thu, 22 Aug 2019 23:05:52 GMT
+      Expires:
+      - '-1'
+      P3P:
+      - CP="DSP CUR OTPi IND OTRi ONL FIN"
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - fpc=AptfP4GMwKtEqUSlP6q5PVCJ2v6pAQAAANAW8dQOAAAA; expires=Sat, 21-Sep-2019
+        23:05:53 GMT; path=/; secure; HttpOnly
+      - x-ms-gateway-slice=corp; path=/; secure; HttpOnly
+      - stsservicecookie=estscorp; path=/; secure; HttpOnly
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Content-Type-Options:
+      - nosniff
+      x-ms-ests-server:
+      - 2.1.9288.13 - WST ProdSlices
+      x-ms-request-id:
+      - a040e04d-7432-40dc-ba26-d6ad9ccc8d00
+    status:
+      code: 400
+      message: Bad Request
 version: 1

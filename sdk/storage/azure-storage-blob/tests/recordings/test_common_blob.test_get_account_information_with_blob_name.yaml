@@ -83,4 +83,50 @@ interactions:
     status:
       code: 200
       message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - azsdk-python-storage-blob/12.0.0b2 Python/3.7.3 (Windows-10-10.0.17763-SP0)
+      content-type:
+      - application/xml; charset=utf-8
+      x-ms-client-request-id:
+      - c23f6d1e-c531-11e9-baee-2816a845e8c6
+      x-ms-date:
+      - Thu, 22 Aug 2019 23:08:31 GMT
+      x-ms-version:
+      - '2019-02-02'
+    method: GET
+    uri: https://blobstoragename.blob.core.windows.net/missing/missing?restype=account&comp=properties
+  response:
+    body:
+      string: ''
+    headers:
+      Content-Length:
+      - '0'
+      Date:
+      - Thu, 22 Aug 2019 23:08:30 GMT
+      Server:
+      - Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+      Vary:
+      - Origin
+      x-ms-account-kind:
+      - StorageV2
+      x-ms-client-request-id:
+      - c23f6d1e-c531-11e9-baee-2816a845e8c6
+      x-ms-request-id:
+      - bad5c388-301e-00ce-3f3e-59024f000000
+      x-ms-sku-name:
+      - Standard_RAGRS
+      x-ms-version:
+      - '2019-02-02'
+    status:
+      code: 200
+      message: OK
 version: 1

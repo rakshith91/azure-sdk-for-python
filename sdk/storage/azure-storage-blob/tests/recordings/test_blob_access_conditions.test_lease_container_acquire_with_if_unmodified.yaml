@@ -279,4 +279,156 @@ interactions:
     status:
       code: 202
       message: Accepted
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      User-Agent:
+      - azsdk-python-storage-blob/12.0.0b2 Python/3.7.3 (Windows-10-10.0.17763-SP0)
+      content-type:
+      - application/xml; charset=utf-8
+      x-ms-client-request-id:
+      - 01d13768-c531-11e9-bda1-2816a845e8c6
+      x-ms-date:
+      - Thu, 22 Aug 2019 23:03:08 GMT
+      x-ms-version:
+      - '2019-02-02'
+    method: PUT
+    uri: https://blobstoragename.blob.core.windows.net/utcontainer8e561eb7?restype=container
+  response:
+    body:
+      string: ''
+    headers:
+      Content-Length:
+      - '0'
+      Date:
+      - Thu, 22 Aug 2019 23:03:07 GMT
+      ETag:
+      - '"0x8D72754E622ECE6"'
+      Last-Modified:
+      - Thu, 22 Aug 2019 23:03:08 GMT
+      Server:
+      - Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+      x-ms-client-request-id:
+      - 01d13768-c531-11e9-bda1-2816a845e8c6
+      x-ms-request-id:
+      - c490299d-a01e-00cb-513d-59f630000000
+      x-ms-version:
+      - '2019-02-02'
+    status:
+      code: 201
+      message: Created
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      If-Unmodified-Since:
+      - Thu, 22 Aug 2019 23:18:08 GMT
+      User-Agent:
+      - azsdk-python-storage-blob/12.0.0b2 Python/3.7.3 (Windows-10-10.0.17763-SP0)
+      content-type:
+      - application/xml; charset=utf-8
+      x-ms-client-request-id:
+      - 01fc21d4-c531-11e9-af11-2816a845e8c6
+      x-ms-date:
+      - Thu, 22 Aug 2019 23:03:08 GMT
+      x-ms-lease-action:
+      - acquire
+      x-ms-lease-duration:
+      - '-1'
+      x-ms-proposed-lease-id:
+      - edde579d-df36-4750-86de-1f7b07d83669
+      x-ms-version:
+      - '2019-02-02'
+    method: PUT
+    uri: https://blobstoragename.blob.core.windows.net/utcontainer8e561eb7?comp=lease&restype=container
+  response:
+    body:
+      string: ''
+    headers:
+      Content-Length:
+      - '0'
+      Date:
+      - Thu, 22 Aug 2019 23:03:07 GMT
+      ETag:
+      - '"0x8D72754E622ECE6"'
+      Last-Modified:
+      - Thu, 22 Aug 2019 23:03:08 GMT
+      Server:
+      - Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+      x-ms-client-request-id:
+      - 01fc21d4-c531-11e9-af11-2816a845e8c6
+      x-ms-lease-id:
+      - edde579d-df36-4750-86de-1f7b07d83669
+      x-ms-request-id:
+      - c49029c1-a01e-00cb-703d-59f630000000
+      x-ms-version:
+      - '2019-02-02'
+    status:
+      code: 201
+      message: Created
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      User-Agent:
+      - azsdk-python-storage-blob/12.0.0b2 Python/3.7.3 (Windows-10-10.0.17763-SP0)
+      content-type:
+      - application/xml; charset=utf-8
+      x-ms-client-request-id:
+      - 020716d2-c531-11e9-a941-2816a845e8c6
+      x-ms-date:
+      - Thu, 22 Aug 2019 23:03:08 GMT
+      x-ms-lease-action:
+      - break
+      x-ms-version:
+      - '2019-02-02'
+    method: PUT
+    uri: https://blobstoragename.blob.core.windows.net/utcontainer8e561eb7?comp=lease&restype=container
+  response:
+    body:
+      string: ''
+    headers:
+      Content-Length:
+      - '0'
+      Date:
+      - Thu, 22 Aug 2019 23:03:08 GMT
+      ETag:
+      - '"0x8D72754E622ECE6"'
+      Last-Modified:
+      - Thu, 22 Aug 2019 23:03:08 GMT
+      Server:
+      - Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+      x-ms-client-request-id:
+      - 020716d2-c531-11e9-a941-2816a845e8c6
+      x-ms-lease-time:
+      - '0'
+      x-ms-request-id:
+      - c49029e0-a01e-00cb-0c3d-59f630000000
+      x-ms-version:
+      - '2019-02-02'
+    status:
+      code: 202
+      message: Accepted
 version: 1

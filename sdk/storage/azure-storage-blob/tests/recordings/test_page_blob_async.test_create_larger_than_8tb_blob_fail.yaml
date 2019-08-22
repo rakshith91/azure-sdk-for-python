@@ -98,4 +98,105 @@ interactions:
         - /utcontainerb4271745/blobb4271745
         - ''
         - ''
+- request:
+    body: null
+    headers:
+      User-Agent:
+      - azsdk-python-storage-blob/12.0.0b2 Python/3.7.3 (Windows-10-10.0.17763-SP0)
+      content-type:
+      - application/xml; charset=utf-8
+      x-ms-client-request-id:
+      - 5a461c9e-c533-11e9-a0d2-2816a845e8c6
+      x-ms-date:
+      - Thu, 22 Aug 2019 23:19:56 GMT
+      x-ms-version:
+      - '2019-02-02'
+    method: PUT
+    uri: https://blobstoragename.blob.core.windows.net/utcontainerb4271745?restype=container
+  response:
+    body:
+      string: ''
+    headers:
+      ? !!python/object/new:multidict._istr.istr
+      - Content-Length
+      : '0'
+      ? !!python/object/new:multidict._istr.istr
+      - Date
+      : Thu, 22 Aug 2019 23:19:55 GMT
+      ? !!python/object/new:multidict._istr.istr
+      - Etag
+      : '"0x8D727573E81BDC3"'
+      ? !!python/object/new:multidict._istr.istr
+      - Last-Modified
+      : Thu, 22 Aug 2019 23:19:56 GMT
+      ? !!python/object/new:multidict._istr.istr
+      - Server
+      : Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+      x-ms-client-request-id: 5a461c9e-c533-11e9-a0d2-2816a845e8c6
+      x-ms-request-id: 5721e72f-701e-00c2-5440-59ecbe000000
+      x-ms-version: '2019-02-02'
+    status:
+      code: 201
+      message: Created
+    url: !!python/object/new:yarl.URL
+      state: !!python/tuple
+      - !!python/object/new:urllib.parse.SplitResult
+        - https
+        - amqptest.blob.core.windows.net
+        - /utcontainerb4271745
+        - restype=container
+        - ''
+- request:
+    body: null
+    headers:
+      Content-Length:
+      - '0'
+      User-Agent:
+      - azsdk-python-storage-blob/12.0.0b2 Python/3.7.3 (Windows-10-10.0.17763-SP0)
+      content-type:
+      - application/xml; charset=utf-8
+      x-ms-blob-content-length:
+      - '8796093022209'
+      x-ms-blob-type:
+      - PageBlob
+      x-ms-client-request-id:
+      - 5a5e2808-c533-11e9-9987-2816a845e8c6
+      x-ms-date:
+      - Thu, 22 Aug 2019 23:19:56 GMT
+      x-ms-version:
+      - '2019-02-02'
+    method: PUT
+    uri: https://blobstoragename.blob.core.windows.net/utcontainerb4271745/blobb4271745
+  response:
+    body:
+      string: "\uFEFF<?xml version=\"1.0\" encoding=\"utf-8\"?><Error><Code>InvalidHeaderValue</Code><Message>The
+        value for one of the HTTP headers is not in the correct format.\nRequestId:5721e75e-701e-00c2-7e40-59ecbe000000\nTime:2019-08-22T23:19:56.1063026Z</Message><HeaderName>x-ms-blob-content-length</HeaderName><HeaderValue>8796093022209</HeaderValue></Error>"
+    headers:
+      ? !!python/object/new:multidict._istr.istr
+      - Content-Length
+      : '343'
+      ? !!python/object/new:multidict._istr.istr
+      - Content-Type
+      : application/xml
+      ? !!python/object/new:multidict._istr.istr
+      - Date
+      : Thu, 22 Aug 2019 23:19:55 GMT
+      ? !!python/object/new:multidict._istr.istr
+      - Server
+      : Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+      x-ms-client-request-id: 5a5e2808-c533-11e9-9987-2816a845e8c6
+      x-ms-error-code: InvalidHeaderValue
+      x-ms-request-id: 5721e75e-701e-00c2-7e40-59ecbe000000
+      x-ms-version: '2019-02-02'
+    status:
+      code: 400
+      message: The value for one of the HTTP headers is not in the correct format.
+    url: !!python/object/new:yarl.URL
+      state: !!python/tuple
+      - !!python/object/new:urllib.parse.SplitResult
+        - https
+        - amqptest.blob.core.windows.net
+        - /utcontainerb4271745/blobb4271745
+        - ''
+        - ''
 version: 1
