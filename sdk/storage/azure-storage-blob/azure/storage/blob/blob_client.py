@@ -2417,8 +2417,6 @@ class BlobClient(StorageAccountHostsMixin):  # pylint: disable=too-many-public-m
             Pages must be aligned with 512-byte boundaries, the start offset
             must be a modulus of 512 and the end offset must be a modulus of
             512-1. Examples of valid byte ranges are 0-511, 512-1023, etc.
-        :param int page_length:
-            Length of the page
         :param lease:
             Required if the blob has an active lease. Value can be a LeaseClient object
             or the lease ID as a string.
@@ -2476,7 +2474,6 @@ class BlobClient(StorageAccountHostsMixin):  # pylint: disable=too-many-public-m
             page=page,
             offset=offset,
             length=length,
-            page_length=length,
             validate_content=validate_content,
             **kwargs)
         try:
