@@ -86,10 +86,10 @@ class TestBlobBatchingSamples(StorageTestCase):
 
         # start the loop
         while retry_count:
-            batch_list = blob_list[:max_allowed] if len(blob_list) > max_allowed else blob_list # list of reqs being sent as a batch
 
-            # list of reqs that are not being sent to batch because of 256 limit
-            remaining_blob_list = list(set(blob_list) - set(batch_list))
+            # split into two lists: first 256, remaining items (if length is less than 256, second
+            # slice will simply be empty)
+            batch_list, remaining_list =  blob_list[:max_allowed],  blob_list[max_allowed:]
 
             # delete_blobs; upto 256
             response = container.delete_blobs(*batch_list)
