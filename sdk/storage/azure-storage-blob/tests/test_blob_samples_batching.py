@@ -67,9 +67,9 @@ class TestBlobBatchingSamples(StorageTestCase):
             pass
         data = b'hello world'
 
-        # Create 500 blobs
+        # Create 500 blobs and put them in a list
         blob_list = []
-        for i in range(100):
+        for i in range(500):
             try:
                 name = 'blob' + str(i)
                 blob_list.append(name)
@@ -77,17 +77,30 @@ class TestBlobBatchingSamples(StorageTestCase):
             except:
                 pass
 
-        failed = blob_list
-        # Act
+        # Number of retries. This way we ensure we don't keep retrying deleting something that is expected to return 404.
+        # for example, deleteing snapshot "only" when there is no snapshot.
         retry_count = 5
+
+        # Max allowed in a single batch
+        max_allowed = 256
+
+        # start the loop
         while retry_count:
-            response = container.delete_blobs(*failed)
-            failed = [i.request for i in response if i.status_code != 202]
-            if not failed:
+            batch_list = blob_list[:max_allowed] if len(blob_list) > max_allowed else blob_list # list of reqs being sent as a batch
+
+            # list of reqs that are not being sent to batch because of 256 limit
+            remaining_blob_list = list(set(blob_list) - set(batch_list))
+
+            # delete_blobs; upto 256
+            response = container.delete_blobs(*batch_list)
+
+            # list of failed blob names
+            failed = [blob for blob, res in zip(batch_list, response) if res.status_code != 202]
+
+            # update the blob_list
+            blob_list = failed + remaining_blob_list
+            if not blob_list:
                 break
             retry_count -= 1
-        
-        assert retry_count  == 5
-        assert failed == []
 
-
+        assert blob_list == []
