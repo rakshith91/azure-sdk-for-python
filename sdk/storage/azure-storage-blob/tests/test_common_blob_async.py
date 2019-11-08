@@ -304,6 +304,18 @@ class StorageCommonBlobTestAsync(AsyncStorageTestCase):
         md = (await blob.get_blob_properties()).metadata
         self.assertDictEqual(md, metadata)
 
+    @pytest.mark.skip("Unskip in 8513")
+    @GlobalStorageAccountPreparer()
+    @AsyncStorageTestCase.await_prepared_test
+    async def test_create_blob_with_iter_content_async(self, resource_group, location, storage_account, storage_account_key):
+        await self._setup(storage_account.name, storage_account_key)
+        # Act
+        uri = "https://upload.wikimedia.org/wikipedia/commons/2/2d/Snake_River_%285mb%29.jpg"
+        data = requests.get(uri, stream=True)
+        blob = self.bsc.get_blob_client(self.container_name, "iterblob")
+        resp = await blob.upload_blob(data=data.iter_content())
+
+        self.assertIsNotNone(resp.get('etag'))
 
     @GlobalStorageAccountPreparer()
     @AsyncStorageTestCase.await_prepared_test

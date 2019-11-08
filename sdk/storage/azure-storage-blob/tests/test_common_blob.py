@@ -247,6 +247,18 @@ class StorageCommonBlobTest(StorageTestCase):
         content = blob.download_blob(lease=lease).readall()
         self.assertEqual(content, data)
 
+    @pytest.mark.skip("Unskip in 8513")
+    @GlobalStorageAccountPreparer()
+    def test_create_blob_with_requests(self, resource_group, location, storage_account, storage_account_key):
+        self._setup(storage_account.name, storage_account_key)
+
+        # Act
+        uri = "https://upload.wikimedia.org/wikipedia/commons/2/2d/Snake_River_%285mb%29.jpg"
+        data = requests.get(uri, stream=True)
+        blob = self.bsc.get_blob_client(self.container_name, "iterblob")
+        resp = blob.upload_blob(data=data.iter_content())
+
+        self.assertIsNotNone(resp.get('etag'))
 
     @GlobalStorageAccountPreparer()
     def test_create_blob_with_metadata(self, resource_group, location, storage_account, storage_account_key):
