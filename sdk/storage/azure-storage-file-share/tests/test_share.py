@@ -303,6 +303,7 @@ class StorageShareTest(FileTestCase):
     @GlobalStorageAccountPreparer()
     def test_list_shares_with_snapshot(self, resource_group, location, storage_account, storage_account_key):
         self._setup(storage_account, storage_account_key)
+
         #share = self._get_share_reference()
         share = self._create_share('random')
         snapshot1 = share.create_snapshot()
@@ -320,6 +321,27 @@ class StorageShareTest(FileTestCase):
         share.delete_share(delete_snapshots=True)
         self._delete_shares()
 
+    @GlobalStorageAccountPreparer()
+    def test_list_shares_no_options_for_premium_account(self, resource_group, location, storage_account, storage_account_key):
+        # Arrange
+        self._setup(storage_account, storage_account_key)
+        file_url = self._get_premium_account_url()
+        credentials = self._get_premium_shared_key_credential()
+        self.fsc = ShareServiceClient(account_url=file_url, credential=credentials)
+
+        self._create_share()
+        # Act
+        shares = list(self.fsc.list_shares())
+
+        # Assert
+        self.assertIsNotNone(shares)
+        self.assertGreaterEqual(len(shares), 1)
+        self.assertIsNotNone(shares[0])
+        self.assertIsNotNone(shares[0].provisioned_iops)
+        self.assertIsNotNone(shares[0].provisioned_ingress_mbps)
+        self.assertIsNotNone(shares[0].provisioned_egress_mbps)
+        self.assertIsNotNone(shares[0].next_allowed_quota_downgrade_time)
+        self._delete_shares()
 
     @GlobalStorageAccountPreparer()
     def test_list_shares_with_prefix(self, resource_group, location, storage_account, storage_account_key):
@@ -443,6 +465,28 @@ class StorageShareTest(FileTestCase):
         # Assert
         self.assertIsNotNone(props)
         self.assertEqual(props.quota, 1)
+        self._delete_shares()
+
+    @GlobalStorageAccountPreparer()
+    def test_get_share_properties_for_premium_account(self, resource_group, location, storage_account, storage_account_key):
+        # Arrange
+        self._setup(storage_account, storage_account_key)
+        file_url = self._get_premium_account_url()
+        credentials = self._get_premium_shared_key_credential()
+        self.fsc = ShareServiceClient(account_url=file_url, credential=credentials)
+
+        share = self._create_share()
+
+        # Act
+        props = share.get_share_properties()
+
+        # Assert
+        self.assertIsNotNone(props)
+        self.assertIsNotNone(props.quota)
+        self.assertIsNotNone(props.provisioned_iops)
+        self.assertIsNotNone(props.provisioned_ingress_mbps)
+        self.assertIsNotNone(props.provisioned_egress_mbps)
+        self.assertIsNotNone(props.next_allowed_quota_downgrade_time)
         self._delete_shares()
 
     @GlobalStorageAccountPreparer()

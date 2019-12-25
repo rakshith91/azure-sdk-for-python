@@ -360,6 +360,35 @@ class StorageShareTest(AsyncStorageTestCase):
 
     @GlobalStorageAccountPreparer()
     @AsyncStorageTestCase.await_prepared_test
+    async def test_list_shares_no_options_for_premium_account_async(self, resource_group, location, storage_account, storage_account_key):
+        # Arrange
+        # TODO: add recordings to this test
+        if not self.is_live:
+            return
+
+        file_url = self._get_premium_account_url()
+        credentials = self._get_premium_shared_key_credential()
+        self.fsc = ShareServiceClient(account_url=file_url, credential=credentials)
+
+        share = await self._create_share()
+
+        # Act
+        shares = []
+        async for s in self.fsc.list_shares():
+            shares.append(s)
+
+        # Assert
+        self.assertIsNotNone(shares)
+        self.assertGreaterEqual(len(shares), 1)
+        self.assertIsNotNone(shares[0])
+        self.assertIsNotNone(shares[0].provisioned_iops)
+        self.assertIsNotNone(shares[0].provisioned_ingress_mbps)
+        self.assertIsNotNone(shares[0].provisioned_egress_mbps)
+        self.assertIsNotNone(shares[0].next_allowed_quota_downgrade_time)
+        await self._delete_shares(share.share_name)
+
+    @GlobalStorageAccountPreparer()
+    @AsyncStorageTestCase.await_prepared_test
     async def test_list_shares_with_prefix_async(self, resource_group, location, storage_account, storage_account_key):
         self._setup(storage_account, storage_account_key)
         share = self._get_share_reference()
@@ -512,6 +541,30 @@ class StorageShareTest(AsyncStorageTestCase):
 
         # Assert
         self.assertIsNone(deleted)
+        await self._delete_shares(share.share_name)
+
+    @GlobalStorageAccountPreparer()
+    @AsyncStorageTestCase.await_prepared_test
+    async def test_get_share_properties_for_premium_account_async(self, resource_group, location, storage_account, storage_account_key):
+        # Arrange
+        self._setup(storage_account, storage_account_key)
+        file_url = self._get_premium_account_url()
+        credentials = self._get_premium_shared_key_credential()
+        self.fsc = ShareServiceClient(account_url=file_url, credential=credentials)
+
+        share = await self._create_share()
+
+        # Act
+        props = await share.get_share_properties()
+
+        # Assert
+        self.assertIsNotNone(props)
+        self.assertIsNotNone(props.quota)
+        self.assertIsNotNone(props.quota)
+        self.assertIsNotNone(props.provisioned_iops)
+        self.assertIsNotNone(props.provisioned_ingress_mbps)
+        self.assertIsNotNone(props.provisioned_egress_mbps)
+        self.assertIsNotNone(props.next_allowed_quota_downgrade_time)
         await self._delete_shares(share.share_name)
 
     @GlobalStorageAccountPreparer()
