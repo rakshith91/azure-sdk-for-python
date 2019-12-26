@@ -28,8 +28,11 @@ from azure.storage.fileshare import (
     ResourceTypes,
     AccountSasPermissions,
     StorageErrorCode,
-    NTFSAttributes)
+    NTFSAttributes,
+    CopyFileSmbInfo)
+from azure.storage.fileshare._parser import _datetime_to_str
 from _shared.filetestcase import (
+
     FileTestCase,
     LogCaptured,
     GlobalStorageAccountPreparer
@@ -834,9 +837,78 @@ class StorageFileTest(FileTestCase):
         self.assertEqual(copy_file, self.short_byte_data)
 
     @GlobalStorageAccountPreparer()
+    def test_copy_file_with_specifying_acl_copy_behavior_attributes(self, resource_group, location, storage_account, storage_account_key):
+        # Arrange
+        self._setup(storage_account, storage_account_key, rmt.name, rmt_key)
+        source_client = self._create_file()
+        user_given_permission = "O:S-1-5-21-2127521184-1604012920-1887927527-21560751G:S-1-5-21-2127521184-" \
+                                "1604012920-1887927527-513D:AI(A;;FA;;;SY)(A;;FA;;;BA)(A;;0x1200a9;;;" \
+                                "S-1-5-21-397955417-626881126-188441444-3053964)"
+        file_client = ShareFileClient(
+            self.get_file_url(storage_account.name),
+            share_name=self.share_name,
+            file_path='file1copy',
+            credential=storage_account_key)
+
+        file_creation_time = "2017-05-10T17:52:33.9551860Z"
+        file_attributes = "Temporary|NoScrubData"
+        smb_info = CopyFileSmbInfo(ignore_read_only=True,
+                                   file_attributes=file_attributes,
+                                   file_creation_time=file_creation_time)
+        # Act
+        copy = file_client.start_copy_from_url(source_client.url,
+                                               file_permission=user_given_permission,
+                                               file_permission_copy_mode="override",
+                                               copy_file_smb_info=smb_info)
+
+        # Assert
+        dest_prop = file_client.get_file_properties()
+        # to make sure the attributes are the same as the set ones
+        self.assertEqual(_datetime_to_str(dest_prop['creation_time']),
+                         file_creation_time)
+        self.assertIn('Temporary', dest_prop['file_attributes'])
+        self.assertIn('NoScrubData', dest_prop['file_attributes'])
+
+        self.assertIsNotNone(copy)
+        self.assertEqual(copy['copy_status'], 'success')
+        self.assertIsNotNone(copy['copy_id'])
+
+        copy_file = file_client.download_file().readall()
+        self.assertEqual(copy_file, self.short_byte_data)
+
+    @GlobalStorageAccountPreparer()
+    def test_copy_file_with_specifying_acl_and_attributes_from_source(self, resource_group, location, storage_account, storage_account_key):
+        # Arrange
+        self._setup(storage_account, storage_account_key)
+        source_client = self._create_file()
+        source_prop = source_client.get_file_properties()
+
+        file_client = ShareFileClient(
+            self.get_file_url(storage_account.name),
+            share_name=self.share_name,
+            file_path='file1copy',
+            credential=storage_account_key)
+
+        # Act
+        copy = file_client.start_copy_from_url(source_client.url,
+                                               file_permission_copy_mode="source")
+
+        # Assert
+        dest_prop = file_client.get_file_properties()
+        # to make sure the acl is copied from source
+        self.assertEqual(source_prop['permission_key'], dest_prop['permission_key'])
+
+        self.assertIsNotNone(copy)
+        self.assertEqual(copy['copy_status'], 'success')
+        self.assertIsNotNone(copy['copy_id'])
+
+        copy_file = file_client.download_file().readall()
+        self.assertEqual(copy_file, self.short_byte_data)
+
+    @GlobalStorageAccountPreparer()
     @StorageAccountPreparer(random_name_enabled=True, name_prefix='pyrmtstorage', parameter_name='rmt')
     def test_copy_file_async_private_file(self, resource_group, location, storage_account, storage_account_key, rmt, rmt_key):
-        self._setup(storage_account, storage_account_key, rmt.name, rmt_key)
+        self._setup(storage_account, storage_account_key, rmt.name, rmt_key) 
         self._create_remote_share()
         source_file = self._create_remote_file()
 
