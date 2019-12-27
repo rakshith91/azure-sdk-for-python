@@ -678,6 +678,7 @@ class StorageFileTest(FileTestCase):
         self._setup(storage_account, storage_account_key)
         # TODO: update swagger and fix this test
         pytest.skip("TODO: fix swagger!")
+
         file_client = self._create_file()
 
         # Act
