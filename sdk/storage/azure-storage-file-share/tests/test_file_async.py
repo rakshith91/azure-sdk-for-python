@@ -8,6 +8,7 @@
 import base64
 import os
 import unittest
+import uuid
 from datetime import datetime, timedelta
 import asyncio
 from azure.core.pipeline.transport import AioHttpTransport
@@ -299,12 +300,52 @@ class StorageFileAsyncTest(AsyncStorageTestCase):
         with self.assertRaises(HttpResponseError):
             await file_name.create_file(1024, file_permission="abcde")
 
+
+    @GlobalStorageAccountPreparer()
+    @AsyncStorageTestCase.await_prepared_test
+    async def test_create_file_with_lease_async(self, resource_group, location, storage_account, storage_account_key):
+        # Arrange
+        self._setup(storage_account, storage_account_key)
+        file_client = await self._get_file_client(storage_account, storage_account_key)
+        await file_client.create_file(1024)
+
+        lease = await file_client.acquire_lease()
+        resp = await file_client.create_file(1024, lease=lease)
+        self.assertIsNotNone(resp)
+
+        # There is currently a lease on the file so there should be an exception when delete the file without lease
+        with self.assertRaises(HttpResponseError):
+            await file_client.delete_file()
+
+        # There is currently a lease on the file so delete the file with the lease will succeed
+        await file_client.delete_file(lease=lease)
+
+    @GlobalStorageAccountPreparer()
+    @AsyncStorageTestCase.await_prepared_test
+    async def test_create_file_with_changed_lease_async(self, resource_group, location, storage_account, storage_account_key):
+        # Arrange
+        self._setup(storage_account, storage_account_key)
+        file_client = await self._get_file_client(storage_account, storage_account_key)
+        await file_client.create_file(1024)
+
+        lease = await file_client.acquire_lease()
+        old_lease_id = lease.id
+        await lease.change(str(uuid.uuid4()))
+
+        # use the old lease id to create file will throw exception.
+        with self.assertRaises(HttpResponseError):
+            await file_client.create_file(1024, lease=old_lease_id)
+
+        # use the new lease to create file will succeed.
+        resp = await file_client.create_file(1024, lease=lease)
+
+        self.assertIsNotNone(resp)
+
     @GlobalStorageAccountPreparer()
     @AsyncStorageTestCase.await_prepared_test
     async def test_create_file_will_set_all_smb_properties(self, resource_group, location, storage_account, storage_account_key):
         self._setup(storage_account, storage_account_key)
         file_client = await self._get_file_client(storage_account, storage_account_key)
-
         # Act
         await file_client.create_file(1024)
         file_properties = await file_client.get_file_properties()
@@ -401,11 +442,27 @@ class StorageFileAsyncTest(AsyncStorageTestCase):
 
     @GlobalStorageAccountPreparer()
     @AsyncStorageTestCase.await_prepared_test
+    async def test_resize_file_with_lease_async(self, resource_group, location, storage_account, storage_account_key):
+        # Arrange
+        self._setup(storage_account, storage_account_key)
+        file_client = await self._get_file_client(storage_account, storage_account_key)
+        lease = await file_client.acquire_lease()
+
+        # Act
+        with self.assertRaises(HttpResponseError):
+            await file_client.resize_file(5)
+        await file_client.resize_file(5, lease=lease)
+
+        # Assert
+        props = await file_client.get_file_properties()
+        self.assertEqual(props.size, 5)
+
+        # Act
+    @GlobalStorageAccountPreparer()
+    @AsyncStorageTestCase.await_prepared_test
     async def test_set_file_properties_async(self, resource_group, location, storage_account, storage_account_key):
         self._setup(storage_account, storage_account_key)
         file_client = await self._create_file(storage_account, storage_account_key)
-
-        # Act
         content_settings = ContentSettings(
             content_language='spanish',
             content_disposition='inline')
@@ -458,6 +515,25 @@ class StorageFileAsyncTest(AsyncStorageTestCase):
         file_client = await self._create_file(storage_account, storage_account_key)
 
         # Act
+        properties = await file_client.get_file_properties()
+
+        # Assert
+        self.assertIsNotNone(properties)
+        self.assertEqual(properties.size, len(self.short_byte_data))
+
+    @GlobalStorageAccountPreparer()
+    @AsyncStorageTestCase.await_prepared_test
+    async def test_get_file_properties_with_invalid_lease_fails_async(self, resource_group, location, storage_account, storage_account_key):
+        # Arrange
+        self._setup(storage_account, storage_account_key)
+        file_client = await self._create_file(storage_account, storage_account_key)
+        file_client.acquire_lease()
+
+        # Act
+        with self.assertRaises(HttpResponseError):
+            await file_client.get_file_properties(lease=str(uuid.uuid4()))
+
+        # get properties on a leased file will succeed
         properties = await file_client.get_file_properties()
 
         # Assert
@@ -574,10 +650,44 @@ class StorageFileAsyncTest(AsyncStorageTestCase):
 
     @GlobalStorageAccountPreparer()
     @AsyncStorageTestCase.await_prepared_test
+    async def test_set_file_metadata_with_broken_lease_async(self, resource_group, location, storage_account, storage_account_key):
+        # Arrange
+        self._setup(storage_account, storage_account_key)
+        metadata = {'hello': 'world', 'number': '42', 'UP': 'UPval'}
+        file_client = await self._create_file()
+
+        lease = await file_client.acquire_lease()
+        with self.assertRaises(HttpResponseError):
+            await file_client.set_file_metadata(metadata)
+
+        lease_id_to_be_broken = lease.id
+        await lease.break_lease()
+
+        # Act
+        # lease is broken, set metadata doesn't require a lease
+        await file_client.set_file_metadata({'hello': 'world'})
+        props = await file_client.get_file_properties()
+        # Assert
+        self.assertEqual(1, len(props.metadata))
+        self.assertEqual(props.metadata['hello'], 'world')
+
+        # Act
+        await file_client.acquire_lease(lease_id=lease_id_to_be_broken)
+        await file_client.set_file_metadata(metadata, lease=lease_id_to_be_broken)
+        # Assert
+        props = await file_client.get_file_properties()
+        md = props.metadata
+        self.assertEqual(3, len(md))
+        self.assertEqual(md['hello'], 'world')
+        self.assertEqual(md['number'], '42')
+        self.assertEqual(md['UP'], 'UPval')
+        self.assertFalse('up' in md)
+
+    @GlobalStorageAccountPreparer()
+    @AsyncStorageTestCase.await_prepared_test
     async def test_delete_file_with_existing_file_async(self, resource_group, location, storage_account, storage_account_key):
         self._setup(storage_account, storage_account_key)
         file_client = await self._create_file(storage_account, storage_account_key)
-
         # Act
         await file_client.delete_file()
 
@@ -621,10 +731,29 @@ class StorageFileAsyncTest(AsyncStorageTestCase):
 
     @GlobalStorageAccountPreparer()
     @AsyncStorageTestCase.await_prepared_test
+    async def test_update_range_with_lease_async(self, resource_group, location, storage_account, storage_account_key):
+        # Arrange
+        self._setup(storage_account, storage_account_key)
+        file_client = await self._get_file_client(storage_account, storage_account_key)
+        lease = await file_client.acquire_lease()
+
+        # Act
+        data = b'abcdefghijklmnop' * 32
+        with self.assertRaises(HttpResponseError):
+            await file_client.upload_range(data, offset=0, length=512)
+        await file_client.upload_range(data, offset=0, length=512, lease=lease)
+
+        # Assert
+        content = await file_client.download_file()
+        content = await content.readall()
+        self.assertEqual(data, content[:512])
+        self.assertEqual(self.short_byte_data[512:], content[512:])
+
+    @GlobalStorageAccountPreparer()
+    @AsyncStorageTestCase.await_prepared_test
     async def test_update_range_with_md5_async(self, resource_group, location, storage_account, storage_account_key):
         self._setup(storage_account, storage_account_key)
         file_client = await self._create_file(storage_account, storage_account_key)
-
         # Act
         data = b'abcdefghijklmnop' * 32
         await file_client.upload_range(data, offset=0, length=512, validate_content=True)
@@ -679,6 +808,46 @@ class StorageFileAsyncTest(AsyncStorageTestCase):
         source_file_url = source_file_client.url + '?' + sas_token_for_source_file
         # Act
         await destination_file_client.upload_range_from_url(source_file_url, offset=0, length=512, source_offset=0)
+
+        # Assert
+        # To make sure the range of the file is actually updated
+        file_ranges = await destination_file_client.get_ranges()
+        file_content = await destination_file_client.download_file(offset=0, length=512)
+        file_content = await file_content.readall()
+        self.assertEquals(1, len(file_ranges))
+        self.assertEquals(0, file_ranges[0].get('start'))
+        self.assertEquals(511, file_ranges[0].get('end'))
+        self.assertEquals(data, file_content)
+
+    @GlobalStorageAccountPreparer()
+    @AsyncStorageTestCase.await_prepared_test
+    async def test_update_range_from_file_url_with_lease_async(self, resource_group, location, storage_account, storage_account_key):
+        # Arrange
+        self._setup(storage_account, storage_account_key)
+        source_file_name = 'testfile'
+        source_file_client = await self._create_file(storage_account, storage_account_key, file_name=source_file_name)
+        data = b'abcdefghijklmnop' * 32
+        await source_file_client.upload_range(data, offset=0, length=512)
+
+        destination_file_name = 'filetoupdate'
+        destination_file_client = await self._create_empty_file(file_name=destination_file_name)
+        lease = await destination_file_client.acquire_lease()
+
+        # generate SAS for the source file
+        sas_token_for_source_file = generate_file_sas(
+            source_file_client.account_name,
+            source_file_client.share_name,
+            source_file_client.file_path,
+            source_file_client.credential.account_key,
+            FileSasPermissions(read=True),
+            expiry=datetime.utcnow() + timedelta(hours=1))
+
+        source_file_url = source_file_client.url + '?' + sas_token_for_source_file
+        # Act
+        with self.assertRaises(HttpResponseError):
+            await destination_file_client.upload_range_from_url(source_file_url, offset=0, length=512, source_offset=0)
+        await destination_file_client.upload_range_from_url(source_file_url, offset=0, length=512, source_offset=0,
+                                                            lease=lease)
 
         # Assert
         # To make sure the range of the file is actually updated
@@ -779,6 +948,33 @@ class StorageFileAsyncTest(AsyncStorageTestCase):
         await file_client.create_file(1024)
 
         # Act
+        ranges = await file_client.get_ranges()
+
+        # Assert
+        self.assertIsNotNone(ranges)
+        self.assertEqual(len(ranges), 0)
+
+    @GlobalStorageAccountPreparer()
+    @AsyncStorageTestCase.await_prepared_test
+    async def test_list_ranges_none_with_invalid_lease_fails_async(self, resource_group, location, storage_account, storage_account_key):
+        # Arrange
+        self._setup(storage_account, storage_account_key)
+        file_name = self._get_file_reference()
+        await self._setup_share()
+        file_client = ShareFileClient(
+            self.get_file_url(),
+            share_name=self.share_name,
+            file_path=file_name,
+            credential=self.settings.STORAGE_ACCOUNT_KEY,
+            transport=AiohttpTestTransport())
+        await file_client.create_file(1024)
+        await file_client.acquire_lease()
+
+        # Act
+        with self.assertRaises(HttpResponseError):
+            await file_client.get_ranges(lease=str(uuid.uuid4()))
+
+        # Get ranges on a leased file will succeed without provide the lease
         ranges = await file_client.get_ranges()
 
         # Assert
@@ -900,6 +1096,35 @@ class StorageFileAsyncTest(AsyncStorageTestCase):
 
         # Act
         copy = await file_client.start_copy_from_url(source_client.url)
+
+        # Assert
+        self.assertIsNotNone(copy)
+        self.assertEqual(copy['copy_status'], 'success')
+        self.assertIsNotNone(copy['copy_id'])
+
+        copy_file = await file_client.download_file()
+        content = await copy_file.readall()
+        self.assertEqual(content, self.short_byte_data)
+
+    @GlobalStorageAccountPreparer()
+    @AsyncStorageTestCase.await_prepared_test
+    async def test_copy_existing_file_with_lease_async(self, resource_group, location, storage_account, storage_account_key):
+        # Arrange
+        self._setup(storage_account, storage_account_key)
+        source_client = await self._create_file(storage_account, storage_account_key)
+        file_client = ShareFileClient(
+            self.get_file_url(),
+            share_name=self.share_name,
+            file_path='file1copy',
+            credential=self.settings.STORAGE_ACCOUNT_KEY)
+        await file_client.create_file(1024)
+        lease = await file_client.acquire_lease()
+
+        # Act
+        with self.assertRaises(HttpResponseError):
+            await file_client.start_copy_from_url(source_client.url)
+
+        copy = await file_client.start_copy_from_url(source_client.url, lease=lease)
 
         # Assert
         self.assertIsNotNone(copy)
@@ -1120,6 +1345,38 @@ class StorageFileAsyncTest(AsyncStorageTestCase):
         await file_client.upload_file(b'hello world')
 
         # Act
+        content = await file_client.download_file()
+        content = await content.readall()
+
+        # Assert
+        self.assertEqual(content, b'hello world')
+
+    @GlobalStorageAccountPreparer()
+    @AsyncStorageTestCase.await_prepared_test
+    async def test_unicode_get_file_unicode_name_with_lease_async(self, resource_group, location, storage_account, storage_account_key):
+        # Arrange
+        self._setup(storage_account, storage_account_key)
+        file_name = '啊齄丂狛狜'
+        await self._setup_share()
+        file_client = ShareFileClient(
+            self.get_file_url(storage_account.name),
+            share_name=self.share_name,
+            file_path=file_name,
+            credential=storage_account_key,
+            transport=AiohttpTestTransport())
+        await file_client.create_file(1024)
+        lease = await file_client.acquire_lease()
+
+        with self.assertRaises(HttpResponseError):
+            await file_client.upload_file(b'hello world')
+
+        await file_client.upload_file(b'hello world', lease=lease)
+
+        # Act
+        # download the file with a wrong lease id will fail
+        with self.assertRaises(HttpResponseError):
+            await file_client.upload_file(b'hello world', lease=str(uuid.uuid4()))
+
         content = await file_client.download_file()
         content = await content.readall()
 
