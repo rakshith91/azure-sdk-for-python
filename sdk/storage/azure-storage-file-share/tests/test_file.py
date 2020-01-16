@@ -1034,7 +1034,7 @@ class StorageFileTest(FileTestCase):
     @GlobalStorageAccountPreparer()
     def test_copy_existing_file_with_lease(self, resource_group, location, storage_account, storage_account_key):
         # Arrange
-         self._setup(storage_account, storage_account_key)
+        self._setup(storage_account, storage_account_key)
         source_client = self._create_file()
         file_client = ShareFileClient(
             self.get_file_url(),
