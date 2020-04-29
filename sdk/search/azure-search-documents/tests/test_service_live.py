@@ -264,6 +264,24 @@ class SearchClientTest(AzureMgmtTestCase):
             "Washington, Wash. => WA",
         ]
 
+    @ResourceGroupPreparer(random_name_enabled=True)
+    @SearchServicePreparer(schema=SCHEMA, index_batch=BATCH)
+    def test_create_or_update_synonym_map_if_unchanged(self, api_key, endpoint, index_name, **kwargs):
+        client = SearchServiceClient(endpoint, AzureKeyCredential(api_key))
+        sm = client.create_synonym_map("test-syn-map", [
+            "USA, United States, United States of America",
+        ])
+        etag = sm['e_tag']
+        assert len(client.get_synonym_maps()) == 1
+        client.create_or_update_synonym_map("test-syn-map", [
+            "Washington, Wash. => WA",
+        ])
+        
+        with pytest.raises(HttpResponseError):
+            client.create_or_update_synonym_map("test-syn-map", [
+            "Washington, Wash. => WA",
+            ], only_if_unchanged=True)
+
     # Skillset operations
 
     @ResourceGroupPreparer(random_name_enabled=True)
@@ -363,6 +381,22 @@ class SearchClientTest(AzureMgmtTestCase):
 
     @ResourceGroupPreparer(random_name_enabled=True)
     @SearchServicePreparer(schema=SCHEMA, index_batch=BATCH)
+    def test_create_or_update_skillset_if_unchanged(self, api_key, endpoint, index_name, **kwargs):
+        client = SearchServiceClient(endpoint, AzureKeyCredential(api_key))
+        s = EntityRecognitionSkill(inputs=[InputFieldMappingEntry(name="text", source="/document/content")],
+                                   outputs=[OutputFieldMappingEntry(name="organizations", target_name="organizations")])
+
+        ss = client.create_or_update_skillset(name='test-ss', skills=[s], description="desc1")
+        etag = ss.etag
+        client.create_or_update_skillset(name='test-ss', skills=[s], description="desc2", skillset=ss)
+        assert len(client.get_skillsets()) == 1
+
+        ss.etag = etag
+        with pytest.raises(HttpResponseError):
+            client.create_or_update_skillset(name='test-ss', skills=[s], description="desc2", skillset=ss, only_if_unchanged=True)
+
+    @ResourceGroupPreparer(random_name_enabled=True)
+    @SearchServicePreparer(schema=SCHEMA, index_batch=BATCH)
     def test_create_datasource(self, api_key, endpoint, index_name, **kwargs):
         client = SearchServiceClient(endpoint, AzureKeyCredential(api_key))
         data_source = self._create_datasource()
@@ -414,3 +448,22 @@ class SearchClientTest(AzureMgmtTestCase):
         result = client.get_datasource("sample-datasource")
         assert result.name == "sample-datasource"
         assert result.description == "updated"
+
+    @ResourceGroupPreparer(random_name_enabled=True)
+    @SearchServicePreparer(schema=SCHEMA, index_batch=BATCH)
+    def test_create_or_update_datasource_if_unchanged(self, api_key, endpoint, index_name, **kwargs):
+        client = SearchServiceClient(endpoint, AzureKeyCredential(api_key))
+        data_source = self._create_datasource()
+        created = client.create_datasource(data_source)
+        etag = created.e_tag
+
+        # Now update the data source
+        data_source.description = "updated"
+        client.create_or_update_datasource(data_source)
+
+        # prepare data source
+        data_source.e_tag = etag # reset to the original datasource
+        data_source.description = "changed"
+        with pytest.raises(HttpResponseError):
+            client.create_or_update_datasource(data_source, only_if_unchanged=True)
+            assert len(client.get_datasources()) == 1

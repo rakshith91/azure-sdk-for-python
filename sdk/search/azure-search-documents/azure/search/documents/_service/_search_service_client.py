@@ -23,6 +23,7 @@ from ._utils import (
     listize_synonyms,
     prep_if_match,
     prep_if_none_match,
+    get_access_conditions
 )
 
 if TYPE_CHECKING:
@@ -204,7 +205,6 @@ class SearchServiceClient(HeadersMixin): # pylint: disable=too-many-public-metho
         index_name,
         index,
         allow_index_downtime=None,
-        match_condition=MatchConditions.Unconditionally,
         **kwargs
     ):
         # type: (str, Index, bool, MatchConditions, **Any) -> Index
@@ -220,8 +220,9 @@ class SearchServiceClient(HeadersMixin): # pylint: disable=too-many-public-metho
          the index can be impaired for several minutes after the index is updated, or longer for very
          large indexes.
         :type allow_index_downtime: bool
-        :param match_condition: The match condition to use upon the etag
-        :type match_condition: ~azure.core.MatchConditions
+        :keyword only_if_unchanged: If set to true, the operation is performed only if the
+        e_tag on the server matches the e_tag value of the passed data_source.
+        :type only_if_unchanged: bool
         :return: The index created or updated
         :rtype: :class:`~azure.search.documents.Index`
         :raises: :class:`~azure.core.exceptions.ResourceNotFoundError`, \
@@ -241,20 +242,9 @@ class SearchServiceClient(HeadersMixin): # pylint: disable=too-many-public-metho
         """
         error_map = {404: ResourceNotFoundError}
         access_condition = None
+        only_if_unchanged = kwargs.pop('only_if_unchanged', False)
         if index.e_tag:
-            access_condition = AccessCondition()
-            access_condition.if_match = prep_if_match(index.e_tag, match_condition)
-            access_condition.if_none_match = prep_if_none_match(
-                index.e_tag, match_condition
-            )
-        if match_condition == MatchConditions.IfNotModified:
-            error_map[412] = ResourceModifiedError
-        if match_condition == MatchConditions.IfModified:
-            error_map[304] = ResourceNotModifiedError
-        if match_condition == MatchConditions.IfPresent:
-            error_map[412] = ResourceNotFoundError
-        if match_condition == MatchConditions.IfMissing:
-            error_map[412] = ResourceExistsError
+            access_condition = get_access_conditions(index, only_if_unchanged)
         kwargs["headers"] = self._merge_client_headers(kwargs.get("headers"))
         patched_index = delistize_flags_for_index(index)
         result = self._client.indexes.create_or_update(
@@ -394,7 +384,7 @@ class SearchServiceClient(HeadersMixin): # pylint: disable=too-many-public-metho
         return listize_synonyms(result.as_dict())
 
     @distributed_trace
-    def create_or_update_synonym_map(self, name, synonyms, **kwargs):
+    def create_or_update_synonym_map(self, name, synonyms=None, **kwargs):
         # type: (str, Sequence[str], **Any) -> dict
         """Create a new Synonym Map in an Azure Search service, or update an
         existing one.
@@ -403,14 +393,34 @@ class SearchServiceClient(HeadersMixin): # pylint: disable=too-many-public-metho
         :type name: str
         :param synonyms: A list of synonyms in SOLR format
         :type synonyms: List[str]
+        :keyword only_if_unchanged: If set to true, the operation is performed only if the
+        e_tag on the server matches the e_tag value of the passed data_source.
+        :type only_if_unchanged: bool
         :return: The created or updated Synonym Map
         :rtype: dict
 
         """
         kwargs["headers"] = self._merge_client_headers(kwargs.get("headers"))
-        solr_format_synonyms = "\n".join(synonyms)
-        synonym_map = SynonymMap(name=name, synonyms=solr_format_synonyms)
-        result = self._client.synonym_maps.create_or_update(name, synonym_map, **kwargs)
+        access_condition = None
+        if_unchanged = kwargs.pop("only_if_unchanged", False)
+        if synonyms:
+            solr_format_synonyms = "\n".join(synonyms)
+        if "synonym_map" in kwargs:
+            synonym_map = kwargs["synonym_map"]
+            access_condition = get_access_conditions(synonym_map, if_unchanged)
+            synonym_map = SynonymMap.deserialize(synonym_map.serialize())
+            synonym_map.name = name
+            synonym_map.synonyms = solr_format_synonyms
+            if "format" in kwargs:
+                synonym_map.format = kwargs["format"]
+        else:
+            synonym_map = SynonymMap(name=name, synonyms=solr_format_synonyms)
+        result = self._client.synonym_maps.create_or_update(
+            synonym_map_name=name,
+            synonym_map=synonym_map,
+            access_condition=access_condition,
+            **kwargs
+        )
         return listize_synonyms(result.as_dict())
 
     # Skillset Operations
@@ -529,6 +539,9 @@ class SearchServiceClient(HeadersMixin): # pylint: disable=too-many-public-metho
         :type description: Optional[str]
         :param skillset: A Skillset to create or update.
         :type skillset: :class:`~azure.search.documents.Skillset`
+        :keyword only_if_unchanged: If set to true, the operation is performed only if the
+        e_tag on the server matches the e_tag value of the passed data_source.
+        :type only_if_unchanged: bool
         :return: The created or updated Skillset
         :rtype: dict
 
@@ -537,9 +550,12 @@ class SearchServiceClient(HeadersMixin): # pylint: disable=too-many-public-metho
 
         """
         kwargs["headers"] = self._merge_client_headers(kwargs.get("headers"))
+        access_condition = None
+        if_unchanged = kwargs.pop('only_if_unchanged', False)
 
         if "skillset" in kwargs:
             skillset = kwargs.pop("skillset")
+            access_condition = get_access_conditions(skillset, if_unchanged)
             skillset = Skillset.deserialize(skillset.serialize())
             skillset.name = name
             for param in ("description", "skills"):
@@ -553,7 +569,7 @@ class SearchServiceClient(HeadersMixin): # pylint: disable=too-many-public-metho
                 skills=kwargs.pop("skills", None),
             )
 
-        return self._client.skillsets.create_or_update(name, skillset, **kwargs)
+        return self._client.skillsets.create_or_update(name, skillset, access_condition=access_condition, **kwargs)
 
     @distributed_trace
     def create_datasource(self, data_source, **kwargs):
@@ -587,15 +603,23 @@ class SearchServiceClient(HeadersMixin): # pylint: disable=too-many-public-metho
         :type name: str
         :param data_source: The definition of the datasource to create or update.
         :type data_source: ~search.models.DataSource
+        :keyword only_if_unchanged: If set to true, the operation is performed only if the
+        e_tag on the server matches the e_tag value of the passed data_source.
+        :type only_if_unchanged: bool
         :return: The created DataSource
         :rtype: dict
         """
         # TODO: access_condition
         kwargs["headers"] = self._merge_client_headers(kwargs.get("headers"))
-
+        access_condition = get_access_conditions(data_source, kwargs.pop('only_if_unchanged', False))
         if not name:
             name = data_source.name
-        result = self._client.data_sources.create_or_update(name, data_source, **kwargs)
+        result = self._client.data_sources.create_or_update(
+            data_source_name=name,
+            data_source=data_source,
+            access_condition=access_condition,
+            **kwargs
+        )
         return result
 
     @distributed_trace
