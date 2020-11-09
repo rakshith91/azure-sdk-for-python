@@ -11,8 +11,6 @@
 
 try:
     from ._models_py3 import BoundingBox
-    from ._models_py3 import CreateProjectOptions
-    from ._models_py3 import CustomBaseModelInfo
     from ._models_py3 import CustomVisionError, CustomVisionErrorException
     from ._models_py3 import Domain
     from ._models_py3 import Export
@@ -43,7 +41,6 @@ try:
     from ._models_py3 import ImageUrlCreateEntry
     from ._models_py3 import Iteration
     from ._models_py3 import IterationPerformance
-    from ._models_py3 import ModelInformation
     from ._models_py3 import Prediction
     from ._models_py3 import PredictionQueryResult
     from ._models_py3 import PredictionQueryTag
@@ -64,8 +61,6 @@ try:
     from ._models_py3 import TrainingParameters
 except (SyntaxError, ImportError):
     from ._models import BoundingBox
-    from ._models import CreateProjectOptions
-    from ._models import CustomBaseModelInfo
     from ._models import CustomVisionError, CustomVisionErrorException
     from ._models import Domain
     from ._models import Export
@@ -96,7 +91,6 @@ except (SyntaxError, ImportError):
     from ._models import ImageUrlCreateEntry
     from ._models import Iteration
     from ._models import IterationPerformance
-    from ._models import ModelInformation
     from ._models import Prediction
     from ._models import PredictionQueryResult
     from ._models import PredictionQueryTag
@@ -133,8 +127,6 @@ from ._custom_vision_training_client_enums import (
 
 __all__ = [
     'BoundingBox',
-    'CreateProjectOptions',
-    'CustomBaseModelInfo',
     'CustomVisionError', 'CustomVisionErrorException',
     'Domain',
     'Export',
@@ -165,7 +157,6 @@ __all__ = [
     'ImageUrlCreateEntry',
     'Iteration',
     'IterationPerformance',
-    'ModelInformation',
     'Prediction',
     'PredictionQueryResult',
     'PredictionQueryTag',
