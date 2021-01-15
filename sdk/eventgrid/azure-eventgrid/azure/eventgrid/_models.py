@@ -136,21 +136,23 @@ class EventGridEvent(InternalEventGridEvent, EventMixin):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param topic: The resource path of the event source. If not provided, Event Grid will stamp onto the event.
-    :type topic: str
     :param subject: Required. A resource path relative to the topic path.
     :type subject: str
-    :param data: Event data specific to the event type.
-    :type data: object
     :param event_type: Required. The type of the event that occurred.
     :type event_type: str
+    :param data_version: Required. The schema version of the data object.
+        If not provided, will be stamped with an empty value.
+    :type data_version: str
+    :param topic: The resource path of the event source. If not provided, Event Grid will stamp onto the event.
+    :type topic: str
+    :param data: Event data specific to the event type.
+    :type data: object
     :ivar metadata_version: The schema version of the event metadata. If provided, must match Event Grid Schema exactly.
         If not provided, EventGrid will stamp onto event.
     :vartype metadata_version: str
     :param data_version: The schema version of the data object. If not provided, will be stamped with an empty value.
     :type data_version: str
-    :param id: Optional. An identifier for the event. The combination of id and source must be
-     unique for each distinct event.
+    :param id: Optional. An identifier for the event. In not provided, a random UUID will be generated and used.
     :type id: Optional[str]
     :param event_time: Optional.The time (in UTC) of the event. If not provided,
      it will be the time (in UTC) the event was generated.
@@ -178,13 +180,14 @@ class EventGridEvent(InternalEventGridEvent, EventMixin):
         'data_version': {'key': 'dataVersion', 'type': 'str'},
     }
 
-    def __init__(self, subject, event_type, **kwargs):
-        # type: (str, str, Any) -> None
+    def __init__(self, subject, event_type, data_version, **kwargs):
+        # type: (str, str, str, Any) -> None
         kwargs.setdefault('id', uuid.uuid4())
         kwargs.setdefault('subject', subject)
         kwargs.setdefault("event_type", event_type)
         kwargs.setdefault('event_time', dt.datetime.now(UTC()).isoformat())
         kwargs.setdefault('data', None)
+        kwargs.setdefault('data_version', data_version)
 
         super(EventGridEvent, self).__init__(**kwargs)
 
