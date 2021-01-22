@@ -54,7 +54,7 @@ class EventMixin(object):
     @property
     def system_event_data(self):
         """
-        Returns strongly typed EventGridEvent/CloudEvent object defined by the format of the properties.
+        Returns strongly typed system event object defined by the format of the properties.
         """
         return self._model
 
@@ -105,7 +105,7 @@ class CloudEvent(EventMixin):   #pylint:disable=too-many-instance-attributes
     :vartype specversion: str
     :ivar id: An identifier for the event. The combination of id and source must be
      unique for each distinct event. If not provided, a random UUID will be generated and used.
-    :vartype id: Optional[str]
+    :vartype id: str
     """
     def __init__(self, source, type, data, **kwargs): # pylint: disable=redefined-builtin
         # type: (str, str, object, Any) -> None
@@ -186,9 +186,6 @@ class EventGridEvent(InternalEventGridEvent, EventMixin):
     :keyword metadata_version: Optional. The schema version of the event metadata. If provided,
         must match Event Grid Schema exactly. If not provided, EventGrid will stamp onto event.
     :type metadata_version: str
-    :keyword data_version: Optional. The schema version of the data object. If not provided,
-        will be stamped with an empty value.
-    :type data_version: str
     :keyword id: Optional. An identifier for the event. In not provided, a random UUID will be generated and used.
     :type id: Optional[str]
     :keyword event_time: Optional.The time (in UTC) of the event. If not provided,
@@ -211,10 +208,10 @@ class EventGridEvent(InternalEventGridEvent, EventMixin):
     :ivar data_version: The schema version of the data object. If not provided, will be stamped with an empty value.
     :vartype data_version: str
     :ivar id: An identifier for the event. In not provided, a random UUID will be generated and used.
-    :vartype id: Optional[str]
+    :vartype id: str
     :ivar event_time: The time (in UTC) of the event. If not provided,
      it will be the time (in UTC) the event was generated.
-    :vartype event_time: Optional[~datetime.datetime]
+    :vartype event_time: ~datetime.datetime
     """
 
     _validation = {
