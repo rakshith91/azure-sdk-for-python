@@ -368,3 +368,24 @@ for event in deserialized_dict_events:
 	print(event.data)
 	print(type(event.data))
 ```
+
+### Deserialize CloudEvents from service bus message
+
+```Python
+from azure.eventgrid import CloudEvent
+from azure.servicebus import ServiceBusClient
+import os
+import json
+
+# all types of CloudEvents below produce same DeserializedEvent
+connection_str = os.environ['SERVICE_BUS_CONN_STR']
+queue_name = os.environ['SERVICE_BUS_QUEUE_NAME']
+
+sb_client = ServiceBusClient.from_connection_string(connection_str)
+
+with sb_client:
+    receiver = sb_client.get_queue_receiver(queue_name, prefetch=10)
+    payload = receiver.receive_messages()
+    for msg in payload:
+        events = [CloudEvent(**data) for data in json.loads(str(msg))]
+```
