@@ -101,7 +101,14 @@ cloud_unicode = u"[{ \"id\":\"de0fd76c-4ef4-4dfb-ab3a-8f24a307e033\",\
 
 cloud_string_with_data_base64 = "[{ \"id\":\"de0fd76c-4ef4-4dfb-ab3a-8f24a307e033\",\
     \"source\":\"https://egtest.dev/cloudcustomevent\",\
-    \"data_base64\":\"base 64 data\",\
+    \"data_base64\":\"Y2xvdWRldmVudA==\",\
+    \"type\":\"Azure.Sdk.Sample\",\
+    \"time\":\"2020-08-07T02:06:08.11969Z\",\
+    \"specversion\":\"1.0\" }]"
+
+cloud_string_data = "[{ \"id\":\"de0fd76c-4ef4-4dfb-ab3a-8f24a307e033\",\
+    \"source\":\"https://egtest.dev/cloudcustomevent\",\
+    \"data\": \"ABCD\",\
     \"type\":\"Azure.Sdk.Sample\",\
     \"time\":\"2020-08-07T02:06:08.11969Z\",\
     \"specversion\":\"1.0\" }]"
