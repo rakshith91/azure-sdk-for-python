@@ -159,9 +159,6 @@ class EventGridEvent(InternalEventGridEvent, EventMixin):
     :keyword metadata_version: Optional. The schema version of the event metadata. If provided,
         must match Event Grid Schema exactly. If not provided, EventGrid will stamp onto event.
     :type metadata_version: str
-    :keyword data_version: Optional. The schema version of the data object. If not provided,
-        will be stamped with an empty value.
-    :type data_version: str
     :keyword id: Optional. An identifier for the event. In not provided, a random UUID will be generated and used.
     :type id: Optional[str]
     :keyword event_time: Optional.The time (in UTC) of the event. If not provided,
@@ -181,8 +178,6 @@ class EventGridEvent(InternalEventGridEvent, EventMixin):
     :ivar metadata_version: The schema version of the event metadata. If provided, must match Event Grid Schema exactly.
      If not provided, EventGrid will stamp onto event.
     :vartype metadata_version: str
-    :ivar data_version: The schema version of the data object. If not provided, will be stamped with an empty value.
-    :vartype data_version: str
     :ivar id: An identifier for the event. In not provided, a random UUID will be generated and used.
     :vartype id: Optional[str]
     :ivar event_time: The time (in UTC) of the event. If not provided,
@@ -211,8 +206,8 @@ class EventGridEvent(InternalEventGridEvent, EventMixin):
         'data_version': {'key': 'dataVersion', 'type': 'str'},
     }
 
-    def __init__(self, data, subject, event_type, data_version, **kwargs):
-        # type: (object, str, str, str, Any) -> None
+    def __init__(self, subject, event_type, data, data_version, **kwargs):
+        # type: (str, str, object, str, Any) -> None
         kwargs.setdefault('id', uuid.uuid4())
         kwargs.setdefault('subject', subject)
         kwargs.setdefault("event_type", event_type)
