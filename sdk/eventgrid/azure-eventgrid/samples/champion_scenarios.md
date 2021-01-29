@@ -132,14 +132,14 @@ credential = AzureKeyCredential(topic_key)
 client = EventGridPublisherClient(endpoint, credential)
 
 event = {
-    "event_type": "Contoso.Items.ItemReceived",
+    "eventType": "Contoso.Items.ItemReceived",
     "data": {
 		"itemSku": "Contoso Item SKU #1"
 	},
 	"subject": "Door1",
-	"data_version": "2.0",
+	"dataVersion": "2.0",
     "id": "randomuuid1",
-    "event_time": datetime(2021, 1, 21, 17, 37)
+    "eventTime": datetime(2021, 1, 21, 17, 37)
 }
 
 client.send(event)
@@ -273,40 +273,6 @@ event = CustomEvent(
 client.send(event)
 ```
 
-### Send multiple CustomEvent schema
-
-```Python
-import os
-from azure.eventgrid import EventGridPublisherClient, CustomEvent
-from azure.core.credentials import AzureKeyCredential
-
-topic_key = os.environ["CUSTOM_SCHEMA_ACCESS_KEY"]
-endpoint = os.environ["CUSTOM_SCHEMA_TOPIC_HOSTNAME"]
-
-credential = AzureKeyCredential(topic_key)
-client = EventGridPublisherClient(endpoint, credential)
-
-event0 = CustomEvent(
-		custom_event_type="Contoso.Items.ItemReceived",
-		data={
-			"itemSku": "Contoso Item SKU #2"
-		},
-		custom_subject="Door1",
-		custom_data_version="2.0"
-	)
-
-event1 = CustomEvent(
-		custom_event_type="Contoso.Items.ItemReceived",
-		data={
-			"itemSku": "Contoso Item SKU #1"
-		},
-		custom_subject="Door1",
-		custom_data_version="2.0"
-	)
-
-client.send([event0, event1])
-```
-
 ### Send CustomEvent schema as a dict
 
 ```Python
@@ -330,6 +296,7 @@ event = {
 }
 
 client.send(event)
+```
 
 ## Receive Scenarios
 
